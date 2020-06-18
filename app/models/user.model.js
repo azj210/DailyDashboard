@@ -1,6 +1,7 @@
 const sql = require("./db.js");
 
 //constructor
+//user model consists of uid, email, first name, last name, birthdate, city, state, and a hashed/salted password
 const User = function(user) {
   this.uid = user.uid;
   this.email = user.email;
@@ -12,6 +13,7 @@ const User = function(user) {
   this.password = user.password;
 };
 
+//call when new user account is created
 User.create = (newUser, result) => {
   sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
     if (err) {
@@ -39,7 +41,7 @@ User.findByUID = (uid, result) => {
       return;
     }
 
-    // not found Customer with the id
+    // not found User with the id
     result({ kind: "not_found" }, null);
   });
 };
@@ -82,6 +84,7 @@ User.updateById = (uid, user, result) => {
 };
 */
 
+//call when user deletes account
 User.remove = (uid, result) => {
   sql.query("DELETE FROM users WHERE uid = ?", uid, (err, res) => {
     if (err) {
