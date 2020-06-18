@@ -1,0 +1,13 @@
+header {
+    text-align: center;
+    padding: 14.0rem 0;
+}
+
+.btn {
+    width: 7.0rem;
+    margin: 1.5rem 2.0rem;
+}
+
+#navbarSupportedContent {
+    transition: all 0.5s;
+}
