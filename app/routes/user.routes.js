@@ -7,8 +7,8 @@ module.exports = app => {
   // Retrieve a user with uid
   app.get("/users/:uid", users.findOne);
 
-  // Update a user with customerId
-  app.put("/users/:uid", users.update);
+  // Update a user with uid
+  //app.put("/users/:uid", users.update);
 
   // Delete a user by uid
   app.delete("/users/:uid", users.delete);
