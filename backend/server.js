@@ -2,10 +2,10 @@ var express = require('express');
 var mysql = require('mysql')
 
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'your_user',
-  password: 'some_secret',
-  database: 'the_app_database'
+  host: 'us-cdbr-east-05.cleardb.net',
+  user: 'b40ed23bca7922',
+  password: '383c7a4b',
+  database: 'heroku_10df3eb7b4b5388'
 })
 
 connection.connect(function(err) {
@@ -13,6 +13,7 @@ connection.connect(function(err) {
   console.log('You are now connected...')
 })
 
+/*
 connection.connect(function(err) {
     if (err) throw err
     console.log('You are now connected...')
@@ -31,3 +32,4 @@ connection.connect(function(err) {
       })
     }) 
   })
+*/
