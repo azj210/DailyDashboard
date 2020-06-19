@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import Home from './components/Home';
 import AccountHome from './components/AccountHome';
 import SignUp from './components/SignUp';
