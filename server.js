@@ -1,6 +1,5 @@
-var express = require('express');
-var mysql = require('mysql');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -12,27 +11,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Casual Decision Maker" });
+    res.json({ message: "Welcome to Casual Decision Maker" });
 });
+
+require("./backend/routes/user.routes.js")(app);
 
 //set port, listen for requests
-app.listen(3000, () => {
-  console.log("Server is running on port 3000.");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
 });
 
-//connect to database
-var connection = mysql.createConnection({
-  host: 'us-cdbr-east-05.cleardb.net',
-  user: 'b40ed23bca7922',
-  password: '383c7a4b',
-  database: 'heroku_10df3eb7b4b5388'
-})
 
-//open connection to MySQL
-connection.connect(error => {
-  if (error) throw error;
-  console.log("Connection Successful");
-});
-
-module.exports = connection;
 
