@@ -26,6 +26,8 @@ function Login () {
 
                     <label for="loginPW">Password</label>
                     <input id="loginPW" name="password" type="password" placeholder="Password" value={loginInfo.pw} onChange={handleChange} />
+
+                    <button type="submit">Log In</button>
                 </form>
             </header>
         </div>

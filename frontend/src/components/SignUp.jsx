@@ -41,13 +41,15 @@ function SignUp() {
                 <input id="password" name="password" type="password" placeholder="Password" value={form.pw} onChange={handleChange} />
 
                 <label for="birthday">Birthday</label>
-                <input id="birthday" type="date" name="birthday" value={form.birthday} />
+                <input id="birthday" type="date" name="birthday" className="form-control" value={form.birthday} onChange={handleChange} />
 
                 <label for="city">City</label>
                 <input id="city" name="city" type="text" placeholder="Los Angeles" value={form.city} onChange={handleChange} required />
 
                 <label for="state">State</label>
                 <input id="state" name="state" type="text" placeholder="California" value={form.state} onChange={handleChange} requied />
+                
+                <button type="submit">Sign Up</button>
             </form>
         </div>
     );
