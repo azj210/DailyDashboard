@@ -1,5 +1,34 @@
 const sql = require("./db.js");
 
+module.exports = (sequelize, Sequelize) => {
+    const User = sequelize.define("user", {
+        email: {
+            type: Sequelize.STRING
+        },
+        fname: {
+            type: Sequelize.STRING
+        },
+        lname: {
+            type: Sequelize.STRING
+        },
+        birthdate: {
+            type: Sequelize.DATE
+        },
+        city: {
+            type: Sequelize.STRING
+        },
+        state: {
+            type: Sequelize.STRING
+        },
+        password: {
+            type: Sequelize.STRING
+        }
+    });
+  
+    return User;
+};
+
+/*
 //constructor
 //user model consists of uid, email, first name, last name, birthdate, city, state, and a hashed/salted password
 const User = function(user) {
@@ -59,7 +88,7 @@ User.getAll = result => {
     });
 };
 
-/*
+
 User.updateById = (uid, user, result) => {
     sql.query(
     "UPDATE users SET fname = ?, active = ? WHERE id = ?",
@@ -82,7 +111,7 @@ User.updateById = (uid, user, result) => {
     }
     );
 };
-*/
+
 
 //call when user deletes account
 User.remove = (uid, result) => {
@@ -106,3 +135,4 @@ User.remove = (uid, result) => {
 
 
 module.exports = User;
+*/

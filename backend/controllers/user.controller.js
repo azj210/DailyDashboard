@@ -1,4 +1,6 @@
-const User = require("../models/user.model.js");
+const db = require("../models/db.js");
+const User = db.users;
+const Op = db.Sequelize.Op;
 
 // Create and Save a new user
 exports.create = (req, res) => {
@@ -7,10 +9,11 @@ exports.create = (req, res) => {
         res.status(400).send({
             message: "Content can't be empty"
         });
+        return;
     }
 
     //create user
-    const user = new User({
+    const user = {
         email: req.body.email,
         fname: req.body.fname,
         lname: req.body.lname,
@@ -18,57 +21,82 @@ exports.create = (req, res) => {
         city: req.body.city,
         state: req.body.state,
         password: req.body.password
-    });
+    };
 
-    //save user into the database
-    User.create(user, (err, data) => {
-    if (err)
-        res.status(500).send({
-        message:
-            err.message || "user creation error"
+    //Save User in the database
+    User.create(user)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the Tutorial."
+            });
         });
-    else res.send(data);
-    });
 };
 
 // Find a single user by uid
 exports.findOne = (req, res) => {
-    User.findByUID(req.params.uid, (err, data) => {
-        if (err) {
-            if (err.kind === "not_found") {
-            res.status(404).send({
-                message: `No user with ${req.params.uid}.`
-            });
-            } else {
+    const uid = req.params.uid;
+
+    User.findByPk(uid)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
             res.status(500).send({
-                message: "Error retrieving User with id " + req.params.user
+                message: "Error retrieving User with uid=" + uid
             });
-            }
-        } else res.send(data);
         });
 };
 
-// Update a user by uid in the request
-/*
+// Update a User by uid in the request
 exports.update = (req, res) => {
+    const uid = req.params.uid;
   
-};
-*/
-
-// Delete a user by uid in the request
-exports.delete = (req, res) => {
-    User.remove(req.params.uid, (err, data) => {
-        if (err) {
-            if (err.kind === "not_found") {
-                res.status(404).send({
-                    message: `No user with id ${req.params.uid}.`
+    User.update(req.body, {
+        where: { uid: uid }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "User was updated successfully."
                 });
             } else {
-                res.status(500).send({
-                    message: "Could not delete User with id " + req.params.uid
+                res.send({
+                    message: `Cannot update User with id=${uid}. Maybe User was not found or req.body is empty!`
                 });
             }
-        } else res.send({ message: `User was deleted successfully!` });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error updating User with uid=" + uid
+            });
         });
 };
 
+// Delete a User with the specified uid in the request
+exports.delete = (req, res) => {
+    const uid = req.params.uid;
+  
+    User.destroy({
+        where: { uid: uid }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "User was deleted successfully!"
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete User with uid=${uid}. Maybe User was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete User with uid=" + uid
+            });
+        });
+  };
