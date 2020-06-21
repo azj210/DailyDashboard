@@ -5,10 +5,10 @@ module.exports = (sequelize, Sequelize) => {
         email: {
             type: Sequelize.STRING
         },
-        fname: {
+        fName: {
             type: Sequelize.STRING
         },
-        lname: {
+        lName: {
             type: Sequelize.STRING
         },
         birthdate: {

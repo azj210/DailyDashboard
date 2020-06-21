@@ -22,9 +22,9 @@ const SignUp = () => {
 
     const saveData = () => {
         var data = {
-            fName: form.fname,
-            lName: form.lname,
-            birthday: form.birthdate,
+            fName: form.fName,
+            lName: form.lName,
+            birthdate: form.birthdate,
             email: form.email, 
             password: form.password,
             city: form.city,
@@ -34,8 +34,8 @@ const SignUp = () => {
         SignUpDataService.create(data)
             .then(response => {
                 setForm({
-                    fName: response.data.fname,
-                    lName: response.data.lname,
+                    fName: response.data.fName,
+                    lName: response.data.lName,
                     birthdate: response.data.birthdate,
                     email: response.data.email, 
                     password: response.data.password,
