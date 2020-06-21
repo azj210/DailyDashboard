@@ -99,7 +99,7 @@ const SignUp = () => {
               </button>
             </div>
           ) : (
-            <div>
+            <div style={{margin: 20}}>
 
                 <div className="form-group">
                     <label htmlFor="fName">First Name</label>
@@ -143,7 +143,7 @@ const SignUp = () => {
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
-                        type="text"
+                        type="password"
                         className="form-control"
                         id="password"
                         required
