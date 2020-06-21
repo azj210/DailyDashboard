@@ -51,6 +51,20 @@ exports.findOne = (req, res) => {
         });
 };
 
+//Finds all users
+exports.findAll = (req, res) => {
+    User.findAll({ where: { published: true } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+}
+
 // Update a User by uid in the request
 exports.update = (req, res) => {
     const uid = req.params.uid;
