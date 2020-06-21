@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SignUpDataService from "../services/SignUpService"
+import SignUpDataService from "../services/UserServices"
 
 const SignUp = () => {
     const initialFormState = {
