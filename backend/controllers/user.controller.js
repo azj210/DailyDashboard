@@ -53,7 +53,7 @@ exports.findOne = (req, res) => {
 
 //Finds all users
 exports.findAll = (req, res) => {
-    User.findAll({ where: { published: true } })
+    User.findAll()
     .then(data => {
       res.send(data);
     })
