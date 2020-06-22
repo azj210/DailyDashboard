@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import SignUpDataService from "../services/SignUpService"
 
-const SignUp = () => {
-    const initialFormState = {
+function SignUp() {
+
+    const initialFormState= {
         fName: "",
         lName: "",
         birthdate: "",
         email: "", 
         password: "",
         city: "",
-        state: "",
+        state: ""
     };
-
-    const [form, setForm] = useState(initialFormState);
+    
+    const [form, setForm] = useState({initialFormState});
+    
     const [submitted, setSubmitted] = useState(false);
 
     const handleChange = event => {
