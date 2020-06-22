@@ -9,5 +9,5 @@ const pool = createPool({
     connectionLimit: 10
 });
 
-//using this pool you can call fnuctions like query to query your database
+//using this pool we can call functions like query to query the MySQL database
 module.exports = pool;

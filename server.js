@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const userRouter = require("./backend/api/users/user.router");
 
+//since user passes in json, we convert it into javascript object
 app.use(express.json());
 
 //if any requests come then we pass to /api/users route
@@ -17,7 +18,7 @@ app.get("/api", (req, res) => {
 });
 */
 
-app.listen(3000, ()=>{
+app.listen(5000, ()=>{
     console.log("server up and running");
 });
 
