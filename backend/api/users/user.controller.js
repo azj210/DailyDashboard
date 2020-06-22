@@ -1,5 +1,7 @@
-const { create, getUserbyUID, getUsers, deleteUserbyUID } = require("./user.service");
-const { genSaltSync, hashSync } = require("bcrypt");
+const { create, getUserbyEmail, getUserbyUID, getUsers, deleteUserbyUID } = require("./user.service");
+const { genSaltSync, hashSync, compareSync } = require("bcrypt");
+//sign creates json tokens
+const { sign } = require("jsonwebtoken");
 
 //controllers that handle all the services from user.service.js
 module.exports = {
@@ -13,6 +15,7 @@ module.exports = {
         //the second parameter is a function that takes either err or results
         create(body, (err, results) => {
             if (err) {
+                //return a response in the json format
                 console.log(err);
                 return res.status(500).json({
                     success: 0,
@@ -24,6 +27,44 @@ module.exports = {
                 success: 1,
                 data: results
             });
+        });
+    },
+
+    //login controller
+    login: (req, res) => {
+        //user passes email and password, which will then be stored in body
+        const body = req.body;
+        //call the service. 2 params passed, the email and the callback
+        getUserbyEmail(body.email, (err, results) => {
+            //if you get an error then stop running
+            if (err) {
+                console.log(err);
+            }
+            //no error but result is blank
+            if (!results) {
+                return res.json({
+                    success: 0,
+                    data: "Invalid email or password"
+                }); 
+            }
+            //valid email. take the result and compare input pass and pass associated with the email
+            const result = compareSync(body.password, results.password);
+            //matches
+            if (result) {
+                results.password = undefined;
+                //generate a jsontoken qwe1234 that will be valid for 1 hour
+                const jsontoken = sign({ result: results }, "qwe1234", { expiresIn: "1h" });
+                return res.json({
+                    success: 1,
+                    message: "logged in successfully",
+                    token: jsontoken
+                });
+            } else {
+                return res.json({
+                    success: 0,
+                    data: "Invalid email or password"
+                });
+            }
         });
     },
 

@@ -27,6 +27,23 @@ module.exports = {
         );
     },
 
+    //get a user by their email address
+    getUserbyEmail: (email, callBack) => {
+        pool.query(
+            `select * from users where email = ?`,
+            [email],
+            (error, results, fields) => {
+                //callBack is a function that takes in 2 parameters
+                if (error) {
+                    //no user with email
+                    return callBack(error);
+                }
+                //user with email found, first param passed to callBack is null second is user data
+                return callBack(null, results[0]);
+            }
+        );
+    },
+
     //retrieves all users 
     getUsers: callBack => {
         pool.query(
