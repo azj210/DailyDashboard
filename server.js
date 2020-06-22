@@ -1,26 +1,25 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-
+const express = require("express");
 const app = express();
+const userRouter = require("./backend/api/users/user.router");
 
-//parse requests of content-type: application/json
-app.use(bodyParser.json());
+//since user passes in json, we convert it into javascript object
+app.use(express.json());
 
-//parse requests of content-type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+//if any requests come then we pass to /api/users route
+app.use("/api/users", userRouter);
 
-//simple route
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Casual Decision Maker" });
+//listen to some endpoint at localhost:3000/api
+/*
+app.get("/api", (req, res) => {
+    res.json({
+        success: 1,
+        message: "rest api is working"
+    });
 });
+*/
 
-require("./backend/routes/user.routes.js")(app);
-
-//set port, listen for requests
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+app.listen(4000, ()=>{
+    console.log("server up and running");
 });
-
 
 

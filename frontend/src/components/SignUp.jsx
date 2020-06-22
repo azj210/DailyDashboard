@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SignUpDataService from "../services/SignUpService"
+import SignUpDataService from "../services/UserServices"
 
 function SignUp() {
 
@@ -24,9 +24,9 @@ function SignUp() {
 
     const saveData = () => {
         var data = {
-            fName: form.fname,
-            lName: form.lname,
-            birthday: form.birthdate,
+            fName: form.fName,
+            lName: form.lName,
+            birthdate: form.birthdate,
             email: form.email, 
             password: form.password,
             city: form.city,
@@ -36,8 +36,8 @@ function SignUp() {
         SignUpDataService.create(data)
             .then(response => {
                 setForm({
-                    fName: response.data.fname,
-                    lName: response.data.lname,
+                    fName: response.data.fName,
+                    lName: response.data.lName,
                     birthdate: response.data.birthdate,
                     email: response.data.email, 
                     password: response.data.password,
@@ -101,7 +101,7 @@ function SignUp() {
               </button>
             </div>
           ) : (
-            <div>
+            <div style={{margin: 20}}>
 
                 <div className="form-group">
                     <label htmlFor="fName">First Name</label>
@@ -145,7 +145,7 @@ function SignUp() {
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
-                        type="text"
+                        type="password"
                         className="form-control"
                         id="password"
                         required

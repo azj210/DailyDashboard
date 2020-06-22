@@ -1,21 +1,30 @@
 {
-  "name": "backend",
+  "name": "CasualDecisionMaker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Decision Maker webapp that leverages various datasets to help users make decisions on day to day recreational problems like what to eat, what to listen to, or what to watch.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azj210/CasualDecisionMaker.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azj210/CasualDecisionMaker/issues"
+  },
+  "homepage": "https://github.com/azj210/CasualDecisionMaker#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "js": "^0.1.0",
-    "mongoose": "^5.9.19",
+    "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
