@@ -1,4 +1,4 @@
-import http from "../http-common";
+import http from "../http-common.js";
 
 const create = data => {
   return http.post("/users", data);

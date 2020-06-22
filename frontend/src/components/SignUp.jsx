@@ -101,7 +101,7 @@ function SignUp() {
               </button>
             </div>
           ) : (
-            <div style={{margin: 20}}>
+            <form style={{margin: 20}} onSubmit={saveData}>
 
                 <div className="form-group">
                     <label htmlFor="fName">First Name</label>
@@ -194,11 +194,11 @@ function SignUp() {
                     />
                 </div>
     
-                <button onClick={saveData} className="btn btn-success">
+                <button type="submit" className="btn btn-success">
                     Submit
                 </button>
                 
-            </div>
+            </form>
           )}
         </div>
       );

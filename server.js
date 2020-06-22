@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const userRouter = require("./backend/api/users/user.router");
+const cors = require("cors");
+
+app.use(cors());
 
 //since user passes in json, we convert it into javascript object
 app.use(express.json());
