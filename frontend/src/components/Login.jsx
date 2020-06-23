@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SignUpDataService from '../services/UserServices';
 
 function Login () {
     const [loginInfo, setLoginInfo] = useState({
@@ -16,20 +17,49 @@ function Login () {
         });
     };
     
+    function logUserIn() {
+        SignUpDataService.login(loginInfo)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
     return(
-        <div>
+        <div className="page-form">
             <header>
                 <h2>Login</h2>
-                <form action="/login" method="post">
-                    <label for="username">Email</label>
-                    <input id="username" name="email" type="email" placeholder="john.smith@gmail.com" value={loginInfo.email} onChange={handleChange} />
-
-                    <label for="loginPW">Password</label>
-                    <input id="loginPW" name="password" type="password" placeholder="Password" value={loginInfo.pw} onChange={handleChange} />
-
-                    <button type="submit">Log In</button>
-                </form>
             </header>
+            
+            <div className="form-group">
+                <label for="username">Email</label>
+                <input 
+                    id="username"
+                    type="email" 
+                    className="form-control" 
+                    name="email" 
+                    placeholder="john.smith@gmail.com" 
+                    required
+                    value={loginInfo.email} 
+                    onChange={handleChange}         
+                />
+            </div>
+            <div className="form-group">    
+                <label for="loginPW">Password</label>
+                <input 
+                    id="loginPW"
+                    type="password" 
+                    className="form-control"
+                    name="password" 
+                    placeholder="Password" 
+                    required
+                    value={loginInfo.pw} 
+                    onChange={handleChange} 
+                />
+            </div>
+            <button type="submit" className="btn btn-info form-control" onCLick={logUserIn}>Login</button>
         </div>
     );
 };

@@ -3,7 +3,7 @@ header {
     padding: 3.0rem 0;
 }
 
-.btn {
+.home-button {
     width: 7.0rem;
     margin: 1.5rem 2.0rem;
 }
@@ -11,4 +11,17 @@ header {
 .homepage-header {
     text-align: center;
     padding: 14.0rem 0;
+}
+
+.page-form {
+    margin: 0 30.0rem 5.0rem;
+}
+
+.notification {
+    margin: 2.0rem;
+}
+
+.notification .btn {
+    width: 10.0rem;
+    margin: 2.0rem;
 }

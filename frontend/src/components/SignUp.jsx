@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import SignUpDataService from "../services/UserServices"
+import SignUpDataService from '../services/UserServices';
+import { Link, Route } from 'react-router-dom';
 
 function SignUp() {
 
@@ -22,7 +23,7 @@ function SignUp() {
         setForm({ ...form, [name]: value });
     };
 
-    const saveData = () => {
+    const saveData = (event) => {
         var data = {
             fName: form.fName,
             lName: form.lName,
@@ -50,6 +51,8 @@ function SignUp() {
             .catch(e => {
                 console.log(e);
             });
+
+            event.preventDefault();
     };
 
     const newSignUp = () => {
@@ -57,51 +60,24 @@ function SignUp() {
         setSubmitted(false);
     };
 
-    /*
-    return(
-        <div>
-            <header>
-                <h2>Sign Up</h2>
-            </header>
-            <form action="/sign-up" method="post">
-                <label for="fName">First Name</label>
-                <input id="fName" name="fName" type="text" placeholder="John" value={form.fName} onChange={handleChange} required />
-
-                <label for="lName">Last Name</label>
-                <input id="lName" name="lName" type="text" placeholder="Smith" value={form.lName} onChange={handleChange} requried />
-
-                <label for="email">Email(this will be your username)</label>
-                <input id="email" name="email" type="email" placeholder="john.smith@gmail.com" value={form.email} onChange={handleChange} />
-
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" placeholder="Password" value={form.pw} onChange={handleChange} />
-
-                <label for="birthday">Birthdate</label>
-                <input id="birthday" type="date" name="birthdate" className="form-control" value={form.birthdate} onChange={handleChange} />
-
-                <label for="city">City</label>
-                <input id="city" name="city" type="text" placeholder="Los Angeles" value={form.city} onChange={handleChange} required />
-
-                <label for="state">State</label>
-                <input id="state" name="state" type="text" placeholder="California" value={form.state} onChange={handleChange} requied />
-                
-                <button onClick ={saveData} type="submit">Submit</button>
-            </form>
-        </div>
-    );
-    */
-
     return (
-        <div className="submit-form">
+        <div>
           {submitted ? (
-            <div>
-              <h4>You submitted successfully!</h4>
+            <header className="notification">
+              <h4>You signed up successfully!</h4>
               <button className="btn btn-success" onClick={newSignUp}>
-                Add
+                Add Another User
               </button>
-            </div>
+              <Link to ="/login" className="btn btn-info">
+                Login
+              </Link>
+            </header>
           ) : (
-            <form style={{margin: 20}} onSubmit={saveData}>
+            <div className="page-form">
+            
+                <header>
+                    <h2>Sign Up</h2>
+                </header>
 
                 <div className="form-group">
                     <label htmlFor="fName">First Name</label>
@@ -115,7 +91,7 @@ function SignUp() {
                         name="fName"
                     />
                 </div>
-    
+        
                 <div className="form-group">
                     <label htmlFor="lName">Last Name</label>
                     <input
@@ -193,13 +169,13 @@ function SignUp() {
                         name="state"
                     />
                 </div>
-    
-                <button type="submit" className="btn btn-success">
+        
+                <button type="submit" className="btn btn-info form-control" onClick={saveData}>
                     Submit
                 </button>
-                
-            </form>
-          )}
+                    
+            </div>
+            )}
         </div>
       );
 };

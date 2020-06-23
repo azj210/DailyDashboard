@@ -7,7 +7,7 @@ const { sign } = require("jsonwebtoken");
 module.exports = {
     createUser: (req, res) => {
         const body = req.body;
-        console.log(body.password);
+        // console.log(body.password);
         const salt = genSaltSync(10);
         //using the salt we can generate the hash encrypted password and store it in body.password
         body.password = hashSync(body.password, salt);
