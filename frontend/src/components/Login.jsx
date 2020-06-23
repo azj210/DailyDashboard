@@ -19,8 +19,12 @@ function Login () {
     
     function logUserIn() {
         SignUpDataService.login(loginInfo)
-            .then(response => {
-                console.log(response.data);
+            .then (response => {
+                setForm({
+                email: response.data.email,
+                password: response.data.password,
+                message: response.data.message || response.data.data
+                })
             })
             .catch(e => {
                 console.log(e);
