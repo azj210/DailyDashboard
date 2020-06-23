@@ -1,37 +1,96 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import LogInDataService from "../services/UserServices";
 
-function Login () {
-    const [loginInfo, setLoginInfo] = useState({
-        email: "", 
-        password: "",
-    });
+function Login() {
+  //   const [loginInfo, setLoginInfo] = useState({
+  //     email: "",
+  //     password: "",
+  //   });
 
-    function handleChange(event) {
-        const { value, name } = event.target;
-        setLoginInfo(prevValue => {
-            return {
-                ...prevValue,
-                [name]: value
-            }
-        });
+  //   function handleChange(event) {
+  //     const { value, name } = event.target;
+  //     setLoginInfo((prevValue) => {
+  //       return {
+  //         ...prevValue,
+  //         [name]: value,
+  //       };
+  //     });
+  //   }
+
+  const initialFormState = {
+    email: "",
+    password: "",
+    message: "",
+  };
+
+  const [form, setForm] = useState({ initialFormState });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const saveData = (event) => {
+    event.preventDefault();
+    var data = {
+      email: form.email,
+      password: form.password,
     };
-    
-    return(
-        <div>
-            <header>
-                <h2>Login</h2>
-                <form action="/login" method="post">
-                    <label for="username">Email</label>
-                    <input id="username" name="email" type="email" placeholder="john.smith@gmail.com" value={loginInfo.email} onChange={handleChange} />
 
-                    <label for="loginPW">Password</label>
-                    <input id="loginPW" name="password" type="password" placeholder="Password" value={loginInfo.pw} onChange={handleChange} />
+    LogInDataService.login(data)
+      .then((response) => {
+        setForm({
+          email: response.data.email,
+          password: response.data.password,
+          message: response.data.message || response.data.data
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-                    <button type="submit">Log In</button>
-                </form>
-            </header>
-        </div>
-    );
-};
+  return (
+    <div>
+      <header>
+        <h2>Login</h2>
+        <form style={{ margin: 20 }} onSubmit={saveData}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              className="form-control"
+              id="email"
+              required
+              value={form.email}
+              onChange={handleChange}
+              name="email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              required
+              value={form.password}
+              onChange={handleChange}
+              name="password"
+            />
+          </div>
+
+          <div>{form.message}</div>
+
+          <button type="submit" className="btn btn-success">
+            Submit
+          </button>
+        </form>
+      </header>
+    </div>
+  );
+}
 
 export default Login;

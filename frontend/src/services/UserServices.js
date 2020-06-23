@@ -16,9 +16,14 @@ const remove = id => {
   return http.delete(`/users/${id}`);
 };
 
+const login = data => {
+  return http.post("users/login", data);
+}
+
 export default {
   create,
   get,
   getAll,
-  remove
+  remove,
+  login
 };
