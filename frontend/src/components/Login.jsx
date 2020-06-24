@@ -38,7 +38,7 @@ function Login () {
             <header>
                 <h2>Login</h2>
             </header>
-            
+            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>{loginInfo.message}</div>
             <div className="form-group">
                 <label for="username">Email</label>
                 <input 
@@ -66,7 +66,6 @@ function Login () {
                 />
             </div>
 
-            <div>{loginInfo.message}</div>
             <button type="submit" className="btn btn-info form-control" onClick={logUserIn}>Login</button>
         </div>
     );
