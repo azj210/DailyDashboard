@@ -5,6 +5,7 @@ function Login () {
     const [loginInfo, setLoginInfo] = useState({
         email: "", 
         password: "",
+        message: ""
     });
 
     function handleChange(event) {
@@ -17,7 +18,8 @@ function Login () {
         });
     };
     
-    function logUserIn() {
+    const logUserIn = (event) => {
+        event.preventDefault();
         SignUpDataService.login(loginInfo)
             .then (response => {
                 setLoginInfo({
@@ -59,11 +61,13 @@ function Login () {
                     name="password" 
                     placeholder="Password" 
                     required
-                    value={loginInfo.pw} 
+                    value={loginInfo.password} 
                     onChange={handleChange} 
                 />
             </div>
-            <button type="submit" className="btn btn-info form-control" onCLick={logUserIn}>Login</button>
+
+            <div>{loginInfo.message}</div>
+            <button type="submit" className="btn btn-info form-control" onClick={logUserIn}>Login</button>
         </div>
     );
 };
