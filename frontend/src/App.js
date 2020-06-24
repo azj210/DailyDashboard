@@ -8,20 +8,31 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Navbar from './components/Navbar';
 
-function App() {
+export default class App extends React.Component {
   
-  const [authenticated, setAuthenticated] = useState(false);
-  
+  // const [authenticated, setAuthenticated] = useState(false);
+
+  constructor(props){
+    super(props)
+    this.state = { authenticated: false }
+  }
+
+  authenticate = () => {
+    this.setState({ authenticated: true })
+  }
+
+  render(){
   return (
     <div>
-      <Navbar authenticated={authenticated} />
+      <Navbar authenticated={this.state.authenticated} />
     
-      {authenticated ? <Route path="/" exact={true} component={AccountHome} /> : <Route path="/" exact={true} component={Home} />}
+      {this.state.authenticated ? <Route path="/" exact={true} component={AccountHome} /> : <Route path="/" exact={true} component={Home} />}
       <Route path="/sign-up" component={SignUp} />
-      <Route path="/login" component={Login} />
+      <Route path="/login" component={Login} component={() => <Login authenticate={this.authenticate} />}/>
       <Route path="/logout" component={Logout} />
     </div>
-  );
+  );}
 };
 
-export default App;
+
+
