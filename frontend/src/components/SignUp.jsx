@@ -24,27 +24,27 @@ function SignUp() {
     };
 
     const saveData = (event) => {
-        var data = {
-            fName: form.fName,
-            lName: form.lName,
-            birthdate: form.birthdate,
-            email: form.email, 
-            password: form.password,
-            city: form.city,
-            state: form.state
-        };
+        // var data = {
+        //     fName: form.fName,
+        //     lName: form.lName,
+        //     birthdate: form.birthdate,
+        //     email: form.email, 
+        //     password: form.password,
+        //     city: form.city,
+        //     state: form.state
+        // };
 
-        SignUpDataService.create(data)
+        SignUpDataService.create(form)
             .then(response => {
-                setForm({
-                    fName: response.data.fName,
-                    lName: response.data.lName,
-                    birthdate: response.data.birthdate,
-                    email: response.data.email, 
-                    password: response.data.password,
-                    city: response.data.city,
-                    state: response.data.state
-                });
+                // setForm({
+                //     fName: response.data.fName,
+                //     lName: response.data.lName,
+                //     birthdate: response.data.birthdate,
+                //     email: response.data.email, 
+                //     password: response.data.password,
+                //     city: response.data.city,
+                //     state: response.data.state
+                // });
                 setSubmitted(true);
                 console.log(response.data);
             })
