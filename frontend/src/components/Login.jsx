@@ -20,7 +20,7 @@ function Login () {
     function logUserIn() {
         SignUpDataService.login(loginInfo)
             .then (response => {
-                setForm({
+                setLoginInfo({
                 email: response.data.email,
                 password: response.data.password,
                 message: response.data.message || response.data.data

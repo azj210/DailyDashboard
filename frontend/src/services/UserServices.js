@@ -4,10 +4,6 @@ const create = data => {
   return http.post("/users", data);
 };
 
-const login = data => {
-  return http.post("/login", data);
-}
-
 const get = id => {
   return http.get(`/users/${id}`);
 };
