@@ -10,15 +10,19 @@ import Navbar from './components/Navbar';
 
 function App() {
   
-  const [authenticated, setAuthenticated] = useState(true);
-  
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const auth = () => {
+    setAuthenticated(!authenticated);
+  }
+
   return (
     <div>
       <Navbar authenticated={authenticated} />
     
       {authenticated ? <Route path="/" exact={true} component={AccountHome} /> : <Route path="/" exact={true} component={Home} />}
       <Route path="/sign-up" component={SignUp} />
-      <Route path="/login" component={Login} />
+      <Route path="/login" component={Login} component={() => <Login authenticate={auth} />}/>
       <Route path="/logout" component={Logout} />
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SignUpDataService from '../services/UserServices';
 import { useHistory } from "react-router-dom";
-import { authenticate } from './../App.js'
 
 function Login (props) {
     const [loginInfo, setLoginInfo] = useState({
