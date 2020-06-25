@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SignUpDataService from '../services/UserServices';
+import DataService from '../services/UserServices';
 import { useHistory } from "react-router-dom";
 
 function Login (props) {
@@ -23,11 +23,12 @@ function Login (props) {
     const history = useHistory();
 
     const logUserIn = () => {
-        SignUpDataService.login(loginInfo)
+        DataService.login(loginInfo)
             .then (response => {
                 if(response.data.success === 1) {
                     props.authenticate();
                     history.push('/');
+                    localStorage.setItem('decisionMakerToken', response.data.token);
                 } else {
                     setErrorMessage(response.data.data);
                 };

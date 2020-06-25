@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SignUpDataService from '../services/UserServices';
+import DataService from '../services/UserServices';
 import { Link, Route } from 'react-router-dom';
 
 function SignUp() {
@@ -34,7 +34,7 @@ function SignUp() {
         //     state: form.state
         // };
 
-        SignUpDataService.create(form)
+        DataService.create(form)
             .then(response => {
                 // setForm({
                 //     fName: response.data.fName,

@@ -1,4 +1,5 @@
 const { create, getUserbyEmail, getUserbyUID, getUsers, deleteUserbyUID } = require("./user.service");
+const {checkToken} = require("../../auth/token_validation");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 //sign creates json tokens
 const { sign } = require("jsonwebtoken");
@@ -66,6 +67,12 @@ module.exports = {
                 });
             }
         });
+    },
+
+    // authenticate a token
+    authenticateUser: (req, res) => {
+        const token = req.headers.authorization;
+        checkToken(token);
     },
 
     getUsers: (req, res) => {

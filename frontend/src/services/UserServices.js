@@ -1,4 +1,4 @@
-import http from "../http-common.js";
+import {http, httpA} from "../http-common.js";
 
 const create = data => {
   return http.post("/users", data);
@@ -18,6 +18,11 @@ const remove = id => {
 
 const login = data => {
   return http.post("users/login", data);
+};
+
+const checkToken = token => {
+  const authHTTP = httpA(token);
+  return authHTTP.post("users/authenticate");
 }
 
 export default {
@@ -25,5 +30,6 @@ export default {
   get,
   getAll,
   remove,
-  login
+  login,
+  checkToken
 };
