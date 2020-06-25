@@ -9,6 +9,6 @@ javac -classpath `yarn classpath`:. -d . CocktailDriver.java
 
 jar -cvf proj.jar *.class
 
-hadoop jar proj.jar CocktailDriver /user/azj210/Cocktails/input/cocktail.txt /user/azj210/Cocktails/output
+hadoop jar proj.jar CocktailDriver /user/XXXXXX/Cocktails/input/cocktail.txt /user/XXXXXX/Cocktails/output
 
 hdfs dfs -cat Cocktails/output/part-m-00000
