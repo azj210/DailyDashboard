@@ -10,7 +10,7 @@ import Navbar from './components/Navbar';
 
 function App() {
   
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
   
   return (
     <div>
