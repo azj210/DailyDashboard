@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import SignUpDataService from '../services/UserServices';
+import { useHistory } from "react-router-dom";
+import { authenticate } from './../App.js'
 
-function Login () {
+function Login (props) {
     const [loginInfo, setLoginInfo] = useState({
         email: "", 
         password: "",
@@ -18,6 +20,8 @@ function Login () {
         });
     };
     
+    const history = useHistory();
+
     const logUserIn = (event) => {
         event.preventDefault();
         SignUpDataService.login(loginInfo)
@@ -25,8 +29,15 @@ function Login () {
                 setLoginInfo({
                 email: response.data.email,
                 password: response.data.password,
-                message: response.data.message || response.data.data
+                message: response.data.data
                 })
+                return response.data.message
+            }).then(response => {
+                if(response=="logged in successfully"){
+                    props.authenticate();
+                    history.push('./')
+                }
+                    
             })
             .catch(e => {
                 console.log(e);
@@ -38,7 +49,7 @@ function Login () {
             <header>
                 <h2>Login</h2>
             </header>
-            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>{loginInfo.message}</div>
+            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{loginInfo.message}</div>
             <div className="form-group">
                 <label for="username">Email</label>
                 <input 
