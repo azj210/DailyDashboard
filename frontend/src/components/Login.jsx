@@ -5,9 +5,10 @@ import { useHistory } from "react-router-dom";
 function Login (props) {
     const [loginInfo, setLoginInfo] = useState({
         email: "", 
-        password: "",
-        message: ""
+        password: ""
     });
+
+    const [errorMessage, setErrorMessage] = useState("");
 
     function handleChange(event) {
         const { value, name } = event.target;
@@ -21,34 +22,27 @@ function Login (props) {
     
     const history = useHistory();
 
-    const logUserIn = (event) => {
-        event.preventDefault();
+    const logUserIn = () => {
         SignUpDataService.login(loginInfo)
             .then (response => {
-                setLoginInfo({
-                email: response.data.email,
-                password: response.data.password,
-                message: response.data.data
-                })
-                return response.data.message
-            }).then(response => {
-                if(response=="logged in successfully"){
+                if(response.data.success === 1) {
                     props.authenticate();
-                    history.push('./')
-                }
-                    
+                    history.push('/');
+                } else {
+                    setErrorMessage(response.data.data);
+                };
             })
             .catch(e => {
                 console.log(e);
             });
-    }
+    };
 
     return(
         <div className="page-form">
             <header>
                 <h2>Login</h2>
             </header>
-            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{loginInfo.message}</div>
+            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{errorMessage}</div>
             <div className="form-group">
                 <label for="username">Email</label>
                 <input 
