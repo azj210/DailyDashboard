@@ -3,12 +3,17 @@ import { Link, Route } from 'react-router-dom';
 import DataService from './services/UserServices';
 import { useHistory } from "react-router-dom";
 
+import Navbar from './components/Navbar';
+
 import Home from './components/Home';
 import AccountHome from './components/AccountHome';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import Navbar from './components/Navbar';
+
+import AccountDetails from './components/AccountDetails';
+
+
 
 function App() {
   
@@ -53,6 +58,7 @@ function App() {
       <Route path="/sign-up" component={SignUp} />
       <Route path="/login" component={() => <Login authenticate={changeAuth} />}/>
       <Route path="/logout" component={Logout} />
+      <Route path="/account" component={() => <AccountDetails checkAuth={checkAuth}/>} />
     </div>
   );
 };

@@ -69,10 +69,14 @@ module.exports = {
         });
     },
 
-    // authenticate a token
+    // authenticate a token to decide which homepage to render
     authenticateUser: (req, res) => {
         const token = req.headers.authorization;
         checkToken(token);
+        res.json({
+            success: 1,
+            message: "Valid Token"
+        });
     },
 
     getUsers: (req, res) => {
