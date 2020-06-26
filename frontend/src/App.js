@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div>
-      <Navbar authenticated={authenticated} />
+      <Navbar authenticated={authenticated} authenticate={changeAuth}/>
     
       {authenticated ? <Route path="/" exact={true} component={AccountHome} /> : <Route path="/" exact={true} component={Home} />}
       <Route path="/sign-up" component={SignUp} />
