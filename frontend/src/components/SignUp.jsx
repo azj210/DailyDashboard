@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import DataService from '../services/UserServices';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useHistory } from 'react-router-dom';
 
-function SignUp() {
+function SignUp(props) {
+
+    const history = useHistory();
 
     const initialFormState= {
         fName: "",
@@ -61,6 +63,12 @@ function SignUp() {
     };
 
     return (
+        props.authenticated ? 
+
+        <div>
+            {history.push("/")}
+        </div> :
+
         <div>
           {submitted ? (
             <header className="notification">

@@ -23,10 +23,10 @@ function Navbar(props) {
             <div className={`${classOne}`} id="navbarSupportedContent">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  {props.authenticated ? <Link to="/" className="nav-link">Account</Link> : <Link to="/sign-up" className="nav-link">Sign Up</Link>}
+                  {props.authenticated ? <Link to="/account" className="nav-link">Account</Link> : <Link to="/sign-up" className="nav-link">Sign Up</Link>}
                 </li>
                 <li className="nav-item">
-                  {props.authenticated ? <Link to="/" onClick={props.authenticate} className="nav-link">Logout</Link> : <Link to="/login" className="nav-link">Login</Link>}
+                  {props.authenticated ? <Link to="/logout" onClick={props.authenticate} className="nav-link">Logout</Link> : <Link to="/login" className="nav-link">Login</Link>}
                 </li>
               </ul>
             </div>

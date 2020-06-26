@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 
 function AccountDetails(props) {
@@ -11,7 +12,9 @@ function AccountDetails(props) {
         <div>
             <Link to="/">Home</Link>
         </div> :
-        history.push("/")
+        <div>
+            {history.push("/")}
+        </div>
 
     )
 };

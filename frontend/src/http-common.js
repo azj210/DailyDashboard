@@ -13,7 +13,7 @@ const httpA = token => {
       baseURL: "http://localhost:4000/api",
       headers: {
         "Content-type": "application/json",
-        "Authorization": token
+        "Authorization": `Bearer ${token}`
       }
     })
   );

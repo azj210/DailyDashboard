@@ -27,7 +27,7 @@ function Login (props) {
             .then (response => {
                 if(response.data.success === 1) {
                     props.authenticate();
-                    history.push('/');
+                    history.push("/");
                     localStorage.setItem('decisionMakerToken', response.data.token);
                 } else {
                     setErrorMessage(response.data.data);
@@ -39,6 +39,12 @@ function Login (props) {
     };
 
     return(
+        props.authenticated ? 
+
+        <div>
+            {history.push("/")}
+        </div> :
+
         <div className="page-form">
             <header>
                 <h2>Login</h2>

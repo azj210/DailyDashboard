@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
 import DataService from './services/UserServices';
-import { useHistory } from "react-router-dom";
 
 import Navbar from './components/Navbar';
 
@@ -14,37 +13,30 @@ import Logout from './components/Logout';
 import AccountDetails from './components/AccountDetails';
 
 
-
 function App() {
-  
-  const history = useHistory();
 
-  const checkAuth = () => {
+  async function checkAuth () {
     const token = localStorage.getItem('decisionMakerToken');
+
     if (token) {
-      DataService.checkToken(token)
-        .then(response => {
-          if(response.data.success === 1) {
-            console.log("success!");
-            return true;
-          } else {
-            console.log("failed");
-            if (typeof authenticated !== "undefined") {
-              setAuthenticated(false);
-              history.push("/");
-            }
-            return false;
-          }
-        })
+      var response = await DataService.checkToken(token)
         .catch(e => {
           console.log(e);
-        })
-    };
+        });
+      if (response.data.success === 1) {
+        console.log("success");
+        return true;
+      } else {
+        console.log("failed");
+        return false;
+      }
+    }
+
+    console.log("no token");
     return false;
   };
 
-  //when token is completely implemented, change the boolean in the line below to checkAuth
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(checkAuth);
 
   const changeAuth = () => {
     setAuthenticated(!authenticated);
@@ -53,10 +45,10 @@ function App() {
   return (
     <div>
       <Navbar authenticated={authenticated} />
-    
+
       {authenticated ? <Route path="/" exact={true} component={AccountHome} /> : <Route path="/" exact={true} component={Home} />}
-      <Route path="/sign-up" component={SignUp} />
-      <Route path="/login" component={() => <Login authenticate={changeAuth} />}/>
+      <Route path="/sign-up" component={() => <SignUp authenticated={authenticated} />} />
+      <Route path="/login" component={() => <Login authenticate={changeAuth} authenticated={authenticated} />} />
       <Route path="/logout" component={Logout} />
       <Route path="/account" component={() => <AccountDetails checkAuth={checkAuth}/>} />
     </div>
