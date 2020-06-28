@@ -15,7 +15,8 @@ public class SpotifyMap
     
 	    String[] line = value.toString().split("\\|");
 
-	    if (!line[0].equals("track") && line[0].matches("\\A\\p{ASCII}*\\z") && line[1].matches("\\A\\p{ASCII}*\\z")) {
+	    //only take songs/artists that consist of ascii characters and were featured on Billboard's featured list
+	    if (!line[0].equals("track") && line[0].matches("\\A\\p{ASCII}*\\z") && line[1].matches("\\A\\p{ASCII}*\\z") && line[18].equals("1")) {
 
 	    	try {
 	    		if (!(line[0].contains(";") || line[0].contains(":") || line[0].contains("@") || line[0].contains("/"))){
