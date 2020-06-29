@@ -5,9 +5,10 @@ module.exports = {
     //updates the user's dashboard
     createDash: (data, callBack) => {
         pool.query(
-            `insert into dashb(event, eventName, cocktailPref, songEnergy, songDecade, lastUpdate) 
-                    values(?,?,?,?,?,?)`,
+            `insert into dashb(uid, event, eventName, cocktailPref, songEnergy, songDecade, lastUpdate) 
+                    values(?,?,?,?,?,?,?)`,
             [
+                data.uid,
                 data.event,
                 data.eventName,
                 data.cocktailPref,
@@ -29,7 +30,7 @@ module.exports = {
     updateDash: (data, callBack) => {
         pool.query(
             `update dashb set (event, eventName, cocktailPref, songEnergy, songDecade, lastUpdate) 
-                    values(?,?,?,?,?,?,?) where uid = ?`,
+                    values(?,?,?,?,?,?) where uid = ?`,
             [
                 data.event,
                 data.eventName,
