@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, Link, Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import DataService from './services/UserServices';
 
 import Navbar from './components/Navbar';
@@ -15,48 +15,43 @@ import DashboardDetails from './components/DashboardDetails';
 
 function App() {
 
-  const history = useHistory();
-
-  async function checkAuth () {
-    const token = localStorage.getItem('decisionMakerToken');
-
-    if (token) {
-      var response = await DataService.checkToken(token)
-        .catch(e => {
-          console.log(e);
-        });
-      if (response.data.success === 1) {
-        console.log("success");
-        return true;
-      } else {
-        console.log("failed");
-        // if (authenticated) {
-        //   setAuthenticated(false);
-        //   history.push("/")
-        // }
-        return false;
-      }
-    }
-    console.log("no token");
-    return false;
-  };
-
-  const [authenticated, setAuthenticated] = useState(checkAuth);
+  const [authenticated, setAuthenticated] = useState();
 
   const changeAuth = () => {
     setAuthenticated(!authenticated);
   };
 
+  async function checkAuth() {
+    const token = localStorage.getItem('decisionMakerToken');
+
+    if (token) {
+      const response = await DataService.checkToken(token)
+        .catch(e => {
+          console.log(e);
+        });
+      if (response.data.success === 1) {
+        console.log("success");
+        setAuthenticated(true);
+      } else {
+        console.log("failed");
+        setAuthenticated(false);
+      }
+    } else {
+      console.log("no token");
+      setAuthenticated(false);
+    }
+  };
+
   return (
     <div>
       <Navbar authenticated={authenticated} authenticate={changeAuth}/>
-    
-      {authenticated ? <Route path="/" exact={true} component={AccountHome} /> : <Route path="/" exact={true} component={Home} />}
+
+      {authenticated ? <Route path="/" exact={true} component={() => <AccountHome checkAuth={checkAuth} authenticated={authenticated} />} /> : <Route path="/" exact={true} component={() => <Home checkAuth={checkAuth} authenticated={authenticated} />} />}
       <Route path="/sign-up" component={() => <SignUp authenticated={authenticated} />} />
       <Route path="/login" component={() => <Login authenticate={changeAuth} authenticated={authenticated} />} />
       <Route path="/logout" component={Logout} />
-      <Route path="/account-details" component={() => <AccountDetails checkAuth={checkAuth}/>} />
-      <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth}/>} />
+      <Route path="/account-details" component={() => <AccountDetails checkAuth={checkAuth} authenticated={authenticated} />} />
+      <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth} authenticated={authenticated} />} />
     </div>
   );
 };

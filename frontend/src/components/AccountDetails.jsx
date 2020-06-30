@@ -1,20 +1,17 @@
 import React from 'react';
-import { useHistory, Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import LoginError from './LoginError';
 
 function AccountDetails(props) {
-    const allowed = props.checkAuth();
-    
-    const history = useHistory();
+    props.checkAuth();
 
     return (
-        allowed ? 
+        props.authenticated ?
         <div>
             <Link to="/">Home</Link>
         </div> :
-        <div>
-            {history.push("/")}
-        </div>
-
+        <LoginError />
+        
     )
 };
 

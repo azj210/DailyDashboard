@@ -1,7 +1,12 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-function AccountHome () {
+function AccountHome (props) {
+
+    props.checkAuth();
+
+    const currentDate = Date();
+    
     return(
         <div className="homepage-header">
             <div id="dashboard">
@@ -13,6 +18,7 @@ function AccountHome () {
 
             <Link to="/account-details" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
             <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>
+            <br></br>
             <Link to="/logout" className="btn btn-lg btn-secondary home-button">Logout</Link>
         </div>
     );
