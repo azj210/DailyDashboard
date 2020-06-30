@@ -29,8 +29,7 @@ module.exports = {
 
     updateDash: (data, callBack) => {
         pool.query(
-            `update dashb set(event, eventName, cocktailPref, songEnergy, songDecade, lastUpdate) 
-                    values(?,?,?,?,?,?) where uid = ?`,
+            `update dashb set event = ?, eventName = ?, cocktailPref = ?, songEnergy = ?, songDecade = ?, lastUpdate = ? where uid = ?)`,
             [
                 data.event,
                 data.eventName,
@@ -38,6 +37,7 @@ module.exports = {
                 data.songEnergy,
                 data.songDecade,
                 data.lastUpdate,
+                data.uid
             ],
             //if we get a results then error is null
             (error, results, fields) => {
