@@ -1,2 +1,2 @@
-# CasualDecisionMaker
-Decision Maker webapp that leverages various datasets to help users make decisions on day to day recreational problems like what to eat, what to listen to, or what to watch.
+# DailyDashboard
+A dashboard webapp that leverages various datasets to help users check on weather, days to an important event, and daily recommendations in categories like songs, cocktails, and food. 
