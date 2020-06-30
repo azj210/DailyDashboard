@@ -1,6 +1,6 @@
-const { createUser, login, getUserbyUID, getUsers, deleteUserbyUID, authenticateUser } = require("./user.controller");
-const checkToken = require("../../auth/token_validation")
+const { createUser, login, getUserbyUID, getUsers, updateUserPass, deleteUserbyUID, authenticateUser } = require("./user.controller");
 const router = require("express").Router();
+const { checkToken } = require("../../auth/token_validation");
 
 //pass in URL and controller
 router.post("/", createUser);
@@ -9,6 +9,7 @@ router.get("/", getUsers);
 router.get("/:uid", getUserbyUID);
 router.delete("/:uid", deleteUserbyUID);
 router.post("/login", login);
+router.patch("/", checkToken, updateUserPass);
 
 //function chaining isn't working
 router.post("/authenticate", /*checkToken,*/ authenticateUser);

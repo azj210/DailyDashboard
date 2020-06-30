@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const userRouter = require("./backend/api/users/user.router");
+const dashboardRouter = require("./backend/api/dashboard/dashboard.router");
 const cors = require("cors");
 
 app.use(cors());
@@ -8,8 +9,10 @@ app.use(cors());
 //since user passes in json, we convert it into javascript object
 app.use(express.json());
 
-//if any requests come then we pass to /api/users route
+//if any requests come for user data then we pass to /api/users route 
 app.use("/api/users", userRouter);
+//if any requests come to update user dashboard data then we pass to /api/dashb route
+app.use("/api/dashb", dashboardRouter);
 
 //listen to some endpoint at localhost:3000/api
 /*

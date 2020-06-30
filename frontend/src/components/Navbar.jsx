@@ -26,7 +26,7 @@ function Navbar(props) {
                   {props.authenticated ? <Link to="/account" className="nav-link">Account</Link> : <Link to="/sign-up" className="nav-link">Sign Up</Link>}
                 </li>
                 <li className="nav-item">
-                  {props.authenticated ? <Link to="/logout" onClick={props.authenticate} className="nav-link">Logout</Link> : <Link to="/login" className="nav-link">Login</Link>}
+                  {props.authenticated ? <Link to="/logout" /* onClick={props.authenticate} */ className="nav-link">Logout</Link> : <Link to="/login" className="nav-link">Login</Link>}
                 </li>
               </ul>
             </div>
