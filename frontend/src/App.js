@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { useHistory, Link, Route } from 'react-router-dom';
 import DataService from './services/UserServices';
 
 import Navbar from './components/Navbar';
@@ -11,8 +11,11 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 
 import AccountDetails from './components/AccountDetails';
+import DashboardDetails from './components/DashboardDetails';
 
 function App() {
+
+  const history = useHistory();
 
   async function checkAuth () {
     const token = localStorage.getItem('decisionMakerToken');
@@ -27,6 +30,10 @@ function App() {
         return true;
       } else {
         console.log("failed");
+        // if (authenticated) {
+        //   setAuthenticated(false);
+        //   history.push("/")
+        // }
         return false;
       }
     }
@@ -48,7 +55,8 @@ function App() {
       <Route path="/sign-up" component={() => <SignUp authenticated={authenticated} />} />
       <Route path="/login" component={() => <Login authenticate={changeAuth} authenticated={authenticated} />} />
       <Route path="/logout" component={Logout} />
-      <Route path="/account" component={() => <AccountDetails checkAuth={checkAuth}/>} />
+      <Route path="/account-details" component={() => <AccountDetails checkAuth={checkAuth}/>} />
+      <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth}/>} />
     </div>
   );
 };

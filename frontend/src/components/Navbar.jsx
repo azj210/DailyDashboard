@@ -21,14 +21,27 @@ function Navbar(props) {
             </button>
 
             <div className={`${classOne}`} id="navbarSupportedContent">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  {props.authenticated ? <Link to="/account" className="nav-link">Account</Link> : <Link to="/sign-up" className="nav-link">Sign Up</Link>}
-                </li>
-                <li className="nav-item">
-                  {props.authenticated ? <Link to="/logout" /* onClick={props.authenticate} */ className="nav-link">Logout</Link> : <Link to="/login" className="nav-link">Login</Link>}
-                </li>
-              </ul>
+              {props.authenticated ?
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link to="/account-details" className="nav-link">Account</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/dashboard-details" className="nav-link">Dashboard</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/logout" /* onClick={props.authenticate} */ className="nav-link">Logout</Link>
+                  </li>
+                </ul> :
+                <ul className="navbar-nav ml-auto">  
+                  <li className="nav-item">
+                    <Link to="/sign-up" className="nav-link">Sign Up</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/login" className="nav-link">Login</Link>
+                  </li>
+                </ul>
+              }
             </div>
           </nav>
         </div>

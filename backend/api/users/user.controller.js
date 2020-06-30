@@ -69,7 +69,7 @@ module.exports = {
         });
     },
 
-    // authenticate a token to decide which homepage to render
+    // basic authentication function to decide if a page should be rendered
     authenticateUser: (req, res) => {
         res.json({
             success: 1,
