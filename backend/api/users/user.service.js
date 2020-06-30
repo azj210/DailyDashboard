@@ -74,6 +74,19 @@ module.exports = {
         );
     },
 
+    updateUserPass: (data, callBack) => {
+        pool.query(
+            `update users set password=? where uid = ?`,
+            [data.password, data.uid],
+            (error, results, fields) => {
+            if (error) {
+                callBack(error);
+            }
+            return callBack(null, results[0]);
+            }
+        );
+    },
+
     //delete user by uid
     deleteUserbyUID: (uid, callBack) => {
         pool.query(

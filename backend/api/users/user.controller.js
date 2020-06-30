@@ -1,4 +1,4 @@
-const { create, getUserbyEmail, getUserbyUID, getUsers, deleteUserbyUID } = require("./user.service");
+const { create, getUserbyEmail, getUserbyUID, getUsers, updateUserPass, deleteUserbyUID } = require("./user.service");
 const {checkToken} = require("../../auth/token_validation");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 //sign creates json tokens
@@ -110,6 +110,22 @@ module.exports = {
             return res.json({
                 success: 1,
                 data: results
+            });
+        });
+    },
+
+    updateUserPass: (req, res) => {
+        const body = req.body;
+        const salt = genSaltSync(10);
+        body.password = hashSync(body.password, salt);
+        updateUserPass(body, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            return res.json({
+                success: 1,
+                message: "updated successfully"
             });
         });
     },
