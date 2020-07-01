@@ -18,7 +18,8 @@ function App() {
   
   const history = useHistory();
 
-  const [authenticated, setAuthenticated] = useState();
+  const [authenticated, setAuthenticated] = useState(true);
+
 
   const changeAuth = () => {
     setAuthenticated(!authenticated);

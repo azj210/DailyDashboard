@@ -10,7 +10,7 @@ function Home (props) {
     return(
         props.authenticated ?
         <div>
-            {history.push("/")}
+            {/* {history.push("/")} */}
         </div> :
         <div className="homepage-header">
             <h1>Decision Maker</h1>
