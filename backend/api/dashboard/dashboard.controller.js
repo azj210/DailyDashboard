@@ -1,4 +1,4 @@
-const { createDash, updateDash, getDashbyUID, getSong } = require("./dashboard.service");
+const { createDash, updateDash, getDashbyUID, getData } = require("./dashboard.service");
 const { checkToken } = require("../../auth/token_validation");
 
 //controllers that handle all the services from dashboard.service.js
@@ -59,10 +59,10 @@ module.exports = {
         });
     },
 
-    getSong: (req, res) => {
+    getData: (req, res) => {
         const body = req.body;
-        //pass the data into the servce
-        getSong(body, (err, results) => {
+        //pass the data into the service
+        getData(body, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
@@ -70,7 +70,7 @@ module.exports = {
             if (!results) {
                 return res.json({
                     success: 0,
-                    message: "song not found"
+                    message: "data not found"
                 });
             }
             return res.json({

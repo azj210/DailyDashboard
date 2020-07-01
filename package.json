@@ -1,22 +1,22 @@
 {
-  "name": "CasualDecisionMaker",
+  "name": "DailyDashboard",
   "version": "1.0.0",
-  "description": "Decision Maker webapp that leverages various datasets to help users make decisions on day to day recreational problems like what to eat, what to listen to, or what to watch.",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azj210/CasualDecisionMaker.git"
+    "url": "git+https://github.com/azj210/DailyDashboard.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/azj210/CasualDecisionMaker/issues"
+    "url": "https://github.com/azj210/DailyDashboard/issues"
   },
-  "homepage": "https://github.com/azj210/CasualDecisionMaker#readme",
+  "homepage": "https://github.com/azj210/DailyDashboard#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
