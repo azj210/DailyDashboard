@@ -66,16 +66,31 @@ module.exports = {
     },
 
     //retrieves a song and its respective artist artist from songs table
-    getSong: (data, callBack) => {
-        pool.query(
-            `select sname, artist from songs where decade = ? and energy >= ? and energy <= ? order by rand() limit 1`,
-            [data.decade, data.p1, data.p2],
-            (error, results, fields) => {
-                if (error) {
-                    return callBack(error);
+    getData: (data, callBack) => {
+        if (data.type == "song") {
+            pool.query(
+                `select sname, artist from songs where decade = ? and energy >= ? and energy <= ? order by rand() limit 1`,
+                [data.decade, data.p1, data.p2],
+                (error, results, fields) => {
+                    if (error) {
+                        return callBack(error);
+                    }
+                    return callBack(null, results[0]);
                 }
-                return callBack(null, results[0]);
-            }
-        );
+            );
+        }
+        //retrieves a cocktail and its respective category + ingredients
+        else if (data.type == "cocktail") {
+            pool.query(
+                `select * from cocktails where category = ? order by rand() limit 1`,
+                [data.category],
+                (error, results, fields) => {
+                    if (error) {
+                        return callBack(error);
+                    }
+                    return callBack(null, results[0]);
+                }
+            );
+        }
     }
 };
