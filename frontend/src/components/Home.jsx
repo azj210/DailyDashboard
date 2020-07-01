@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { useHistory, Link, Route } from 'react-router-dom';
 
 function Home (props) {
     
     props.checkAuth();
     
+    const history = useHistory();
+
     return(
+        props.authenticated ?
+        <div>
+            {history.push("/")}
+        </div> :
         <div className="homepage-header">
             <h1>Decision Maker</h1>
             <Link to="/sign-up" className="btn btn-lg btn-outline-primary home-button">Sign Up</Link>

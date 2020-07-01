@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 function AccountHome (props) {
 
     props.checkAuth();
 
     const currentDate = Date();
+
+    const history = useHistory();
     
     return(
+        props.authenticated ?
         <div className="homepage-header">
             <div id="dashboard">
                 <h1>Welcome!</h1>
@@ -20,6 +23,9 @@ function AccountHome (props) {
             <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>
             <br></br>
             <Link to="/logout" className="btn btn-lg btn-secondary home-button">Logout</Link>
+        </div> :
+        <div>
+            {history.push("/")}
         </div>
     );
 };
