@@ -6,8 +6,8 @@ const { checkToken } = require("../../auth/token_validation");
 router.post("/", createUser);
 router.get("/", getUsers);
 //if we get the id in the URL then we call the getUserbyUID controller
-router.get("/:uid", getUserbyUID);
-router.delete("/:uid", deleteUserbyUID);
+router.get("/:uid", checkToken, getUserbyUID);
+router.delete("/:uid", checkToken, deleteUserbyUID);
 router.post("/login", login);
 router.patch("/", checkToken, updateUserPass);
 
