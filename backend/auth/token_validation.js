@@ -4,7 +4,7 @@ const { verify } = require("jsonwebtoken");
 //apply this middleware in the apis that you need
 module.exports = {
     checkToken: (req, res, next) => {
-        let token = req.get(req.headers.authorization);
+        let token = req.get("authorization");
         if(token) {
             //remove the bearer from the token. The token starts from the 7 index
             token = token.slice(7);
