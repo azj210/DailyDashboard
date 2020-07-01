@@ -37,16 +37,10 @@ function App() {
       } else {
         console.log("failed");
         setAuthenticated(false);
-        // if (history.location.pathname !== "/") {
-        //   history.push("/home");
-        // }
       }
     } else {
       console.log("no token");
       setAuthenticated(false);
-      // if (history.location.pathname !== "/") {
-      //   history.push("/home");
-      // }
     }
   };
 
@@ -54,9 +48,8 @@ function App() {
     <div>
       <Navbar authenticated={authenticated} authenticate={changeAuth}/>
 
-      <Route path="/" exact={true} component={() => <HomeRedirect checkAuth={checkAuth} authenticated={authenticated} />} />
-      <Route path="/home" exact={true} component={() => <Home checkAuth={checkAuth} authenticated={authenticated} />} />
-      <Route path="/account-home" exact={true} component={() => <AccountHome checkAuth={checkAuth} authenticated={authenticated} />} />
+      <Route path="/" exact={true} component={() => <Home checkAuth={checkAuth} authenticated={authenticated} />} />
+      <Route path="/account" exact={true} component={() => <AccountHome checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/sign-up" component={() => <SignUp authenticated={authenticated} />} />
       <Route path="/login" component={() => <Login authenticate={changeAuth} authenticated={authenticated} />} />
       <Route path="/logout" component={Logout} />
