@@ -3,7 +3,7 @@ import { useHistory, Link, Route } from 'react-router-dom';
 
 function Home (props) {
     
-    // props.checkAuth();
+    props.checkAuth();
     
     const history = useHistory();
 
