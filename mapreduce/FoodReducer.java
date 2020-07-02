@@ -1,10 +1,8 @@
-package hadoop;
-
 import java.io.IOException;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
 import java.lang.Math;
 
 public class FoodReducer
@@ -47,7 +45,7 @@ public class FoodReducer
 
           String avgs = Double.toString(serve_size_avg) + ";" + Double.toString(calorie_avg) + ";" +
         		  Double.toString(fat_avg) + ";" + Double.toString(protein_avg) + ";" +
-        		  Double.toString(carb_avg) + ";" + Double.toString(sugar_avg)
+        		  Double.toString(carb_avg) + ";" + Double.toString(sugar_avg);
 
           // key is food_key and value is all the averages
           context.write(key, new Text(avgs));
