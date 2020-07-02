@@ -27,3 +27,18 @@ jar -cvf proj.jar *.class
 hadoop jar proj.jar SpotifyDriver /user/XXXXXX/Songs/input/songs.txt /user/XXXXXX/Songs/output
 
 hdfs dfs -cat Songs/output/part-m-00000
+
+hdfs dfs -rm -r -f Movies
+rm *.class
+rm *.jar
+hdfs dfs -mkdir Movies
+hdfs dfs -mkdir Movies/input
+hdfs dfs -put all_years.txt Movies/input
+javac -classpath `yarn classpath` -d . MovieMap.java
+javac -classpath `yarn classpath`:. -d . MovieDriver.java
+
+jar -cvf proj.jar *.class
+
+hadoop jar proj.jar MovieDriver /user/XXXXXX/Movies/input/all_years.txt /user/XXXXXX/Movies/output
+
+hdfs dfs -cat Movies/output/part-m-00000
