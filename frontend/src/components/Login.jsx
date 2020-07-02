@@ -3,6 +3,8 @@ import DataService from '../services/UserServices';
 import { useHistory } from 'react-router-dom';
 
 function Login (props) {
+    props.checkAuth();
+    
     const [loginInfo, setLoginInfo] = useState({
         email: "", 
         password: ""
@@ -26,7 +28,6 @@ function Login (props) {
         DataService.login(loginInfo)
             .then (response => {
                 if(response.data.success === 1) {
-                    props.authenticate();
                     history.push("/");
                     localStorage.setItem('decisionMakerToken', response.data.token);
                 } else {

@@ -54,10 +54,10 @@ function App() {
       authenticated ? 
       <Route path="/" exact={true} component={() => <AccountHome checkAuth={checkAuth} authenticated={authenticated} />} /> 
       : <Route path="/" exact={true} component={() => <Home checkAuth={checkAuth} authenticated={authenticated} />} />}
-      <Route path="/sign-up" component={() => <SignUp authenticated={authenticated} />} />
-      <Route path="/login" component={() => <Login authenticate={changeAuth} authenticated={authenticated} />} />
+      <Route path="/sign-up" component={() => <SignUp checkAuth={checkAuth} authenticated={authenticated} />} />
+      <Route path="/login" component={() => <Login checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/logout" component={Logout} />
-      <Route path="/account-details" component={() => <AccountDetails checkAuth={checkAuth} authenticated={authenticated} />} />
+      <Route path="/account" component={() => <AccountDetails checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth} authenticated={authenticated} />} />
     </div>
   );

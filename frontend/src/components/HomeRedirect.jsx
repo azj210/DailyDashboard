@@ -5,9 +5,7 @@ function HomeRedirect (props) {
 
     props.checkAuth();
 
-
     return(
-        
         <div>
         </div>
     );

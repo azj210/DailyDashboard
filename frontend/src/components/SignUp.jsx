@@ -4,6 +4,8 @@ import { Link, Route, useHistory } from 'react-router-dom';
 
 function SignUp(props) {
 
+    props.checkAuth();
+
     const history = useHistory();
 
     const initialFormState= {

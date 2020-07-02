@@ -1,16 +1,15 @@
 import React from 'react';
 import { useHistory, Link, Route } from 'react-router-dom';
+import AccountHome from './AccountHome';
 
 function Home (props) {
     
     props.checkAuth();
-    
-    const history = useHistory();
 
     return(
         props.authenticated ?
         <div>
-            {/* {history.push("/")} */}
+            <AccountHome />
         </div> :
         <div className="homepage-header">
             <h1>Decision Maker</h1>
