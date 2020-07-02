@@ -14,7 +14,7 @@ import Logout from './components/Logout';
 import AccountDetails from './components/AccountDetails';
 import DashboardDetails from './components/DashboardDetails';
 
-export default class App {
+export default class App extends React.Component {
 
   constructor(props) {
     super(props);
