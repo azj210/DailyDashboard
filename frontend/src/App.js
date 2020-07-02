@@ -14,18 +14,23 @@ import Logout from './components/Logout';
 import AccountDetails from './components/AccountDetails';
 import DashboardDetails from './components/DashboardDetails';
 
-function App() {
-  
-  const history = useHistory();
+export default class App {
 
-  const [authenticated, setAuthenticated] = useState(true);
+  constructor(props) {
+    super(props);
+    this.state = {
+      authenticated = true
+    };
+  }
 
 
-  const changeAuth = () => {
-    setAuthenticated(!authenticated);
+   changeAuth = () => {
+     this.setState((prevState) => ({
+        authenticated: !prevState.authenticated
+      }));
   };
 
-  async function checkAuth() {
+  checkAuth = async () => {
     const token = localStorage.getItem('decisionMakerToken');
     if (token) {
       const response = await DataService.checkToken(token)
@@ -34,30 +39,36 @@ function App() {
         });
       if (response.data.success === 1) {
         console.log("success");
-        setAuthenticated(true);
+        this.setState({
+          authenticated: true
+        });
       } else {
         console.log("failed");
-        setAuthenticated(false);
+        this.setState({
+          authenticated: false
+        });
       }
     } else {
       console.log("no token");
-      setAuthenticated(false);
+      this.setState({
+        authenticated: false
+      });
     }
   };
 
-  return (
-    <div>
-      <Navbar authenticated={authenticated} authenticate={changeAuth}/>
-
-      <Route path="/" exact={true} component={() => <Home checkAuth={checkAuth} authenticated={authenticated} />} />
-      <Route path="/account" exact={true} component={() => <AccountHome checkAuth={checkAuth} authenticated={authenticated} />} />
-      <Route path="/sign-up" component={() => <SignUp authenticated={authenticated} />} />
-      <Route path="/login" component={() => <Login authenticate={changeAuth} authenticated={authenticated} />} />
-      <Route path="/logout" component={Logout} />
-      <Route path="/account-details" component={() => <AccountDetails checkAuth={checkAuth} authenticated={authenticated} />} />
-      <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth} authenticated={authenticated} />} />
-    </div>
-  );
+  render(){
+    return (
+      <div>
+        <Navbar authenticated={this.state.authenticated} authenticate={this.changeAuth}/>
+  
+        <Route path="/" exact={true} component={() => <Home checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />
+        <Route path="/account" exact={true} component={() => <AccountHome checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />
+        <Route path="/sign-up" component={() => <SignUp authenticated={this.state.authenticated} />} />
+        <Route path="/login" component={() => <Login authenticate={this.changeAuth} authenticated={this.state.authenticated} />} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/account-details" component={() => <AccountDetails checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />
+        <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />
+      </div>
+    );
+  }
 };
-
-export default App;
