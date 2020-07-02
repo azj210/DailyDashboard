@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 
 function AccountHome (props) {
 
-    props.checkAuth();
+    // props.checkAuth();
 
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };

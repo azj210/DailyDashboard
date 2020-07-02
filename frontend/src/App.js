@@ -16,19 +16,16 @@ import DashboardDetails from './components/DashboardDetails';
 
 export default class App extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      authenticated = true
+      authenticated : "loading"
     };
   }
 
-
-   changeAuth = () => {
-     this.setState((prevState) => ({
-        authenticated: !prevState.authenticated
-      }));
-  };
+  componentWillMount() {
+    this.checkAuth();
+  }
 
   checkAuth = async () => {
     const token = localStorage.getItem('decisionMakerToken');
@@ -56,13 +53,18 @@ export default class App extends React.Component {
     }
   };
 
-  render(){
+   changeAuth = () => {
+     this.setState((prevState) => ({
+        authenticated: !prevState.authenticated
+      }));
+  };
+
+  render() {
     return (
       <div>
         <Navbar authenticated={this.state.authenticated} authenticate={this.changeAuth}/>
   
-        <Route path="/" exact={true} component={() => <Home checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />
-        <Route path="/account" exact={true} component={() => <AccountHome checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />
+        {this.state.authenticated ? <Route path="/" exact={true} component={() => <AccountHome checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />: <Route path="/" exact={true} component={() => <Home checkAuth={this.checkAuth} authenticated={this.state.authenticated} />} />}
         <Route path="/sign-up" component={() => <SignUp authenticated={this.state.authenticated} />} />
         <Route path="/login" component={() => <Login authenticate={this.changeAuth} authenticated={this.state.authenticated} />} />
         <Route path="/logout" component={Logout} />
