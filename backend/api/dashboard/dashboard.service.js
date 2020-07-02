@@ -92,5 +92,18 @@ module.exports = {
                 }
             );
         }
+        //retrieves a movie by its respective genre
+        else if (data.type == "movie") {
+            pool.query(
+                `select * from movies where genre = ? order by rand() limit 1`,
+                [data.genre],
+                (error, results, fields) => {
+                    if (error) {
+                        return callBack(error);
+                    }
+                    return callBack(null, results[0]);
+                }
+            );
+        }
     }
 };
