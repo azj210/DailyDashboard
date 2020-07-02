@@ -74,6 +74,7 @@ module.exports = {
         );
     },
 
+    //update user's password. Pass the uid through a json
     updateUserPass: (data, callBack) => {
         pool.query(
             `update users set password=? where uid = ?`,
@@ -83,6 +84,20 @@ module.exports = {
                 callBack(error);
             }
             return callBack(null, results[0]);
+            }
+        );
+    },
+
+    //delete user city and state by uid
+    updateUserInfo: (data, callBack) => {
+        pool.query(
+            `update users set city=?, state=? where uid=?`,
+            [data.city, data.state, data.uid],
+            (error, results, fields) => {
+                if (error) {
+                    return callBack(error);
+                }
+                return callBack(null, results[0]);
             }
         );
     },
