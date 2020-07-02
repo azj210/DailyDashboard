@@ -1,9 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import lifecycle from 'react-pure-lifecycle';
+
+const componentDidMount = (props) => {
+    props.checkAuth();
+};
+
+const methods = {
+    componentDidMount
+};
 
 function HomeRedirect (props) {
-
-    props.checkAuth();
 
     return(
         <div>
@@ -11,4 +17,4 @@ function HomeRedirect (props) {
     );
 };
 
-export default HomeRedirect;
+export default lifecycle(methods)(HomeRedirect);

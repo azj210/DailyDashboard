@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import DataService from '../services/UserServices';
 import { Link, Route, useHistory } from 'react-router-dom';
+import lifecycle from 'react-pure-lifecycle';
+import LogoutError from './LogoutError';
+
+const componentDidMount = (props) => {
+    props.checkAuth();
+};
+
+const methods = {
+    componentDidMount
+};
 
 function SignUp(props) {
-
-    props.checkAuth();
 
     const history = useHistory();
 
@@ -68,7 +76,7 @@ function SignUp(props) {
         props.authenticated ? 
 
         <div>
-            {history.push("/")}
+            <LogoutError />
         </div> :
 
         <div>
@@ -190,4 +198,4 @@ function SignUp(props) {
       );
 };
 
-export default SignUp;
+export default lifecycle(methods)(SignUp);

@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DataService from '../services/UserServices';
 import { useHistory } from 'react-router-dom';
+import lifecycle from 'react-pure-lifecycle';
+import LogoutError from './LogoutError';
+
+const componentDidMount = (props) => {
+    props.checkAuth();
+};
+
+const methods = {
+    componentDidMount
+};
 
 function Login (props) {
-    props.checkAuth();
-    
+        
     const [loginInfo, setLoginInfo] = useState({
         email: "", 
         password: ""
@@ -43,7 +52,7 @@ function Login (props) {
         props.authenticated ? 
 
         <div>
-            {history.push("/")}
+            <LogoutError />
         </div> :
 
         <div className="page-form">
@@ -83,4 +92,4 @@ function Login (props) {
     );
 };
 
-export default Login;
+export default lifecycle(methods)(Login);

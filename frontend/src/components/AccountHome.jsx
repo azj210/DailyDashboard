@@ -44,7 +44,7 @@ function AccountHome (props) {
                 <h3>Days until event</h3>
             </div>
 
-            <Link to="/account-details" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
+            <Link to="/account" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
             <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>
             <br></br>
             <Link to="/logout" className="btn btn-lg btn-secondary home-button">Logout</Link>

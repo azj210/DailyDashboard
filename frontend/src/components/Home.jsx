@@ -1,11 +1,18 @@
 import React from 'react';
 import { useHistory, Link, Route } from 'react-router-dom';
 import AccountHome from './AccountHome';
+import lifecycle from 'react-pure-lifecycle';
+
+const componentDidMount = (props) => {
+    props.checkAuth();
+};
+
+const methods = {
+    componentDidMount
+};
 
 function Home (props) {
     
-    props.checkAuth();
-
     return(
         props.authenticated ?
         <div>
@@ -19,4 +26,4 @@ function Home (props) {
     );
 };
 
-export default Home;
+export default lifecycle(methods)(Home);
