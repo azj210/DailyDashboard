@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DataService from '../services/UserServices';
-import { Link, Route, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import lifecycle from 'react-pure-lifecycle';
 import LogoutError from './LogoutError';
 
@@ -13,8 +13,6 @@ const methods = {
 };
 
 function SignUp(props) {
-
-    const history = useHistory();
 
     const initialFormState= {
         fName: "",
@@ -36,7 +34,7 @@ function SignUp(props) {
     };
 
     const saveData = (event) => {
-        // var data = {
+        // const intialDash = {
         //     fName: form.fName,
         //     lName: form.lName,
         //     birthdate: form.birthdate,
@@ -59,12 +57,19 @@ function SignUp(props) {
                 // });
                 setSubmitted(true);
                 console.log(response.data);
+                DataService.createDash()
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
             })
             .catch(e => {
                 console.log(e);
             });
 
-            event.preventDefault();
+        event.preventDefault();
     };
 
     const newSignUp = () => {

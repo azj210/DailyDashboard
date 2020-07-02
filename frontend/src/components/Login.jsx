@@ -37,8 +37,10 @@ function Login (props) {
         DataService.login(loginInfo)
             .then (response => {
                 if(response.data.success === 1) {
+                    console.log(response);
                     history.push("/");
                     localStorage.setItem('decisionMakerToken', response.data.token);
+                    props.checkAuth();
                 } else {
                     setErrorMessage(response.data.data);
                 };

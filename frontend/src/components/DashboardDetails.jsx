@@ -12,14 +12,13 @@ const methods = {
 };
 
 function DashboardDetails(props) {
-    
+
     return (
         props.authenticated ?
         <div>
             <Link to="/">Home</Link>
         </div> :
         <LoginError />
-        
     )
 };
 

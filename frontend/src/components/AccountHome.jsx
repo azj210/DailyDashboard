@@ -1,7 +1,18 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import DataService from '../services/UserServices';
+import lifecycle from 'react-pure-lifecycle';
 
-function AccountHome (props) {
+// const componentDidMount = (props) => {
+//     props.checkAuth();
+// };
+
+// const methods = {
+//     componentDidMount
+// };
+
+
+function AccountHome () {
 
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -31,11 +42,8 @@ function AccountHome (props) {
         default:
             weekday = "";
     }
-
-    const history = useHistory();
     
     return(
-        props.authenticated ?
         <div className="homepage-header">
             <div id="dashboard">
                 <h1>Welcome!</h1>
@@ -48,9 +56,6 @@ function AccountHome (props) {
             <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>
             <br></br>
             <Link to="/logout" className="btn btn-lg btn-secondary home-button">Logout</Link>
-        </div> :
-        <div>
-            {/* {history.push("/")} */}
         </div>
     );
 };

@@ -24,7 +24,7 @@ function Navbar(props) {
               {props.authenticated ?
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <Link to="/account-details" className="nav-link">Account</Link>
+                    <Link to="/account" className="nav-link">Account</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/dashboard-details" className="nav-link">Dashboard</Link>

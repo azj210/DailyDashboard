@@ -17,12 +17,32 @@ const remove = id => {
 };
 
 const login = data => {
-  return http.post("users/login", data);
+  return http.post("/users/login", data);
 };
 
 const checkToken = token => {
   const authHTTP = httpA(token);
-  return authHTTP.post("users/authenticate");
+  return authHTTP.post("/users/authenticate");
+}
+
+const createDash = token => {
+  const authHTTP = httpA(token);
+  return authHTTP.post("/dashb/create");
+}
+
+const updateDash = token => {
+  const authHTTP = httpA(token);
+  return authHTTP.post("/dashb/update");
+}
+
+const getDashByUID = (token, id) => {
+  const authHTTP = httpA(token);
+  return authHTTP.post(`/dashb/${id}`);
+}
+
+const getDashData = token => {
+  const authHTTP = httpA(token);
+  return authHTTP.post("/dashb");
 }
 
 export default {
@@ -31,5 +51,9 @@ export default {
   getAll,
   remove,
   login,
-  checkToken
+  checkToken,
+  createDash,
+  updateDash,
+  getDashByUID,
+  getDashData
 };
