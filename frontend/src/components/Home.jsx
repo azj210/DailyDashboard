@@ -12,16 +12,6 @@ const methods = {
 };
 
 function Home (props) {
-    
-    const initialDash = {
-        uid: null,
-        eventDate: null,
-        eventName: null,
-        cocktailPref: null,
-        songEnergy: null,
-        songDecade: null,
-        lastUpdate: null
-    };
 
     const [dashboard, setDashboard] = useState();
 

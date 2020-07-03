@@ -14,6 +14,6 @@ router.patch("/", checkToken, updateUserPass);
 router.patch("/info", checkToken, updateUserInfo);
 
 //function chaining isn't working
-router.post("/authenticate", /*checkToken,*/ authenticateUser);
+router.post("/authenticate", checkToken, authenticateUser);
 
 module.exports = router;

@@ -29,9 +29,9 @@ const createDash = (initialState) => {
   return http.post("/dashb/create", initialState);
 }
 
-const updateDash = token => {
+const updateDash = (token, data) => {
   const authHTTP = httpA(token);
-  return authHTTP.patch("/dashb/update");
+  return authHTTP.patch("/dashb/update", data);
 }
 
 const getDashByUID = (token, id) => {

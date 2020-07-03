@@ -1,13 +1,13 @@
 import React from 'react';
 import lifecycle from 'react-pure-lifecycle';
 
-// const componentDidMount = (props) => {
-//     props.checkAuth();
-// };
+const componentDidMount = (props) => {
+    props.checkAuth();
+};
 
-// const methods = {
-//     componentDidMount
-// };
+const methods = {
+    componentDidMount
+};
 
 function HomeRedirect (props) {
 
@@ -19,4 +19,4 @@ function HomeRedirect (props) {
     );
 };
 
-export default HomeRedirect;
+export default lifecycle(methods)(HomeRedirect);

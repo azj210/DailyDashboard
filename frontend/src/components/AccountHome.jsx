@@ -15,8 +15,9 @@ const methods = {
     componentDidMount
 };
 
-
 function AccountHome (props) {
+
+    const history = useHistory();
 
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -47,17 +48,63 @@ function AccountHome (props) {
             weekday = "";
     }
     
+    const checkEvent = (event, date, dashboard) => {
+        let daysLeft = 0;
+
+        if (props.dashboard.eventName = "Birthdate") {
+            // create new birthdate object and modify date to be this year
+            let currentBirthdate = new Date(JSON.parse(JSON.stringify(event)));
+            currentBirthdate.setFullYear(date.getFullYear());
+            // check if new birthdate is behind or after current year and change its year accordingly
+            if ((currentBirthdate - date)/86400000 <= -1) {
+                currentBirthdate.setFullYear(date.getFullYear() + 1);
+            }
+            daysLeft = Math.ceil((currentBirthdate - date)/86400000);
+        } else {
+            if ((event - date)/86400000 <= -1) {
+            // update "eventName" and "eventDate" to birthday using DataService and reload the page
+            // not bug tested yet
+
+                DataService.get(localStorage.getItem("decisionMakerUID"))
+                    .then(response => {
+
+                        const newDash = {
+                            ... dashboard,
+                            eventName: "Birthdate",
+                            eventDate: response.data.data.birthdate
+                        }
+
+                        DataService.updateDash(localStorage.getItem("decisionMakerToken"), newDash)
+                            .then(response => {
+                                console.log(response);
+                                history.go();
+                            })
+                            .catch(e => {
+                                console.log(e);
+                            })
+
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+
+            } else {
+                daysLeft = Math.ceil((event - date)/86400000);
+            }
+        }
+
+        return daysLeft;
+    }
+
     return(
         typeof(props.dashboard) === "undefined" ? 
-        <div></div> :
+        <div /> :
         <div className="homepage-header">
             <div id="dashboard">
                 <h1>Welcome!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
                 <p>Weather</p>
-                <p>Days until {props.dashboard.eventName}:</p>
-                <p>{Math.ceil(Math.abs(props.dashboard.eventDate - currentDate)/86400000)}</p>
-                <p>^for now, only shows day difference between today and when they were born</p>
+                {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard) != 0 ? <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard)}</p> : <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 
             <div>

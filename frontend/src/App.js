@@ -38,6 +38,9 @@ function App() {
       } else {
         console.log("failed");
         setAuthenticated(false);
+        localStorage.removeItem("decisionMakerToken");
+        localStorage.removeItem("decisionMakerUID");
+        history.go();
       }
     } else {
       console.log("no token");
