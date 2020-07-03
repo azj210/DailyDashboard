@@ -8,8 +8,8 @@ const get = id => {
   return http.get(`/users/${id}`);
 };
 
-const getAll = () => {
-  return http.get("/users");
+const getByEmail = email => {
+  return http.get("/users", email);
 };
 
 const remove = id => {
@@ -25,30 +25,29 @@ const checkToken = token => {
   return authHTTP.post("/users/authenticate");
 }
 
-const createDash = token => {
-  const authHTTP = httpA(token);
-  return authHTTP.post("/dashb/create");
+const createDash = (initialState) => {
+  return http.post("/dashb/create", initialState);
 }
 
 const updateDash = token => {
   const authHTTP = httpA(token);
-  return authHTTP.post("/dashb/update");
+  return authHTTP.patch("/dashb/update");
 }
 
 const getDashByUID = (token, id) => {
   const authHTTP = httpA(token);
-  return authHTTP.post(`/dashb/${id}`);
+  return authHTTP.get(`/dashb/${id}`);
 }
 
 const getDashData = token => {
   const authHTTP = httpA(token);
-  return authHTTP.post("/dashb");
+  return authHTTP.get("/dashb");
 }
 
 export default {
   create,
   get,
-  getAll,
+  getByEmail,
   remove,
   login,
   checkToken,

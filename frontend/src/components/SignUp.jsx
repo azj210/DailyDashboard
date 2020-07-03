@@ -33,33 +33,26 @@ function SignUp(props) {
         setForm({ ...form, [name]: value });
     };
 
-    const saveData = (event) => {
-        // const intialDash = {
-        //     fName: form.fName,
-        //     lName: form.lName,
-        //     birthdate: form.birthdate,
-        //     email: form.email, 
-        //     password: form.password,
-        //     city: form.city,
-        //     state: form.state
-        // };
+    const currentDate = new Date();
+
+    const saveData = event => {
 
         DataService.create(form)
             .then(response => {
-                // setForm({
-                //     fName: response.data.fName,
-                //     lName: response.data.lName,
-                //     birthdate: response.data.birthdate,
-                //     email: response.data.email, 
-                //     password: response.data.password,
-                //     city: response.data.city,
-                //     state: response.data.state
-                // });
                 setSubmitted(true);
                 console.log(response.data);
-                DataService.createDash()
-                    .then(response => {
-                        console.log(response.data);
+                const initialDash = {
+                    uid: response.data.data.insertId,
+                    eventDate: form.birthdate,
+                    eventName: "Birthdate",
+                    cocktailPref: null,
+                    songEnergy: null,
+                    songDecade: null,
+                    lastUpdate: currentDate
+                };
+                DataService.createDash(initialDash)
+                    .then(response1 => {
+                        console.log(response1);
                     })
                     .catch(e => {
                         console.log(e);
