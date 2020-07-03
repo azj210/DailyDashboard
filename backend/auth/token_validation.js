@@ -15,7 +15,7 @@ module.exports = {
                         message: "Invalid Token"
                     });
                 } else {
-                    console.log("asdf");
+                    console.log("success");
                     req.decoded = decoded;
                     next();
                 }

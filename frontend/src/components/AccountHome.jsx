@@ -6,8 +6,14 @@ import lifecycle from 'react-pure-lifecycle';
 const componentDidMount = (props) => {
     DataService.getDashByUID(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
         .then(response => {
-            console.log(response.data.data)
-            props.setDashboard({...response.data.data, eventDate: new Date(response.data.data.eventDate)});
+            if(response.data.success === 1) {
+                props.setDashboard({...response.data.data, eventDate: new Date(response.data.data.eventDate)});
+            } else {
+                console.log("failed to fetch dashboard data");
+            }
+        })
+        .catch(e => {
+            console.log(e);
         })
 };
 
@@ -108,7 +114,11 @@ function AccountHome (props) {
             </div>
 
             <div>
-                
+                Your Daily Cocktail:
+            </div>
+
+            <div>
+                Your Daily Song:
             </div>
 
             <Link to="/account" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>

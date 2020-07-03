@@ -20,7 +20,6 @@ function App() {
 
   const [authenticated, setAuthenticated] = useState("loading");
 
-
   const changeAuth = () => {
     setAuthenticated(!authenticated);
   };
