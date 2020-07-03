@@ -56,7 +56,7 @@ function AccountHome (props) {
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
                 <p>Weather</p>
                 <p>Days until {props.dashboard.eventName}:</p>
-                <p>{Math.floor(Math.abs(props.dashboard.eventDate - currentDate)/86400000)}</p>
+                <p>{Math.ceil(Math.abs(props.dashboard.eventDate - currentDate)/86400000)}</p>
                 <p>^for now, only shows day difference between today and when they were born</p>
             </div>
 
