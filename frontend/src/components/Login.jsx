@@ -40,6 +40,7 @@ function Login (props) {
                     console.log(response);
                     history.push("/");
                     localStorage.setItem('decisionMakerToken', response.data.token);
+                    localStorage.setItem('decisionMakerUID', response.data.data.uid);
                     props.checkAuth();
                 } else {
                     setErrorMessage(response.data.data);

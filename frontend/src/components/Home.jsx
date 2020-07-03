@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link, Route } from 'react-router-dom';
 import AccountHome from './AccountHome';
 import lifecycle from 'react-pure-lifecycle';
@@ -13,10 +13,22 @@ const methods = {
 
 function Home (props) {
     
+    const initialDash = {
+        uid: null,
+        eventDate: null,
+        eventName: null,
+        cocktailPref: null,
+        songEnergy: null,
+        songDecade: null,
+        lastUpdate: null
+    };
+
+    const [dashboard, setDashboard] = useState();
+
     return(
         props.authenticated ?
         <div>
-            <AccountHome />
+            <AccountHome dashboard={dashboard} setDashboard={setDashboard} />
         </div> :
         <div className="homepage-header">
             <h1>Decision Maker</h1>

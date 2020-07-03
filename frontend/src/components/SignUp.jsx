@@ -36,7 +36,6 @@ function SignUp(props) {
     const currentDate = new Date();
 
     const saveData = event => {
-
         DataService.create(form)
             .then(response => {
                 setSubmitted(true);
