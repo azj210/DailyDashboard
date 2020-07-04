@@ -21,7 +21,7 @@ public class FoodDriver {
     job.setJarByClass(FoodDriver.class);
     job.setJobName("FoodDriver");
 
-    job.setNumReduceTasks(30);
+    job.setNumReduceTasks(30); 
 
     FileInputFormat.addInputPath(job, new Path(args[0]));
     FileOutputFormat.setOutputPath(job, new Path(args[1]));
@@ -30,8 +30,8 @@ public class FoodDriver {
     job.setReducerClass(FoodReducer.class);
 
     job.setOutputKeyClass(Text.class);
-    job.setOutputValueClass(Text.class);
-
+    job.setOutputValueClass(IntWritable.class);
+    
     System.exit(job.waitForCompletion(true) ? 0 : 1);
   }
 }
