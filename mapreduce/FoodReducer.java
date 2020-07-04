@@ -20,17 +20,12 @@ public class FoodReducer
     int n = 0;
 
     for (Text value : values) {
-        try {
-            String[] calc = value.toString().split(";");
-            //add the totals for each field to the respective index in vals
-            for (int i = 0; i < vals.length; i++) {
-                vals[i] += Double.parseDouble(calc[i]);
-            }
-            n += 1;
+        String[] calc = value.toString().split(";");
+        //add the totals for each field to the respective index in vals
+        for (int i = 0; i < vals.length; i++) {
+            vals[i] += Double.parseDouble(calc[i]);
         }
-        catch (Exception e) {
-
-        }
+        n += 1;
     }
 
     String res = "";
