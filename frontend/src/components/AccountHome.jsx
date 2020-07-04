@@ -65,7 +65,7 @@ function AccountHome (props) {
             if ((event - date)/86400000 <= -1) {
                 event.setFullYear(date.getFullYear() + 1);
             }
-            daysLeft = Math.ceil((currentBirthdate - date)/86400000);
+            daysLeft = Math.ceil((firstBirthdate - date)/86400000);
             event.setFullYear(firstBirthdate);
         } else {
             if ((event - date)/86400000 <= -1) {
