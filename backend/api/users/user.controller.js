@@ -168,7 +168,7 @@ module.exports = {
         const uid = req.params.uid;
         deleteUserbyUID(uid, (err, results) => {
             if (err) {
-                console.loge(err);
+                console.log(err);
                 return;
             }
             if (!results) {

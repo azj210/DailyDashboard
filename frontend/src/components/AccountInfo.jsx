@@ -1,5 +1,7 @@
+//the component that renders most of the things on the account details page
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import DataService from '../services/UserServices';
 import lifecycle from 'react-pure-lifecycle';
 
@@ -22,6 +24,7 @@ const methods = {
 
 function AccountInfo(props) {
 
+    const history = useHistory();
     const [submitted, setSubmitted] = useState(false);
 
     const handleChange = event => {
@@ -51,6 +54,7 @@ function AccountInfo(props) {
                 if (response.data.success === 1) {
                     localStorage.removeItem("decisionMakerToken");
                     localStorage.removeItem("decisionMakerUID")
+                    history.push("/");
                 }
             })
     }
@@ -65,7 +69,7 @@ function AccountInfo(props) {
                 <Link to="/" className="btn btn-lg btn-secondary home-button">Back to Dashboard</Link>
             </div> :
             
-            <div>
+            <div className="page-form">
                 <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link>
                 <div className="form-group">
                     <label htmlFor="first">First Name</label>

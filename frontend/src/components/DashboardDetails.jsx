@@ -1,6 +1,7 @@
-import React from 'react';
+import React,  { useState } from 'react';
 import { Link } from "react-router-dom";
 import LoginError from './LoginError';
+import DashboardInfo from './DashboardInfo';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
@@ -13,10 +14,12 @@ const methods = {
 
 function DashboardDetails(props) {
 
+    const [dashboard, setDashboard] = useState();
+
     return (
         props.authenticated ?
         <div>
-            <Link to="/">Home</Link>
+            <DashboardInfo dashboard={dashboard} setDashboard={setDashboard} />
         </div> :
         <LoginError />
     )

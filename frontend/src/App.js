@@ -53,6 +53,7 @@ function App() {
       {authenticated === "loading" ?
       <Route path="/" exact={true} component={() => <HomeRedirect checkAuth={checkAuth}/>} /> :
       <Route path="/" exact={true} component={() => <Home checkAuth={checkAuth} authenticated={authenticated} />} />}
+
       <Route path="/sign-up" component={() => <SignUp checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/login" component={() => <Login checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/logout" component={Logout} />

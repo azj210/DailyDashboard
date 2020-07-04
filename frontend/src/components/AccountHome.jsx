@@ -54,6 +54,7 @@ function AccountHome (props) {
             weekday = "";
     }
     
+    // this function can definitely be moved to a typescript doc
     const checkEvent = (event, date, dashboard) => {
         let daysLeft = 0;
 
@@ -72,24 +73,24 @@ function AccountHome (props) {
             // update "eventName" and "eventDate" to birthday using DataService and reload the page
             // not bug tested yet
 
-                DataService.get(localStorage.getItem("decisionMakerUID"))
-                    .then(response => {
+                    DataService.get(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
+                        .then(response => {
+                            if (response === 1) {
+                                const newDash = {
+                                    ... dashboard,
+                                    eventName: "Birthdate",
+                                    eventDate: response.data.data.birthdate
+                                }
 
-                        const newDash = {
-                            ... dashboard,
-                            eventName: "Birthdate",
-                            eventDate: response.data.data.birthdate
-                        }
-
-                        DataService.updateDash(localStorage.getItem("decisionMakerToken"), newDash)
-                            .then(response => {
-                                console.log(response);
-                                history.go();
-                            })
-                            .catch(e => {
-                                console.log(e);
-                            })
-
+                                DataService.updateDash(localStorage.getItem("decisionMakerToken"), newDash)
+                                    .then(response => {
+                                        console.log(response);
+                                        history.go();
+                                    })
+                                    .catch(e => {
+                                        console.log(e);
+                                    });
+                            }
                     })
                     .catch(e => {
                         console.log(e);
@@ -111,7 +112,9 @@ function AccountHome (props) {
                 <h1>Welcome!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
                 <p>Weather</p>
-                {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard) !== 0 ? <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard)}</p> : <p>Your {props.dashboard.eventName} is today!</p>}
+                {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard) !== 0 ? 
+                <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard)}</p> : 
+                <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 
             <div>

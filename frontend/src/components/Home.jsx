@@ -14,7 +14,6 @@ const methods = {
 function Home (props) {
 
     const [dashboard, setDashboard] = useState();
-
     return(
         props.authenticated ?
         <div>
