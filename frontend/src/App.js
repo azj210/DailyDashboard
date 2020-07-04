@@ -9,7 +9,6 @@ import Home from './components/Home';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 
-import AccountHome from './components/AccountHome';
 import Logout from './components/Logout';
 import AccountDetails from './components/AccountDetails';
 import DashboardDetails from './components/DashboardDetails';

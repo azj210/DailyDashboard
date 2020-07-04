@@ -30,7 +30,7 @@ function Navbar(props) {
                     <Link to="/dashboard-details" className="nav-link">Dashboard</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/logout" /* onClick={props.authenticate} */ className="nav-link">Logout</Link>
+                    <Link to="/logout" className="nav-link">Logout</Link>
                   </li>
                 </ul> :
                 <ul className="navbar-nav ml-auto">  

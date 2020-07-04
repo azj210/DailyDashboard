@@ -58,14 +58,15 @@ function AccountHome (props) {
         let daysLeft = 0;
 
         if (props.dashboard.eventName = "Birthdate") {
-            // create new birthdate object and modify date to be this year
-            let currentBirthdate = new Date(JSON.parse(JSON.stringify(event)));
-            currentBirthdate.setFullYear(date.getFullYear());
-            // check if new birthdate is behind or after current year and change its year accordingly
-            if ((currentBirthdate - date)/86400000 <= -1) {
-                currentBirthdate.setFullYear(date.getFullYear() + 1);
+            // modify birthdate to be this year
+            const firstBirthdate = event.getFullYear();
+            event.setFullYear(date.getFullYear());
+            // check if birthdate is behind or after current year and change its year accordingly
+            if ((event - date)/86400000 <= -1) {
+                event.setFullYear(date.getFullYear() + 1);
             }
             daysLeft = Math.ceil((currentBirthdate - date)/86400000);
+            event.setFullYear(firstBirthdate);
         } else {
             if ((event - date)/86400000 <= -1) {
             // update "eventName" and "eventDate" to birthday using DataService and reload the page
