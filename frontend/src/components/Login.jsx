@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DataService from '../services/UserServices';
 import { useHistory } from 'react-router-dom';
 import lifecycle from 'react-pure-lifecycle';

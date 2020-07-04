@@ -65,7 +65,7 @@ function AccountHome (props) {
             if ((event - date)/86400000 <= -1) {
                 event.setFullYear(date.getFullYear() + 1);
             }
-            daysLeft = Math.ceil((firstBirthdate - date)/86400000);
+            daysLeft = Math.ceil((event - date)/86400000);
             event.setFullYear(firstBirthdate);
         } else {
             if ((event - date)/86400000 <= -1) {
@@ -111,7 +111,7 @@ function AccountHome (props) {
                 <h1>Welcome!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
                 <p>Weather</p>
-                {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard) != 0 ? <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard)}</p> : <p>Your {props.dashboard.eventName} is today!</p>}
+                {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard) !== 0 ? <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard)}</p> : <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 
             <div>

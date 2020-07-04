@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import LoginError from './LoginError';
-import lifecycle from 'react-pure-lifecycle'
+import lifecycle from 'react-pure-lifecycle';
+import AccountInfo from './AccountInfo';
 
 const componentDidMount = (props) => {
     props.checkAuth();
@@ -13,10 +13,13 @@ const methods = {
 
 function AccountDetails(props) {
 
+    const [userInfo, setUserInfo] = useState();
+    const [submitted, setSubmitted] = useState(false);
+
     return (
         props.authenticated ?
         <div>
-            <Link to="/">Home</Link>
+            <AccountInfo userInfo={userInfo} setUserInfo={setUserInfo} submitted={submitted} setSubmitted={setSubmitted} authenticated={props.authenticated} />
         </div> :
         <LoginError />
         

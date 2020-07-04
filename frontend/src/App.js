@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route, useHistory } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import DataService from './services/UserServices';
 
 import Navbar from './components/Navbar';

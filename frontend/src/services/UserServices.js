@@ -4,8 +4,9 @@ const create = data => {
   return http.post("/users", data);
 };
 
-const get = id => {
-  return http.get(`/users/${id}`);
+const get = (token, id) => {
+  const authHTTP = httpA(token);
+  return authHTTP.get(`/users/${id}`);
 };
 
 const getByEmail = email => {
@@ -24,6 +25,11 @@ const checkToken = token => {
   const authHTTP = httpA(token);
   return authHTTP.post("/users/authenticate");
 }
+
+const updateUserInfo = (token, data) => {
+  const authHTTP = httpA(token);
+  return authHTTP.patch("/users/info", data);
+};
 
 const createDash = (initialState) => {
   return http.post("/dashb/create", initialState);
@@ -51,6 +57,7 @@ export default {
   remove,
   login,
   checkToken,
+  updateUserInfo,
   createDash,
   updateDash,
   getDashByUID,

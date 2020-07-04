@@ -13,8 +13,6 @@ const methods = {
 
 function DashboardItems () {
 
-    
-
     return (
         
     );

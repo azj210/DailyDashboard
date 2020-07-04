@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AccountHome from './AccountHome';
 import lifecycle from 'react-pure-lifecycle';
 
