@@ -13,8 +13,9 @@ const getByEmail = email => {
   return http.get("/users", email);
 };
 
-const remove = id => {
-  return http.delete(`/users/${id}`);
+const remove = (token, id) => {
+  const authHTTP = httpA(token);
+  return authHTTP.delete(`/users/${id}`);
 };
 
 const login = data => {

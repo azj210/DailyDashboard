@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DataService from '../services/UserServices';
 import lifecycle from 'react-pure-lifecycle';
 
@@ -7,13 +7,9 @@ const componentDidMount = (props) => {
     DataService.get(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
         .then(response => {
             console.log(response.data.data);
-            props.setUserInfo({
-                fName: response.data.data.fName,
-                lName: response.data.data.lName,
-                city: response.data.data.city,
-                state: response.data.data.state,
-                uid: response.data.data.uid
-            });
+            props.setUserInfo(
+                response.data.data
+            );
         })
         .catch(e => {
             console.log(e);
@@ -26,7 +22,7 @@ const methods = {
 
 function AccountInfo(props) {
 
-    const history = useHistory();
+    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = event => {
         const { name, value } = event.target;
@@ -37,21 +33,38 @@ function AccountInfo(props) {
         DataService.updateUserInfo(localStorage.getItem("decisionMakerToken"), props.userInfo)
             .then(response => {
                 console.log(response);
-                props.setSubmitted(true);
+                if (response.data.success === 1) {
+                    setSubmitted(true);
+                }
+
+                //implement something that shows up on screen if not succesful
             })
             .catch(e => {
                 console.log(e);
             });
     }
 
+    const deleteAccount = () => {
+        DataService.remove(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
+            .then(response => {
+                console.log(response);
+                if (response.data.success === 1) {
+                    localStorage.removeItem("decisionMakerToken");
+                    localStorage.removeItem("decisionMakerUID")
+                }
+            })
+    }
+
     return (
         typeof(props.userInfo) === "undefined" ?
         <div /> :
-            props.submitted ?
+
+            submitted ?
             <div className="homepage-header">
                 <h1>Succesfully Changed</h1>
                 <Link to="/" className="btn btn-lg btn-secondary home-button">Back to Dashboard</Link>
             </div> :
+            
             <div>
                 <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link>
                 <div className="form-group">
@@ -99,6 +112,8 @@ function AccountInfo(props) {
                 </div>
 
                 <button type="submit" className="btn btn-lg btn-outline-primary" onClick={changeInfo}>Update Account</button>
+
+                <button className="btn btn-lg btn-secondary" onClick={deleteAccount}>Delete Account</button>
             </div> 
     )
 };

@@ -14,12 +14,11 @@ const methods = {
 function AccountDetails(props) {
 
     const [userInfo, setUserInfo] = useState();
-    const [submitted, setSubmitted] = useState(false);
 
     return (
         props.authenticated ?
         <div>
-            <AccountInfo userInfo={userInfo} setUserInfo={setUserInfo} submitted={submitted} setSubmitted={setSubmitted} authenticated={props.authenticated} />
+            <AccountInfo userInfo={userInfo} setUserInfo={setUserInfo} authenticated={props.authenticated} />
         </div> :
         <LoginError />
         
