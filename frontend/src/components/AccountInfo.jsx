@@ -51,11 +51,12 @@ function AccountInfo(props) {
         DataService.remove(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
             .then(response => {
                 console.log(response);
-                if (response.data.success === 1) {
-                    localStorage.removeItem("decisionMakerToken");
-                    localStorage.removeItem("decisionMakerUID")
-                    history.push("/");
-                }
+                localStorage.removeItem("decisionMakerToken");
+                localStorage.removeItem("decisionMakerUID")
+                history.push("/");
+            })
+            .catch(e => {
+                console.log(e);
             })
     }
 
