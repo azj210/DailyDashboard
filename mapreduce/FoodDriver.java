@@ -30,7 +30,7 @@ public class FoodDriver {
     job.setReducerClass(FoodReducer.class);
 
     job.setOutputKeyClass(Text.class);
-    job.setOutputValueClass(IntWritable.class);
+    job.setOutputValueClass(Text.class);
     
     System.exit(job.waitForCompletion(true) ? 0 : 1);
   }

@@ -1,3 +1,20 @@
+hdfs dfs -rm -r -f Food
+rm *.class
+rm *.jar
+hdfs dfs -mkdir Food
+hdfs dfs -mkdir Food/input
+hdfs dfs -put nutrition_split.txt Food/input
+javac -classpath `yarn classpath` -d . FoodMap.java
+javac -classpath `yarn classpath`:. -d . FoodReducer.java
+javac -classpath `yarn classpath`:. -d . FoodDriver.java
+
+jar -cvf proj.jar *.class
+
+hadoop jar proj.jar FoodDriver /user/XXXXXX/Food/input/nutrition_split.txt /user/XXXXXX/Food/output
+
+hdfs dfs -cat Food/output/part-r-00000
+
+
 hdfs dfs -rm -r -f Cocktails
 rm *.class
 rm *.jar

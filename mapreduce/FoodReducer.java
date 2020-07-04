@@ -20,16 +20,20 @@ public class FoodReducer
     int n = 0;
 
     for (Text value : values) {
-
-        String[] calc = value.toString().split(";");
-        //add the totals for each field to the respective index in vals
-        for (int i = 0; i < vals.length; i ++) {
-            vals[i] += Double.parseDouble(calc[i]);
+        try {
+            String[] calc = value.toString().split(";");
+            //add the totals for each field to the respective index in vals
+            for (int i = 0; i < vals.length; i++) {
+                vals[i] += Double.parseDouble(calc[i]);
+            }
+            n += 1;
         }
-        n += 1;
+        catch (Exception e) {
+
+        }
     }
 
-    String res = ""
+    String res = "";
     //calculate the average of each field and round to 2 decimal places and add it to the output string
     for (int i = 0; i < vals.length; i++) {
         res += Double.toString(Math.round((vals[i] / n) * 100 / 100)) + ";";
