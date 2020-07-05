@@ -44,9 +44,6 @@ function SignUp(props) {
                     uid: response.data.data.insertId,
                     eventDate: form.birthdate,
                     eventName: "Birthdate",
-                    cocktailPref: null,
-                    songEnergy: null,
-                    songDecade: null,
                     lastUpdate: currentDate
                 };
                 DataService.createDash(initialDash)

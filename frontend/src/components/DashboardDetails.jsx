@@ -15,11 +15,12 @@ const methods = {
 function DashboardDetails(props) {
 
     const [dashboard, setDashboard] = useState();
+    const [originalDash, setOriginalDash] = useState();
 
     return (
         props.authenticated ?
         <div>
-            <DashboardInfo dashboard={dashboard} setDashboard={setDashboard} />
+            <DashboardInfo dashboard={dashboard} setDashboard={setDashboard} originalDash={originalDash} setOriginalDash={setOriginalDash} />
         </div> :
         <LoginError />
     )

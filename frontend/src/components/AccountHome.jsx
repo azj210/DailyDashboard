@@ -7,7 +7,7 @@ const componentDidMount = (props) => {
     DataService.getDashByUID(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
         .then(response => {
             if(response.data.success === 1) {
-                props.setDashboard({...response.data.data, eventDate: new Date(response.data.data.eventDate)});
+                props.setDashboard({...response.data.data, eventDateObj: new Date(response.data.data.eventDate)});
             } else {
                 console.log("failed to fetch dashboard data");
             }
@@ -112,8 +112,8 @@ function AccountHome (props) {
                 <h1>Welcome!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
                 <p>Weather</p>
-                {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard) !== 0 ? 
-                <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDate, currentDate, props.dashboard)}</p> : 
+                {checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard) !== 0 ? 
+                <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard)}</p> : 
                 <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 
