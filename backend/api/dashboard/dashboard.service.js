@@ -105,5 +105,19 @@ module.exports = {
                 }
             );
         }
+    },
+
+    //delete user's dashboard by uid
+    deleteDashbyUID: (uid, callBack) => {
+        pool.query(
+            `delete from dashb where uid= ?`,
+            [uid],
+            (error, results, fields) => {
+                if (error) {
+                    return callBack(error);
+                }
+                return callBack(null, results[0]);
+            }
+        );
     }
 };

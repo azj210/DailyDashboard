@@ -1,4 +1,4 @@
-const { createDash, updateDash, getDashbyUID, getData } = require("./dashboard.service");
+const { createDash, updateDash, getDashbyUID, getData, deleteDashbyUID } = require("./dashboard.service");
 const { checkToken } = require("../../auth/token_validation");
 
 //controllers that handle all the services from dashboard.service.js
@@ -72,6 +72,20 @@ module.exports = {
                     success: 0,
                     message: "data not found"
                 });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+
+    deleteDashbyUID: (req, res) => {
+        const uid = req.params.uid;
+        deleteDashbyUID(uid, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
             }
             return res.json({
                 success: 1,

@@ -1,4 +1,4 @@
-const { createDash, updateDash, getDashbyUID, getData} = require("./dashboard.controller");
+const { createDash, updateDash, getDashbyUID, getData, deleteDashbyUID} = require("./dashboard.controller");
 const router = require("express").Router();
 const { checkToken } = require("../../auth/token_validation");
 
@@ -7,5 +7,6 @@ router.post("/create", createDash);
 router.patch("/update", checkToken, updateDash);
 router.get("/:uid", checkToken, getDashbyUID);
 router.get("/", getData);
+router.delete("/:uid", checkToken, deleteDashbyUID)
 
 module.exports = router;
