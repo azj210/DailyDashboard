@@ -82,7 +82,8 @@ function AccountInfo(props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="City">City</label>
-                    <input className="form-control"
+                    <input 
+                        className="form-control"
                         id="City"
                         required
                         value={props.userInfo.city}

@@ -39,7 +39,7 @@ function DashboardInfo(props) {
     const checkEvent = (event, date, dashboard) => {
         let daysLeft = 0;
 
-        if (props.dashboard.eventName = "Birthdate") {
+        if (props.originalDash.eventName = "Birthdate") {
             return "Birthdate";
         } else {
             // if event is more than one day behind today,
@@ -72,7 +72,7 @@ function DashboardInfo(props) {
 
             // event is ahead of today, return event name
             } else {
-                return props.dashboard.eventName;
+                return props.originalDash.eventName;
             }
         }
 
@@ -101,13 +101,12 @@ function DashboardInfo(props) {
     }
 
     return (
-        typeof(props.dashboard) === "undefined" ?
+        typeof(props.dashboard) === "undefined" || typeof(props.originalDash) === "undefined" ?
         <div /> :
         <div>
             <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link>
-            <h3>{checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard)}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3>
-            <h3>Change</h3>
-                <div className="page-form">
+            <div className="page-form">
+                <h3>{checkEvent(props.dashboard.eventDateObj, currentDate, props.originalDash)}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3>
                     <div className="form-group">
                         <label htmlFor="eventName">Event (if changing to birthdate, make sure to type "Birthdate" exactly)</label>
                         <input 
@@ -129,6 +128,56 @@ function DashboardInfo(props) {
                             name="eventDate">
                         </input>
                     </div>
+<<<<<<< HEAD
+                <h3>Songs</h3>
+                    <select name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
+                        <option value="">Energy</option>
+                        <option>low</option>
+                        <option>medium</option>
+                        <option>high</option>
+                    </select>
+
+                    <select name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
+                        <option value="">Decade</option>
+                        <option>1980</option>
+                        <option>1990</option>
+                        <option>2000</option>
+                        <option>2010</option>
+                    </select>
+                <h3>Cocktail</h3>
+                    <select name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
+                        <option value="">Preference</option>
+                        <option>Cocktail Classics</option>
+                        <option>Cordials And Liquers</option>
+                        <option>Whiskies</option>
+                        <option>Brandy</option>
+                        <option>Vodka</option>
+                        <option>Non-Alcoholic Drinks</option>
+                        <option>Rum - Daiquiris</option>
+                        <option>Rum</option>
+                        <option>Tequila</option>
+                        <option>Shooters</option>
+                        <option>Gin</option>
+                    </select>
+                <h3>Movie</h3>
+                    <select name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
+                        <option value="">Genre</option>
+                        <option>Drama</option>
+                        <option>Comedy</option>
+                        <option>Horror</option>
+                        <option>Action</option>
+                        <option>Romance</option>
+                    </select>
+                <h3>Food</h3>
+                    <select name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
+                        <option value="">Preference</option>
+                        <option>High Protein</option>
+                    </select>
+                <br />
+
+                <button type="submit" className="btn btn-lg btn-outline-primary" onClick={updateDash}>Update Dashboard</button>
+            </div>
+=======
                 </div>
             <h3>Songs</h3>
                 <select name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
@@ -181,6 +230,7 @@ function DashboardInfo(props) {
             <br />
 
             <button type="submit" className="btn btn-lg btn-outline-primary" onClick={updateDash}>Update Dashboard</button>
+>>>>>>> allow dashboard category selection to be stored in mysql
         </div> 
 
     )
