@@ -171,12 +171,6 @@ module.exports = {
                 console.log(err);
                 return;
             }
-            if (!results) {
-                return res.json({
-                    success: 0,
-                    message: "user not found"
-                });
-            }
             return res.json({
                 success: 1,
                 data: results
