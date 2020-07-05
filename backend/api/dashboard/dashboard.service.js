@@ -5,8 +5,8 @@ module.exports = {
     //updates the user's dashboard
     createDash: (data, callBack) => {
         pool.query(
-            `insert into dashb(uid, eventDate, eventName, cocktailPref, songEnergy, songDecade, movieGenre, foodPref, lastUpdate) 
-                    values(?,?,?,?,?,?,?,?,?)`,
+            `insert into dashb(uid, eventDate, eventName, cocktailPref, songEnergy, songDecade, movieGenre, foodPref, category1, category2, lastUpdate) 
+                    values(?,?,?,?,?,?,?,?,?,?,?)`,
             [
                 data.uid,
                 data.eventDate,
@@ -16,6 +16,8 @@ module.exports = {
                 data.songDecade,
                 data.movieGenre,
                 data.foodPref,
+                data.category1,
+                data.category2,
                 data.lastUpdate,
             ],
             //if we get a results then error is null
@@ -31,7 +33,7 @@ module.exports = {
 
     updateDash: (data, callBack) => {
         pool.query(
-            `update dashb set eventDate = ?, eventName = ?, cocktailPref = ?, songEnergy = ?, songDecade = ?, movieGenre = ?, foodPref = ?, lastUpdate = ? where uid = ?`,
+            `update dashb set eventDate = ?, eventName = ?, cocktailPref = ?, songEnergy = ?, songDecade = ?, movieGenre = ?, foodPref = ?, category1 = ?, category2 = ?, lastUpdate = ? where uid = ?`,
             [
                 data.eventDate,
                 data.eventName,
@@ -40,6 +42,8 @@ module.exports = {
                 data.songDecade,
                 data.movieGenre,
                 data.foodPref,
+                data.category1,
+                data.category2,
                 data.lastUpdate,
                 data.uid
             ],
