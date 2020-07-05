@@ -51,6 +51,11 @@ const getDashData = token => {
   return authHTTP.get("/dashb");
 }
 
+const deleteDash = (token, id) => {
+  const authHTTP = httpA(token);
+  return authHTTP.delete(`/dashb/${id}`);
+}
+
 export default {
   create,
   get,
@@ -62,5 +67,6 @@ export default {
   createDash,
   updateDash,
   getDashByUID,
-  getDashData
+  getDashData,
+  deleteDash
 };

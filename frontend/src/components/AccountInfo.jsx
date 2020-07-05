@@ -1,7 +1,7 @@
 //the component that renders most of the things on the account details page
 
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DataService from '../services/UserServices';
 import lifecycle from 'react-pure-lifecycle';
 
@@ -24,7 +24,6 @@ const methods = {
 
 function AccountInfo(props) {
 
-    const history = useHistory();
     const [submitted, setSubmitted] = useState(false);
 
     const handleChange = event => {
@@ -45,19 +44,6 @@ function AccountInfo(props) {
             .catch(e => {
                 console.log(e);
             });
-    }
-
-    const deleteAccount = () => {
-        DataService.remove(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
-            .then(response => {
-                console.log(response);
-                localStorage.removeItem("decisionMakerToken");
-                localStorage.removeItem("decisionMakerUID")
-                history.push("/");
-            })
-            .catch(e => {
-                console.log(e);
-            })
     }
 
     return (
@@ -118,7 +104,7 @@ function AccountInfo(props) {
 
                 <button type="submit" className="btn btn-lg btn-outline-primary" onClick={changeInfo}>Update Account</button>
 
-                <button className="btn btn-lg btn-secondary" onClick={deleteAccount}>Delete Account</button>
+                <Link to="/delete" className="btn btn-lg btn-secondary">Delete Account</Link>
             </div> 
     )
 };

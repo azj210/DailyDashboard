@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import AccountDetails from './components/AccountDetails';
 import DashboardDetails from './components/DashboardDetails';
+import DeleteAccount from './components/DeleteAccount';
 
 function App() {
   
@@ -59,6 +60,7 @@ function App() {
       <Route path="/logout" component={Logout} />
       <Route path="/account" component={() => <AccountDetails checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth} authenticated={authenticated} />} />
+      <Route path="/delete" component={() => <DeleteAccount checkAuth={checkAuth} authenticated={authenticated} />} />
     </div>
   );
 };
