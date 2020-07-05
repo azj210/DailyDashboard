@@ -87,14 +87,13 @@ function DashboardInfo(props) {
             }
         }
 
-        console.log(props.dashboard);
-
         const updatedDash = Object.assign(props.originalDash, props.dashboard);
 
         DataService.updateDash(localStorage.getItem("decisionMakerToken"), updatedDash)
             .then(response =>{
                 console.log(response);
                 console.log(updatedDash);
+                history.go();
             })
             .catch(e => {
                 console.log(e);
