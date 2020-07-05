@@ -43,7 +43,7 @@ function DeleteAccount(props) {
         <div className="homepage-header">
             <h2>Are you sure you want to delete this account?</h2>
             <button className="btn btn-lg btn-secondary" onClick={confirmedDelete}>Delete</button>
-            <Link to="/" className="btn btn-lg btn-outline-primary" onClick={confirmedDelete}>Home</Link>
+            <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link>
         </div> :
         <LoginError />
     );
