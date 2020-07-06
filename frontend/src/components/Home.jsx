@@ -20,7 +20,7 @@ function Home (props) {
             <AccountHome dashboard={dashboard} setDashboard={setDashboard} />
         </div> :
         <div className="homepage-header">
-            <h1>Decision Maker</h1>
+            <h1>Daily Dashboard</h1>
             <Link to="/sign-up" className="btn btn-lg btn-outline-primary home-button">Sign Up</Link>
             <Link to="/login" className="btn btn-lg btn-secondary home-button">Login</Link>
         </div>

@@ -15,7 +15,7 @@ function Navbar(props) {
     return (
         <div>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <Link to="/" className="navbar-brand">Decision Maker</Link>
+            <Link to="/" className="navbar-brand">Daily Dashboard</Link>
             <button id="example" onClick={toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarResponsive" aria-expanded={collapsed} aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
             </button>

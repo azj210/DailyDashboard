@@ -27,6 +27,7 @@ const methods = {
 
 function DashboardInfo(props) {
 
+    const categories = ["song", "cocktail", "movie", "food"];
     const currentDate = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const history = useHistory();
@@ -35,6 +36,16 @@ function DashboardInfo(props) {
         const { name, value } = event.target;
         props.setDashboard({ ...props.dashboard, [name]: value });
     };
+
+    const makeRadioButtons = (categoryName, num) => {
+        const identifier = categoryName + num
+        return (
+            <span>
+                <label htmlFor={identifier}>{categoryName}</label>
+                <input type="radio" name={`category${num}`} id={identifier} value={categoryName} onChange={handleChange} />
+            </span>
+        );
+    }
 
     const checkEvent = (event, date, dashboard) => {
         let daysLeft = 0;
@@ -93,7 +104,7 @@ function DashboardInfo(props) {
             .then(response =>{
                 console.log(response);
                 console.log(updatedDash);
-                history.go();
+                // history.go();
             })
             .catch(e => {
                 console.log(e);
@@ -172,6 +183,15 @@ function DashboardInfo(props) {
                         <option value="">Preference</option>
                         <option>High Protein</option>
                     </select>
+                <h3>Categories to show on dashboard:</h3>
+                    <h4>Category 1</h4>
+                        {categories.map((category) => {
+                            return makeRadioButtons(category, 1);
+                        })}
+                    <h4>Category 2</h4>
+                        {categories.map((category) => {
+                            return makeRadioButtons(category, 2);
+                        })}
                 <br />
 
                 <button type="submit" className="btn btn-lg btn-outline-primary" onClick={updateDash}>Update Dashboard</button>
