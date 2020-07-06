@@ -13,6 +13,7 @@ import Logout from './components/Logout';
 import AccountDetails from './components/AccountDetails';
 import DashboardDetails from './components/DashboardDetails';
 import DeleteAccount from './components/DeleteAccount';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   
@@ -61,6 +62,7 @@ function App() {
       <Route path="/account" component={() => <AccountDetails checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/delete" component={() => <DeleteAccount checkAuth={checkAuth} authenticated={authenticated} />} />
+      <Route path="/error" component={ErrorPage} />
     </div>
   );
 };

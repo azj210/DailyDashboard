@@ -14,6 +14,7 @@ const componentDidMount = (props) => {
                 props.setOriginalDash({...response.data.data})
             } else {
                 console.log("failed to fetch dashboard data");
+                history.push("/error")
             }
         })
         .catch(e => {
