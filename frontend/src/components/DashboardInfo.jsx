@@ -143,13 +143,16 @@ function DashboardInfo(props) {
                         </input>
                     </div>
                 <h3>Songs</h3>
+                    <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
                         <option value="">Energy</option>
                         <option>low</option>
                         <option>medium</option>
                         <option>high</option>
                     </select>
+                    </div>
 
+                    <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
                         <option value="">Decade</option>
                         <option>1980</option>
@@ -157,7 +160,9 @@ function DashboardInfo(props) {
                         <option>2000</option>
                         <option>2010</option>
                     </select>
+                    </div>
                 <h3>Cocktail</h3>
+                <div className="form-group"> 
                     <select className="form-control" style={{marginBottom: 15}} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>Cocktail Classics</option>
@@ -172,7 +177,9 @@ function DashboardInfo(props) {
                         <option>Shooters</option>
                         <option>Gin</option>
                     </select>
+                </div>
                 <h3>Movie</h3>
+                <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
                         <option value="">Genre</option>
                         <option>Drama</option>
@@ -181,7 +188,9 @@ function DashboardInfo(props) {
                         <option>Action</option>
                         <option>Romance</option>
                     </select>
+                </div>
                 <h3>Food</h3>
+                <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>High Protein</option>
@@ -190,6 +199,7 @@ function DashboardInfo(props) {
                         <option>Low Sugar</option>
                         <option>No Preference</option>
                     </select>
+                </div>
                 <h3>Categories to show on dashboard:</h3>
                     <h4 style={{marginTop: 15}}>Category 1</h4>
                         {categories.map((category, index) => {
