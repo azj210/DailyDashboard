@@ -105,6 +105,8 @@ function AccountInfo(props) {
 
                 <button type="submit" className="btn btn-lg btn-outline-primary" onClick={changeInfo}>Update Account</button>
 
+                <button type="submit" ></button>
+
                 <Link to="/delete" className="btn btn-lg btn-secondary">Delete Account</Link>
             </div> 
     )

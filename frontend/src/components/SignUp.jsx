@@ -43,8 +43,7 @@ function SignUp(props) {
                 const initialDash = {
                     uid: response.data.data.insertId,
                     eventDate: form.birthdate,
-                    eventName: "Birthdate",
-                    lastUpdate: currentDate
+                    eventName: "Birthdate"
                 };
                 DataService.createDash(initialDash)
                     .then(response1 => {
