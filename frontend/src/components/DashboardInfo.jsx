@@ -37,12 +37,13 @@ function DashboardInfo(props) {
         props.setDashboard({ ...props.dashboard, [name]: value });
     };
 
-    const makeRadioButtons = (categoryName, num) => {
+    const makeRadioButtons = (categoryName, num, indexKey) => {
         const identifier = categoryName + num
         return (
-            <span>
+            <span key={indexKey}>
                 <label htmlFor={identifier}>{categoryName}</label>
-                <input type="radio" name={`category${num}`} id={identifier} value={categoryName} onChange={handleChange} />
+                <input type="radio" name={`category${num}`} id={identifier} value={categoryName} checked={
+                    props.dashboard[`category${num}`] === categoryName ? "checked" : null} onChange={handleChange} />
             </span>
         );
     }
@@ -104,7 +105,7 @@ function DashboardInfo(props) {
             .then(response =>{
                 console.log(response);
                 console.log(updatedDash);
-                // history.go();
+                history.go();
             })
             .catch(e => {
                 console.log(e);
@@ -185,12 +186,14 @@ function DashboardInfo(props) {
                     </select>
                 <h3>Categories to show on dashboard:</h3>
                     <h4>Category 1</h4>
-                        {categories.map((category) => {
-                            return makeRadioButtons(category, 1);
+                        {categories.map((category, index) => {
+                            const key = "1" + index 
+                            return makeRadioButtons(category, 1, key);
                         })}
                     <h4>Category 2</h4>
-                        {categories.map((category) => {
-                            return makeRadioButtons(category, 2);
+                        {categories.map((category, index) => {
+                            const key = "2" + index;
+                            return makeRadioButtons(category, 2, key);
                         })}
                 <br />
 
