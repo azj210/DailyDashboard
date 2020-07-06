@@ -1,3 +1,4 @@
+require('dotenv').config();
 import axios from 'axios';
 
 const http = axios.create({
@@ -20,9 +21,10 @@ const httpA = token => {
 };
 
 const httpW = city => {
+  const apiKey = process.env.WEATHERKEY;
   return (
     axios.create({
-      baseURL: `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3a19b97a9ae7aa74ae91ca9f4b8e8984&units=imperial`,
+      baseURL: `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`,
       headers: {
         "Content-type": "application/json",
       }
