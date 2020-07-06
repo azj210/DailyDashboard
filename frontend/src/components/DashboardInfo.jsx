@@ -7,6 +7,7 @@ import DataService from '../services/UserServices';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
+
     DataService.getDashByUID(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
         .then(response => {
             if(response.data.success === 1) {
@@ -14,7 +15,6 @@ const componentDidMount = (props) => {
                 props.setOriginalDash({...response.data.data})
             } else {
                 console.log("failed to fetch dashboard data");
-                history.push("/error")
             }
         })
         .catch(e => {
