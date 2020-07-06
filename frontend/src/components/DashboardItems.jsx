@@ -41,13 +41,13 @@ const componentDidMount = (props) => {
 
                 const preference = props.dashboard.foodPref;
 
-                if (preference = "High Protein") {
+                if (preference === "High Protein") {
                     proteins = 20;
-                } else if (preference = "Low Calorie") {
+                } else if (preference === "Low Calorie") {
                     calories = 100;
-                } else if (preference = "Low Fat") {
+                } else if (preference === "Low Fat") {
                     fats = 3;
-                } else if (preference = "Low Sugar") {
+                } else if (preference === "Low Sugar") {
                     sugars = 5;
                 }
                 categoryObject.calorie = calories;
