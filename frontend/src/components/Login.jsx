@@ -52,6 +52,10 @@ function Login (props) {
             });
     };
 
+    const forgotPassword = () => {
+
+    }
+
     return(
         props.authenticated ? 
 
@@ -91,7 +95,8 @@ function Login (props) {
                 />
             </div>
 
-            <button type="submit" className="btn btn-info form-control" onClick={logUserIn}>Login</button>
+            <button type="submit" className="btn btn-info form-control" style={{marginBottom: 10}} onClick={logUserIn}>Login</button>
+            <button type="submit" className="btn btn-info form-control" onClick={forgotPassword}>Forgot Password</button>
         </div>
     );
 };

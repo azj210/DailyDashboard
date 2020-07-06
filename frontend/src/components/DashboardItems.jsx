@@ -89,8 +89,8 @@ const methods = {
 
 function DashboardItems (props) {
 
-    const firstCategoryLetter = props.dashboard.category1.charAt(0);
-    const secondCategoryLetter = props.dashboard.category2.charAt(0);
+    // const firstCategoryLetter = props.dashboard.category1.charAt(0);
+    // const secondCategoryLetter = props.dashboard.category2.charAt(0);
 
     return (
         <div>
