@@ -18,7 +18,7 @@ const componentDidMount = (props) => {
                         if(response.cod) {
                             props.setWeather("Your city's weather cannot be found");
                         }
-                        
+
                         const farenheightTemp = Math.round((response.data.main.temp - 273.15) * 9/5 + 32);
                         const description = response.data.weather[0].description;
                         
@@ -87,7 +87,7 @@ function AccountHome (props) {
     const checkEvent = (event, date, dashboard) => {
         let daysLeft = 0;
 
-        if (props.dashboard.eventName = "Birthdate") {
+        if (props.dashboard.eventName === "Birthdate") {
             // modify birthdate to be this year
             const firstBirthdate = event.getFullYear();
             event.setFullYear(date.getFullYear());
@@ -104,7 +104,7 @@ function AccountHome (props) {
 
                     DataService.get(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
                         .then(response => {
-                            if (response === 1) {
+                            if (response.data.success === 1) {
                                 const newDash = {
                                     ... dashboard,
                                     eventName: "Birthdate",
@@ -133,6 +133,12 @@ function AccountHome (props) {
         return daysLeft;
     }
 
+    let event;
+
+    if (typeof(props.dashboard) !== "undefined") {
+        event = checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard);
+    }
+
     return(
         typeof(props.dashboard) === "undefined" || typeof(props.weather) === "undefined" ? 
         <div /> :
@@ -141,8 +147,8 @@ function AccountHome (props) {
                 <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
                 <h4>{props.weather}</h4>
-                {checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard) !== 0 ? 
-                <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard)}</p> : 
+                {event !== 0 ? 
+                <p>Days until {props.dashboard.eventName}: {event}</p> : 
                 <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 

@@ -51,19 +51,18 @@ function DashboardInfo(props) {
     }
 
     const checkEvent = (event, date, dashboard) => {
-        let daysLeft = 0;
 
-        if (props.originalDash.eventName = "Birthdate") {
+        if (props.originalDash.eventName === "Birthdate") {
             return "Birthdate";
         } else {
             // if event is more than one day behind today,
             // update "eventName" and "eventDate" to birthday using DataService and reload the page
             // not bug tested yet
             if ((event - date)/86400000 <= -1) {
-
                 DataService.get(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
                     .then(response => {
-                        if (response === 1) {
+                        console.log(response);
+                        if (response.data.success === 1) {
                             const newDash = {
                                 ... dashboard,
                                 eventName: "Birthdate",
@@ -89,10 +88,14 @@ function DashboardInfo(props) {
                 return props.originalDash.eventName;
             }
         }
-
-        return daysLeft;
     }
 
+    let event;
+
+    if (typeof(props.dashboard) !== "undefined" && typeof(props.originalDash) !== "undefined") {
+        event = checkEvent(props.dashboard.eventDateObj, currentDate, props.originalDash);
+    }
+    
     const updateDash = () =>{
         
         for (const detail in props.dashboard) {
@@ -120,7 +123,7 @@ function DashboardInfo(props) {
         <div>
             {/* <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link> */}
             <div className="page-form">
-                <header><h3>{checkEvent(props.dashboard.eventDateObj, currentDate, props.originalDash)}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3></header>
+                <header><h3>{event}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3></header>
                     <div className="form-group">
                         <label htmlFor="eventName">Event (if changing to birthdate, make sure to type "Birthdate" exactly)</label>
                         <input 
