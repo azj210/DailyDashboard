@@ -41,11 +41,12 @@ function DashboardInfo(props) {
     const makeRadioButtons = (categoryName, num, indexKey) => {
         const identifier = categoryName + num
         return (
-            <span key={indexKey}>
-                <label htmlFor={identifier}>{categoryName}</label>
-                <input type="radio" name={`category${num}`} id={identifier} value={categoryName} checked={
+            <div class="form-check form-check-inline" key={indexKey}>
+                <label class="form-check-label" htmlFor={identifier}>{categoryName}
+                <input class="form-check-input" type="radio" name={`category${num}`} id={identifier} value={categoryName} checked={
                     props.dashboard[`category${num}`] === categoryName ? "checked" : null} onChange={handleChange} />
-            </span>
+                    </label>
+            </div>
         );
     }
 
@@ -117,9 +118,9 @@ function DashboardInfo(props) {
         typeof(props.dashboard) === "undefined" || typeof(props.originalDash) === "undefined" ?
         <div /> :
         <div>
-            <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link>
+            {/* <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link> */}
             <div className="page-form">
-                <h3>{checkEvent(props.dashboard.eventDateObj, currentDate, props.originalDash)}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3>
+                <header><h3>{checkEvent(props.dashboard.eventDateObj, currentDate, props.originalDash)}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3></header>
                     <div className="form-group">
                         <label htmlFor="eventName">Event (if changing to birthdate, make sure to type "Birthdate" exactly)</label>
                         <input 
@@ -142,14 +143,14 @@ function DashboardInfo(props) {
                         </input>
                     </div>
                 <h3>Songs</h3>
-                    <select name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
+                    <select class="form-control" style={{marginBottom: 15}} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
                         <option value="">Energy</option>
                         <option>low</option>
                         <option>medium</option>
                         <option>high</option>
                     </select>
 
-                    <select name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
+                    <select class="form-control" style={{marginBottom: 15}} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
                         <option value="">Decade</option>
                         <option>1980</option>
                         <option>1990</option>
@@ -157,7 +158,7 @@ function DashboardInfo(props) {
                         <option>2010</option>
                     </select>
                 <h3>Cocktail</h3>
-                    <select name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
+                    <select class="form-control" style={{marginBottom: 15}} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>Cocktail Classics</option>
                         <option>Cordials And Liquers</option>
@@ -172,7 +173,7 @@ function DashboardInfo(props) {
                         <option>Gin</option>
                     </select>
                 <h3>Movie</h3>
-                    <select name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
+                    <select class="form-control" style={{marginBottom: 15}} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
                         <option value="">Genre</option>
                         <option>Drama</option>
                         <option>Comedy</option>
@@ -181,7 +182,7 @@ function DashboardInfo(props) {
                         <option>Romance</option>
                     </select>
                 <h3>Food</h3>
-                    <select name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
+                    <select class="form-control" style={{marginBottom: 15}} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>High Protein</option>
                         <option>Low Calorie</option>
@@ -190,19 +191,19 @@ function DashboardInfo(props) {
                         <option>No Preference</option>
                     </select>
                 <h3>Categories to show on dashboard:</h3>
-                    <h4>Category 1</h4>
+                    <h4 style={{marginTop: 15}}>Category 1</h4>
                         {categories.map((category, index) => {
                             const key = "1" + index 
                             return makeRadioButtons(category, 1, key);
                         })}
-                    <h4>Category 2</h4>
+                    <h4 style={{marginTop: 15}}>Category 2</h4>
                         {categories.map((category, index) => {
                             const key = "2" + index;
                             return makeRadioButtons(category, 2, key);
                         })}
                 <br />
 
-                <button type="submit" className="btn btn-lg btn-outline-primary" onClick={updateDash}>Update Dashboard</button>
+                <button type="submit" style={{marginTop: 15}} className="btn btn-lg btn-outline-primary" onClick={updateDash}>Update Dashboard</button>
             </div>
         </div> 
 
