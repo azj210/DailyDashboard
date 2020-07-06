@@ -57,7 +57,7 @@ const deleteDash = (token, id) => {
 
 const getWeather = city => {
   const weatherHTTP = httpW(city);
-  return weatherHTTP.get("/")
+  return weatherHTTP.get("");
 }
 
 export default {

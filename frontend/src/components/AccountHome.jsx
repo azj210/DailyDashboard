@@ -100,7 +100,6 @@ function AccountHome (props) {
         } else {
             if ((event - date)/86400000 <= -1) {
             // update "eventName" and "eventDate" to birthday using DataService and reload the page
-            // not bug tested yet
 
                     DataService.get(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
                         .then(response => {

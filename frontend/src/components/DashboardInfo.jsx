@@ -57,7 +57,6 @@ function DashboardInfo(props) {
         } else {
             // if event is more than one day behind today,
             // update "eventName" and "eventDate" to birthday using DataService and reload the page
-            // not bug tested yet
             if ((event - date)/86400000 <= -1) {
                 DataService.get(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
                     .then(response => {

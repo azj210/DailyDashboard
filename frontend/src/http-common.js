@@ -22,6 +22,7 @@ const httpA = token => {
 
 const httpW = city => {
   const apiKey = process.env.WEATHERKEY;
+  console.log(process.env)
   return (
     axios.create({
       baseURL: `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`,
