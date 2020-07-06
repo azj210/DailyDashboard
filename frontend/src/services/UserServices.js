@@ -1,4 +1,4 @@
-import {http, httpA} from "../http-common.js";
+import {http, httpA, httpW} from "../http-common.js";
 
 const create = data => {
   return http.post("/users", data);
@@ -55,6 +55,11 @@ const deleteDash = (token, id) => {
   return authHTTP.delete(`/dashb/${id}`);
 }
 
+const getWeather = city => {
+  const weatherHTTP = httpW(city);
+  return weatherHTTP.get("/")
+}
+
 export default {
   create,
   get,
@@ -67,5 +72,6 @@ export default {
   updateDash,
   getDashByUID,
   getDashData,
-  deleteDash
+  deleteDash,
+  getWeather
 };

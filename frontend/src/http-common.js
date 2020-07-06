@@ -19,8 +19,21 @@ const httpA = token => {
   );
 };
 
+const httpW = city => {
+  return (
+    axios.create({
+      baseURL: `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3a19b97a9ae7aa74ae91ca9f4b8e8984&units=imperial`,
+      headers: {
+        "Content-type": "application/json",
+      }
+    })
+  );
+};
+
+
 export {
   http,
-  httpA
+  httpA,
+  httpW
 };
 

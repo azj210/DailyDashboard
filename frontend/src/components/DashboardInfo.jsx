@@ -41,9 +41,9 @@ function DashboardInfo(props) {
     const makeRadioButtons = (categoryName, num, indexKey) => {
         const identifier = categoryName + num
         return (
-            <div class="form-check form-check-inline" key={indexKey}>
-                <label class="form-check-label" htmlFor={identifier}>{categoryName}
-                <input class="form-check-input" type="radio" name={`category${num}`} id={identifier} value={categoryName} checked={
+            <div className="form-check form-check-inline" key={indexKey}>
+                <label className="form-check-label" htmlFor={identifier}>{categoryName}
+                <input className="form-check-input" type="radio" name={`category${num}`} id={identifier} value={categoryName} checked={
                     props.dashboard[`category${num}`] === categoryName ? "checked" : null} onChange={handleChange} />
                     </label>
             </div>
@@ -143,14 +143,14 @@ function DashboardInfo(props) {
                         </input>
                     </div>
                 <h3>Songs</h3>
-                    <select class="form-control" style={{marginBottom: 15}} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
+                    <select className="form-control" style={{marginBottom: 15}} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
                         <option value="">Energy</option>
                         <option>low</option>
                         <option>medium</option>
                         <option>high</option>
                     </select>
 
-                    <select class="form-control" style={{marginBottom: 15}} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
+                    <select className="form-control" style={{marginBottom: 15}} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
                         <option value="">Decade</option>
                         <option>1980</option>
                         <option>1990</option>
@@ -158,7 +158,7 @@ function DashboardInfo(props) {
                         <option>2010</option>
                     </select>
                 <h3>Cocktail</h3>
-                    <select class="form-control" style={{marginBottom: 15}} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
+                    <select className="form-control" style={{marginBottom: 15}} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>Cocktail Classics</option>
                         <option>Cordials And Liquers</option>
@@ -173,7 +173,7 @@ function DashboardInfo(props) {
                         <option>Gin</option>
                     </select>
                 <h3>Movie</h3>
-                    <select class="form-control" style={{marginBottom: 15}} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
+                    <select className="form-control" style={{marginBottom: 15}} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
                         <option value="">Genre</option>
                         <option>Drama</option>
                         <option>Comedy</option>
@@ -182,7 +182,7 @@ function DashboardInfo(props) {
                         <option>Romance</option>
                     </select>
                 <h3>Food</h3>
-                    <select class="form-control" style={{marginBottom: 15}} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
+                    <select className="form-control" style={{marginBottom: 15}} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>High Protein</option>
                         <option>Low Calorie</option>

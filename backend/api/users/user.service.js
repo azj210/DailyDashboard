@@ -91,8 +91,8 @@ module.exports = {
     //delete user city and state by uid
     updateUserInfo: (data, callBack) => {
         pool.query(
-            `update users set city=?, state=? where uid=?`,
-            [data.city, data.state, data.uid],
+            `update users set fName=?, lName=?, city=?, state=? where uid=?`,
+            [data.fName, data.lName, data.city, data.state, data.uid],
             (error, results, fields) => {
                 if (error) {
                     return callBack(error);

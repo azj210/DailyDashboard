@@ -5,9 +5,36 @@ import DashboardItems from './DashboardItems';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
-    DataService.getDashByUID(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
+    const token = localStorage.getItem("decisionMakerToken");
+    const uid = localStorage.getItem("decisionMakerUID");
+    DataService.get(token, uid)
+        .then(response => {
+            console.log(response);
+            props.setUser(response.data.data);
+            DataService.getWeather(response.data.data.city)
+                    .then(response => {
+                        console.log(response);
+                        // if response.cod exists, the response is invalid
+                        if(response.cod) {
+                            props.setWeather("Your city's weather cannot be found");
+                        }
+                        
+                        const farenheightTemp = Math.round((response.data.main.temp - 273.15) * 9/5 + 32);
+                        const description = response.data.weather[0].description;
+                        
+                        props.setWeather(`Today's weather: ${farenheightTemp}° farenheight and ${description}`);
+                    })
+                    .catch(e => {
+                        props.setWeather("Your city's weather cannot be found");
+                    })
+        })
+        .catch(e => {
+            console.log(e);
+        })
+    DataService.getDashByUID(token, uid)
         .then(response => {
             if(response.data.success === 1) {
+                // console.log(response);
                 props.setDashboard({...response.data.data, eventDateObj: new Date(response.data.data.eventDate)});
             } else {
                 console.log("failed to fetch dashboard data");
@@ -107,13 +134,13 @@ function AccountHome (props) {
     }
 
     return(
-        typeof(props.dashboard) === "undefined" ? 
+        typeof(props.dashboard) === "undefined" || typeof(props.weather) === "undefined" ? 
         <div /> :
         <div className="homepage-header">
             <div id="dashboard">
-                <h1>Welcome!</h1>
+                <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
-                <p>Weather</p>
+                <h4>{props.weather}</h4>
                 {checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard) !== 0 ? 
                 <p>Days until {props.dashboard.eventName}: {checkEvent(props.dashboard.eventDateObj, currentDate, props.dashboard)}</p> : 
                 <p>Your {props.dashboard.eventName} is today!</p>}

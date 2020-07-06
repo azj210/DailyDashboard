@@ -13,11 +13,14 @@ const methods = {
 
 function Home (props) {
 
+    const [user, setUser] = useState();
     const [dashboard, setDashboard] = useState();
+    const [weather, setWeather] = useState();
+
     return(
         props.authenticated ?
         <div>
-            <AccountHome dashboard={dashboard} setDashboard={setDashboard} />
+            <AccountHome user={user} setUser={setUser} dashboard={dashboard} setDashboard={setDashboard} weather={weather} setWeather={setWeather} />
         </div> :
         <div className="homepage-header">
             <h1>Daily Dashboard</h1>

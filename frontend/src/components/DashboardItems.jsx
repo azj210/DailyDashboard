@@ -61,13 +61,9 @@ const componentDidMount = (props) => {
     assignObject(firstCategoryName, category1);
     assignObject(secondCategoryName, category2);
 
-    console.log(category1);
-    console.log(category2);
-
-    DataService.getDashData("frbughfbu4herj")
+    DataService.getDashData(category1)
         .then(response => {
-            console.log(category1);
-            console.log(response);
+            // console.log(response);
             props.setDashItems({...props.dashItems, firstCategory: response.data.data})
         })
         .catch(e => {
@@ -75,7 +71,7 @@ const componentDidMount = (props) => {
         });
     DataService.getDashData(category2)
         .then(response => {
-            console.log(response);
+            // console.log(response);
             props.setDashItems({...props.dashItems, secondCategory: response.data.data})
         })
         .catch(e => {
@@ -89,8 +85,8 @@ const methods = {
 
 function DashboardItems (props) {
 
-    // const firstCategoryLetter = props.dashboard.category1.charAt(0);
-    // const secondCategoryLetter = props.dashboard.category2.charAt(0);
+    const firstCategoryLetter = props.dashboard.category1.charAt(0);
+    const secondCategoryLetter = props.dashboard.category2.charAt(0);
 
     return (
         <div>
