@@ -64,7 +64,7 @@ const componentDidMount = (props) => {
     console.log(category1);
     console.log(category2);
 
-    DataService.getDashData(category1)
+    DataService.getDashData("frbughfbu4herj")
         .then(response => {
             console.log(category1);
             console.log(response);

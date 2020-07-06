@@ -1,5 +1,4 @@
 import React,  { useState } from 'react';
-import { Link } from "react-router-dom";
 import LoginError from './LoginError';
 import DashboardInfo from './DashboardInfo';
 import lifecycle from 'react-pure-lifecycle';

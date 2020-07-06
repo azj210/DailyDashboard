@@ -92,7 +92,7 @@ module.exports = {
     updateUserInfo: (data, callBack) => {
         pool.query(
             `update users set city=?, state=? where uid=?`,
-            [data.fName, data.lName, data.city, data.state, data.uid],
+            [data.city, data.state, data.uid],
             (error, results, fields) => {
                 if (error) {
                     return callBack(error);
