@@ -58,7 +58,7 @@ function AccountInfo(props) {
             
             <div className="page-form">
                 <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="first">First Name</label>
                     <input 
                         className="form-control"
@@ -79,7 +79,7 @@ function AccountInfo(props) {
                         onChange={handleChange}
                         name="lName">
                     </input>
-                </div>
+                </div> */}
                 <div className="form-group">
                     <label htmlFor="City">City</label>
                     <input 

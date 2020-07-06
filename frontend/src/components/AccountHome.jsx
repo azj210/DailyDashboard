@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import DataService from '../services/UserServices';
+import DashboardItems from './DashboardItems';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
@@ -24,6 +25,7 @@ const methods = {
 function AccountHome (props) {
 
     const history = useHistory();
+    const [dashItems, setDashItems] = useState({firstCategory: null, secondCategory: null});
 
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -117,13 +119,7 @@ function AccountHome (props) {
                 <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 
-            <div>
-                Your Daily Cocktail:
-            </div>
-
-            <div>
-                Your Daily Song:
-            </div>
+            <DashboardItems dashboard={props.dashboard} dashItems={dashItems} setDashItems={setDashItems} />
 
             <Link to="/account" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
             <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>

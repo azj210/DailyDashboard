@@ -183,6 +183,10 @@ function DashboardInfo(props) {
                     <select name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>High Protein</option>
+                        <option>Low Calorie</option>
+                        <option>Low Fat</option>
+                        <option>Low Sugar</option>
+                        <option>No Preference</option>
                     </select>
                 <h3>Categories to show on dashboard:</h3>
                     <h4>Category 1</h4>

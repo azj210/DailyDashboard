@@ -46,9 +46,8 @@ const getDashByUID = (token, id) => {
   return authHTTP.get(`/dashb/${id}`);
 }
 
-const getDashData = token => {
-  const authHTTP = httpA(token);
-  return authHTTP.get("/dashb");
+const getDashData = data => {
+  return http.get("/dashb", data);
 }
 
 const deleteDash = (token, id) => {
