@@ -64,19 +64,22 @@ const componentDidMount = (props) => {
     DataService.getDashData(category1)
         .then(response => {
             // console.log(response);
-            props.setDashItems({...props.dashItems, firstCategory: response.data.data})
+            props.setFirstCategory(response.data.data);
+            DataService.getDashData(category2)
+                .then(response => {
+                    // console.log(response);
+                    const var2 = response.data.data
+                    props.setSecondCategory(var2)
+                    console.log(props.dashItems.firstCategory);
+                    console.log(props.dashItems.secondCategory);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
         })
         .catch(e => {
             console.log(e);
         });
-    DataService.getDashData(category2)
-        .then(response => {
-            // console.log(response);
-            props.setDashItems({...props.dashItems, secondCategory: response.data.data})
-        })
-        .catch(e => {
-            console.log(e);
-        })
 };
 
 const methods = {
@@ -89,9 +92,13 @@ function DashboardItems (props) {
     const secondCategoryLetter = props.dashboard.category2.charAt(0);
 
     return (
+        typeof(props.firstCategory) === "undefined" || typeof(props.secondCategory) === "undefined" ?
+        <div /> :
         <div>
-            <p>Daily {props.dashboard.category1}: {props.dashItems.firstCategory/* [`${firstCategoryLetter}Name`] */}</p>
-            <p>Daily {props.dashboard.category2}: {props.dashItems.secondCategory/* [`${secondCategoryLetter}Name`] */}</p>
+            <p>{console.log(props.firstCategory)}</p>
+            <p>{console.log(props.secondCategory)}</p>
+            <p>Daily {props.dashboard.category1}: {props.firstCategory[`${firstCategoryLetter}Name`]}</p>
+            <p>Daily {props.dashboard.category2}: {props.secondCategory[`${secondCategoryLetter}Name`]}</p>
         </div>
     );
 }

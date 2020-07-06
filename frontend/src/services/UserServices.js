@@ -47,7 +47,7 @@ const getDashByUID = (token, id) => {
 }
 
 const getDashData = data => {
-  return http.get("/dashb", data);
+  return http.post("/dashb", data);
 }
 
 const deleteDash = (token, id) => {

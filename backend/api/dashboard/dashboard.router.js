@@ -6,7 +6,7 @@ const { checkToken } = require("../../auth/token_validation");
 router.post("/create", createDash);
 router.patch("/update", checkToken, updateDash);
 router.get("/:uid", checkToken, getDashbyUID);
-router.get("/", getData);
+router.post("/", getData);
 router.delete("/:uid", checkToken, deleteDashbyUID)
 
 module.exports = router;

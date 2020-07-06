@@ -21,7 +21,7 @@ const httpA = token => {
 };
 
 const httpW = city => {
-  const apiKey = process.env.WEATHERKEY;
+  const apiKey = process.env.REACT_APP_WEATHER_KEY;
   console.log(process.env)
   return (
     axios.create({
