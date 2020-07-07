@@ -53,7 +53,7 @@ function Login (props) {
     };
 
     const forgotPassword = () => {
-
+        history.push("/forgot-password"); 
     }
 
     return(
