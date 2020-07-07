@@ -81,7 +81,7 @@ module.exports = {
             if (!results) {
                 return res.json({
                     success: 0,
-                    message: "user not found"
+                    message: "User Not Found"
                 });
             }
             return res.json({
