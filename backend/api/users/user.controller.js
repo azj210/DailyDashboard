@@ -3,6 +3,8 @@ const {checkToken} = require("../../auth/token_validation");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 //sign creates json tokens
 const { sign } = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
+const creds = require('../credentials/emailCredentials.js');
 
 //controllers that handle all the services from user.service.js
 module.exports = {
@@ -85,8 +87,44 @@ module.exports = {
                 });
             }
             //valid email. send forgot password email to that email address
-            
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: creds.USER,
+                    pass: creds.PASS
+                }
+            })
 
+            transporter.verify((error, success) => {
+                if (error) {
+                  console.log(error);
+                  return;
+                } else {
+                  console.log('Server is ready to take messages');
+                }
+              });
+
+            const mailOptions = {
+                from: creds.USER,
+                to: body.email,
+                subject: 'Link to Reset Password',
+                text: 'Hello There!'
+            }
+
+            transporter.sendMail(mailOptions, (err, data) => {
+                if(err){
+                    return res.json({
+                        success: 0,                        
+                        message: "Email Failed to Send"
+                    })
+                }
+                else{
+                    console.log(data)
+                    return res.json({
+                        success: 1
+                    })
+                }
+            })
         });
     },
 
