@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import DataService from '../services/UserServices';
-import { useHistory } from 'react-router-dom';
 import lifecycle from 'react-pure-lifecycle';
 import LogoutError from './LogoutError';
 
@@ -18,8 +17,8 @@ function ForgotPassword (props) {
         email: ""
     });
 
-    const [errorMessage, setErrorMessage] = useState("");
-
+    const [message, setMessage] = useState("");
+    
     function handleChange(event) {
         const { value, name } = event.target;
         setLoginInfo(prevValue => {
@@ -29,14 +28,18 @@ function ForgotPassword (props) {
             }
         });
     };
-    
-    const history = useHistory();
 
     const forgotPassword = () => {
-        DataService.getByEmail(loginInfo)
+        DataService.sendForgotPasswordEmail(loginInfo)
             .then(response => {
                 if(response.data.success === 1) {
+                    document.getElementById("message").style.color = "green";
+                    setMessage("Password Reset Email Successfully Sent!")
                     console.log(response);
+                }
+                else{
+                    document.getElementById("message").style.color = "red";
+                    setMessage(response.data.message)
                 }
             })
     }
@@ -52,7 +55,7 @@ function ForgotPassword (props) {
             <header>
                 <h2>Forgot Password</h2>
             </header>
-            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{errorMessage}</div>
+            <div id="message" style={{textAlign: 'center'}}>&nbsp;{message}</div>
             <div className="form-group">
                 <label for="username">Email</label>
                 <input 
