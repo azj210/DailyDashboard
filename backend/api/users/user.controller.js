@@ -76,8 +76,6 @@ module.exports = {
     sendForgotPasswordEmail: (req, res) => {
         const body = req.body;
         var token = crypto.randomBytes(20).toString('hex');
-        
-        console.log(token)
 
         getUserbyEmail(body.email, (err, results) => {
             if (err) {
@@ -94,7 +92,7 @@ module.exports = {
             const transporter = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: creds.USER,
+                    user: 'daily.dashboard.webapp@gmail.com',
                     pass: creds.PASS
                 }
             })
@@ -103,13 +101,11 @@ module.exports = {
                 if (error) {
                   console.log(error);
                   return;
-                } else {
-                  console.log('Server is ready to take messages');
                 }
               });
 
             const mailOptions = {
-                from: creds.USER,
+                from: 'daily.dashboard.webapp@gmail.com',
                 to: body.email,
                 subject: 'Daily Dashboard Link to Reset Password',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -126,7 +122,6 @@ module.exports = {
                     })
                 }
                 else{
-                    console.log(data)
                     return res.json({
                         success: 1
                     })
