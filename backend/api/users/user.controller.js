@@ -88,7 +88,7 @@ module.exports = {
             }
             //valid email. send forgot password email to that email address
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                service: 'Gmail',
                 auth: {
                     user: creds.USER,
                     pass: creds.PASS
