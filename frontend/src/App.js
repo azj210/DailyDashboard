@@ -14,6 +14,7 @@ import AccountDetails from './components/AccountDetails';
 import DashboardDetails from './components/DashboardDetails';
 import DeleteAccount from './components/DeleteAccount';
 import ErrorPage from './components/ErrorPage';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
   
@@ -63,6 +64,7 @@ function App() {
       <Route path="/dashboard-details" component={() => <DashboardDetails checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/delete" component={() => <DeleteAccount checkAuth={checkAuth} authenticated={authenticated} />} />
       <Route path="/error" component={ErrorPage} />
+      <Route path="/forgot-password" component={() => <ForgotPassword checkAuth={checkAuth} authenticated={authenticated} />} />
     </div>
   );
 };

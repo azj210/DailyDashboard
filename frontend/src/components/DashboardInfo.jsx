@@ -42,9 +42,9 @@ function DashboardInfo(props) {
         const identifier = categoryName + num
         return (
             <div className="form-check form-check-inline" key={indexKey}>
-                <label className="form-check-label" htmlFor={identifier}>{categoryName}
+                <label className="form-check-label" htmlFor={identifier}>
                 <input className="form-check-input" type="radio" name={`category${num}`} id={identifier} value={categoryName} checked={
-                    props.dashboard[`category${num}`] === categoryName ? "checked" : null} onChange={handleChange} />
+                    props.dashboard[`category${num}`] === categoryName ? "checked" : null} onChange={handleChange} />{categoryName}
                     </label>
             </div>
         );
