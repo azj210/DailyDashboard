@@ -70,6 +70,26 @@ module.exports = {
         });
     },
 
+    sendForgotPasswordEmail: (req, res) => {
+        const body = req.body;
+
+        getUserbyEmail(body.email, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    success: 0,
+                    message: "User Not Found"
+                });
+            }
+            //valid email. send forgot password email to that email address
+            
+
+        });
+    },
+
     getUserbyEmail: (req, res) => {
         const body = req.body;
 

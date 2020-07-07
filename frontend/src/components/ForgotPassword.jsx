@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import DataService from '../services/UserServices';
-import { useHistory } from 'react-router-dom';
 import lifecycle from 'react-pure-lifecycle';
 import LogoutError from './LogoutError';
 
@@ -29,11 +28,9 @@ function ForgotPassword (props) {
             }
         });
     };
-    
-    const history = useHistory();
 
     const forgotPassword = () => {
-        DataService.getByEmail(loginInfo)
+        DataService.sendForgotPasswordEmail(loginInfo)
             .then(response => {
                 if(response.data.success === 1) {
                     document.getElementById("message").style.color = "green";

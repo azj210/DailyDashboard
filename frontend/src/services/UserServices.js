@@ -13,6 +13,10 @@ const getByEmail = email => {
   return http.post("/users/get", email);
 };
 
+const sendForgotPasswordEmail = email => {
+  return http.post("/users/forgot", email);
+}
+
 const remove = (token, id) => {
   const authHTTP = httpA(token);
   return authHTTP.delete(`/users/${id}`);
@@ -69,6 +73,7 @@ export default {
   create,
   get,
   getByEmail,
+  sendForgotPasswordEmail,
   remove,
   login,
   checkToken,
