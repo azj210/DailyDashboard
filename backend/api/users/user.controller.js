@@ -4,6 +4,7 @@ const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 //sign creates json tokens
 const { sign } = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
+const crypto = require('crypto')
 const creds = require('../credentials/emailCredentials.js');
 
 //controllers that handle all the services from user.service.js
@@ -74,6 +75,9 @@ module.exports = {
 
     sendForgotPasswordEmail: (req, res) => {
         const body = req.body;
+        var token = crypto.randomBytes(20).toString('hex');
+        
+        console.log(token)
 
         getUserbyEmail(body.email, (err, results) => {
             if (err) {
@@ -107,8 +111,11 @@ module.exports = {
             const mailOptions = {
                 from: creds.USER,
                 to: body.email,
-                subject: 'Link to Reset Password',
-                text: 'Hello There!'
+                subject: 'Daily Dashboard Link to Reset Password',
+                text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             }
 
             transporter.sendMail(mailOptions, (err, data) => {
