@@ -44,7 +44,6 @@ function Login (props) {
                     props.checkAuth();
                 } else {
                     setErrorMessage(response.data.data);
-                    history.push("/error");
                 };
             })
             .catch(e => {

@@ -32,6 +32,12 @@ const updateUserInfo = (token, data) => {
   return authHTTP.patch("/users/info", data);
 };
 
+const updateUserPass = (token, data) => {
+  const authHTTP = httpA(token);
+  return authHTTP.patch("/users", data);
+};
+
+
 const createDash = (initialState) => {
   return http.post("/dashb/create", initialState);
 }
@@ -68,6 +74,7 @@ export default {
   login,
   checkToken,
   updateUserInfo,
+  updateUserPass,
   createDash,
   updateDash,
   getDashByUID,
