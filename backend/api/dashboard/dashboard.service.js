@@ -2,7 +2,7 @@ const pool = require("../../config/database");
 
 module.exports = {
     //receives data from the controller and receives a callBack function if code is successful
-    //updates the user's dashboard
+    //creates the user's dashboard
     createDash: (data, callBack) => {
         pool.query(
             `insert into dashb(uid, eventDate, eventName, cocktailPref, songEnergy, songDecade, movieGenre, foodPref, category1, category2) 

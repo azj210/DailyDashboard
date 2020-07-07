@@ -15,7 +15,7 @@ app.use("/api/users", userRouter);
 //if any requests come to update user dashboard data then we pass to /api/dashb route
 app.use("/api/dashb", dashboardRouter);
 //if any requests come to update user display data then we pass to /api/disp route
-// app.use("/api/disp", displayRouter);
+app.use("/api/disp", displayRouter);
 
 //listen to some endpoint at localhost:3000/api
 /*

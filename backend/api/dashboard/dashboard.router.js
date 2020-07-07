@@ -1,4 +1,4 @@
-const { createDash, updateDash, getDashbyUID, getData, deleteDashbyUID, getWeather} = require("./dashboard.controller");
+const { createDash, updateDash, getDashbyUID, getData, deleteDashbyUID, getWeather } = require("./dashboard.controller");
 const router = require("express").Router();
 const { checkToken } = require("../../auth/token_validation");
 
