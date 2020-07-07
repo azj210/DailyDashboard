@@ -10,7 +10,7 @@ const get = (token, id) => {
 };
 
 const getByEmail = email => {
-  return http.get("/users", email);
+  return http.post("/users/get", email);
 };
 
 const remove = (token, id) => {

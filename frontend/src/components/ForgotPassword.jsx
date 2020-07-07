@@ -33,7 +33,12 @@ function ForgotPassword (props) {
     const history = useHistory();
 
     const forgotPassword = () => {
-        
+        DataService.getByEmail(loginInfo)
+            .then(response => {
+                if(response.data.success === 1) {
+                    console.log(response);
+                }
+            })
     }
 
     return(
