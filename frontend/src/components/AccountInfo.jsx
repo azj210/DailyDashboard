@@ -133,10 +133,11 @@ function AccountInfo(props) {
                     </div>
 
                     <button type="submit" className="btn btn-lg btn-outline-primary" onClick={changeInfo}>Update Account</button>
-                </div> 
+                </div>
+                <h3 style={{textAlign: 'center'}}>Reset Password</h3>
                 <div className="page-form">
                     <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{errorMessage}</div>
-                    <label htmlFor="pass">Reset Password</label>
+                    <label htmlFor="pass">New Password</label>
                     <input
                         className="form-control"
                         type="password"
@@ -146,7 +147,7 @@ function AccountInfo(props) {
                         onChange={handlePassChange}
                         name="pass">
                     </input>
-                    <label htmlFor="confirmedPasword">Retype Password</label>
+                    <label htmlFor="confirmedPasword" style={{marginTop: 15}}>Confirm Password</label>
                     <input
                         className="form-control"
                         type="password"
@@ -156,9 +157,9 @@ function AccountInfo(props) {
                         onChange={handlePassChange}
                         name="confirmedPass">
                     </input>
-                    <button type="submit" className="btn btn-lg btn-outline-primary" onClick={changePass}>Update Password</button>
-                    <br />
-                    <Link to="/delete" style={{marginLeft: 15}} className="btn btn-lg btn-secondary">Delete Account</Link>
+                    <button type="submit" className="btn btn-lg btn-outline-primary" style={{marginTop: 15}} onClick={changePass}>Update Password</button>
+                    {/* <br /> */}
+                    <Link to="/delete" style={{marginLeft: 15, marginTop: 15}} className="btn btn-lg btn-secondary">Delete Account</Link>
                 </div>
             </div>
     )
