@@ -5,7 +5,7 @@ module.exports = {
     //updates the user's dashboard
     createDash: (data, callBack) => {
         pool.query(
-            `insert into dashb(uid, eventDate, eventName, cocktailPref, songEnergy, songDecade, movieGenre, foodPref, category1, category2, lastUpdate) 
+            `insert into dashb(uid, eventDate, eventName, cocktailPref, songEnergy, songDecade, movieGenre, foodPref, category1, category2) 
                     values(?,?,?,?,?,?,?,?,?,?,?)`,
             [
                 data.uid,
@@ -18,7 +18,6 @@ module.exports = {
                 data.foodPref,
                 data.category1,
                 data.category2,
-                data.lastUpdate,
             ],
             //if we get a results then error is null
             (error, results, fields) => {
@@ -33,7 +32,7 @@ module.exports = {
 
     updateDash: (data, callBack) => {
         pool.query(
-            `update dashb set eventDate = ?, eventName = ?, cocktailPref = ?, songEnergy = ?, songDecade = ?, movieGenre = ?, foodPref = ?, category1 = ?, category2 = ?, lastUpdate = ? where uid = ?`,
+            `update dashb set eventDate = ?, eventName = ?, cocktailPref = ?, songEnergy = ?, songDecade = ?, movieGenre = ?, foodPref = ?, category1 = ?, category2 = ? where uid = ?`,
             [
                 data.eventDate,
                 data.eventName,
@@ -44,7 +43,6 @@ module.exports = {
                 data.foodPref,
                 data.category1,
                 data.category2,
-                data.lastUpdate,
                 data.uid
             ],
             //if we get a results then error is null
@@ -78,7 +76,7 @@ module.exports = {
         console.log(data);
         if (data.type == "song") {
             pool.query(
-                `select sname, artist from songs where decade = ? and energy >= ? and energy <= ? order by rand() limit 1`,
+                `select sName, artist from songs where decade = ? and energy >= ? and energy <= ? order by rand() limit 1`,
                 [data.decade, data.p1, data.p2],
                 (error, results, fields) => {
                     if (error) {
