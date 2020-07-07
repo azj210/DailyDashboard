@@ -1,5 +1,7 @@
 const { createDash, updateDash, getDashbyUID, getData, deleteDashbyUID } = require("./dashboard.service");
 const { checkToken } = require("../../auth/token_validation");
+const https = require("https");
+require('dotenv').config();
 
 //controllers that handle all the services from dashboard.service.js
 module.exports = {
@@ -92,6 +94,18 @@ module.exports = {
                 data: results
             });
         });
+    },
+
+    //gets weather from an API based on the user's city
+    getWeather: (req, res) => {
+        const apiKey=process.env.WEATHER_KEY;
+        const city=req.body.city;
+        https.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`, function(response) {
+            response.on("data", function(data) {
+                const weatherData = JSON.parse(data);
+                return res.json(weatherData)
+            });
+        })
     }
 };
 

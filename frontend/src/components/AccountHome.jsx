@@ -9,9 +9,8 @@ const componentDidMount = (props) => {
     const uid = localStorage.getItem("decisionMakerUID");
     DataService.get(token, uid)
         .then(response => {
-            console.log(response);
             props.setUser(response.data.data);
-            DataService.getWeather(response.data.data.city)
+            DataService.getWeather({city: response.data.data.city})
                     .then(response => {
                         console.log(response);
                         // if response.cod exists, the response is invalid
@@ -19,10 +18,10 @@ const componentDidMount = (props) => {
                             props.setWeather("Your city's weather cannot be found");
                         }
 
-                        const farenheightTemp = Math.round((response.data.main.temp - 273.15) * 9/5 + 32);
+                        const temp = response.data.main.temp;
                         const description = response.data.weather[0].description;
                         
-                        props.setWeather(`Today's weather: ${farenheightTemp}° farenheight and ${description}`);
+                        props.setWeather(`Today's weather: ${temp}° farenheight and ${description}`);
                     })
                     .catch(e => {
                         props.setWeather("Your city's weather cannot be found");

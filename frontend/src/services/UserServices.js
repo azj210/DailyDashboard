@@ -62,8 +62,7 @@ const deleteDash = (token, id) => {
 }
 
 const getWeather = city => {
-  const weatherHTTP = httpW(city);
-  return weatherHTTP.get("");
+  return http.post("/dashb/get/weather", city);
 }
 
 export default {
