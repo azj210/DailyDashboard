@@ -1,5 +1,6 @@
 import React from 'react';
 import DataService from '../services/UserServices';
+import IndividualDashItems from './IndividualDashItems';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
@@ -88,18 +89,8 @@ const methods = {
 
 function DashboardItems (props) {
 
-    const firstCategoryLetter = props.dashboard.category1.charAt(0);
-    const secondCategoryLetter = props.dashboard.category2.charAt(0);
-
     return (
-        typeof(props.firstCategory) === "undefined" || typeof(props.secondCategory) === "undefined" ?
-        <div /> :
-        <div>
-            <p>{console.log(props.firstCategory)}</p>
-            <p>{console.log(props.secondCategory)}</p>
-            <p>Daily {props.dashboard.category1}: {props.firstCategory[`${firstCategoryLetter}Name`]}</p>
-            <p>Daily {props.dashboard.category2}: {props.secondCategory[`${secondCategoryLetter}Name`]}</p>
-        </div>
+        <IndividualDashItems dashboard={props.dashboard} firstCategory={props.firstCategory} secondCategory={props.secondCategory} />
     );
 }
 

@@ -6,7 +6,7 @@ module.exports = {
     createDash: (data, callBack) => {
         pool.query(
             `insert into dashb(uid, eventDate, eventName, cocktailPref, songEnergy, songDecade, movieGenre, foodPref, category1, category2) 
-                    values(?,?,?,?,?,?,?,?,?,?,?)`,
+                    values(?,?,?,?,?,?,?,?,?,?)`,
             [
                 data.uid,
                 data.eventDate,
