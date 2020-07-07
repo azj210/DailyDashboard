@@ -57,7 +57,8 @@ function AccountInfo(props) {
             </div> :
             
             <div className="page-form">
-                <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link>
+                {/* <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link> */}
+                <header><h3>Update Account Information</h3></header>
                 <div className="form-group">
                     <label htmlFor="first">First Name</label>
                     <input 
@@ -105,9 +106,7 @@ function AccountInfo(props) {
 
                 <button type="submit" className="btn btn-lg btn-outline-primary" onClick={changeInfo}>Update Account</button>
 
-                <button type="submit" ></button>
-
-                <Link to="/delete" className="btn btn-lg btn-secondary">Delete Account</Link>
+                <Link to="/delete" style={{marginLeft: 15}} className="btn btn-lg btn-secondary">Delete Account</Link>
             </div> 
     )
 };
