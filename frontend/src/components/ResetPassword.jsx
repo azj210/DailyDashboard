@@ -11,7 +11,8 @@ const methods = {
     componentDidMount
 };
 
-function ForgotPassword (props) {
+function ResetPassword (props) {
+    const { token } = props.routerProps.match.params
         
     const [resetInfo, setResetInfo] = useState({
         password: "",
@@ -31,8 +32,8 @@ function ForgotPassword (props) {
     };
 
     const changePass = () => {
-        if (newPass.pass === newPass.confirmedPass) {
-            DataService.updateUserPass(localStorage.getItem("decisionMakerToken"), {password: newPass.pass, uid: localStorage.getItem("decisionMakerUID")})
+        if (resetInfo.password === resetInfo.confirmPassword) {
+            DataService.updateUserPass(localStorage.getItem("decisionMakerToken"), {password: resetInfo.password, uid: localStorage.getItem("decisionMakerUID")})
                 .then (response => {
                     console.log(response);
                     if (response.data.success === 1) {
@@ -61,8 +62,11 @@ function ForgotPassword (props) {
             <LogoutError />
         </div> :
 
-        <div className="page-form">
-            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{errorMessage}</div>
+        <div className="page-form" style={{margin: "0 15% 5%", padding: "4.0rem 0"}}>
+            <header>
+                <h2 style={{textAlign: 'center'}}>Reset Password</h2>
+            </header>
+            <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{token}</div>
                 <label htmlFor="pass">New Password</label>
                     <input
                         className="form-control"
@@ -88,4 +92,4 @@ function ForgotPassword (props) {
     );
 };
 
-export default lifecycle(methods)(ForgotPassword);
+export default lifecycle(methods)(ResetPassword);

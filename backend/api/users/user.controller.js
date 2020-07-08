@@ -75,7 +75,6 @@ module.exports = {
 
     sendForgotPasswordEmail: (req, res) => {
         const body = req.body;
-        var token = crypto.randomBytes(20).toString('hex');
 
         getUserbyEmail(body.email, (err, results) => {
             if (err) {
@@ -89,6 +88,7 @@ module.exports = {
                 });
             }
             //valid email. send forgot password email to that email address
+            const jsontoken = sign({ result: results }, "qwe1234", { expiresIn: "1h" });
             const transporter = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
@@ -110,7 +110,7 @@ module.exports = {
                 subject: 'Daily Dashboard Link to Reset Password',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'http://' + req.headers.host + '/reset/' + jsontoken + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             }
 
