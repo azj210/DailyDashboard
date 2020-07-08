@@ -69,6 +69,7 @@ module.exports = {
                 console.log(err);
                 return;
             }
+            console.log(results);
             if (!results) {
                 return res.json({
                     success: 0,

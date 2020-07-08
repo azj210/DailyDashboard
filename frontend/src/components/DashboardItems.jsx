@@ -75,17 +75,39 @@ const componentDidMount = (props) => {
     assignObject(firstCategoryName, category1);
     assignObject(secondCategoryName, category2);
 
+    const token = localStorage.getItem("decisionMakerToken");
+    const uid = localStorage.getItem("decisionMakerUID");
+
+    // DataService.getDisplayByUID(token, uid)
+    //     .then(
+
+    //     )
+    //     .catch(e => {
+    //         console.log(e);
+    //     });
+
+    let allItems = [];
+
     DataService.getDashData(category1)
         .then(response => {
-            // console.log(response);
-            props.setFirstCategory(response.data.data);
+            if (response.data.success === 1) {
+                allItems[0] = response.data.data;
+            }
             DataService.getDashData(category2)
                 .then(response => {
-                    // console.log(response);
-                    const var2 = response.data.data
-                    props.setSecondCategory(var2)
-                    console.log(props.dashItems.firstCategory);
-                    console.log(props.dashItems.secondCategory);
+                    if (response.data.success === 1) {
+                        allItems[1] = response.data.data;
+                    };
+
+                    // const newUpdates = {uid: localStorage.getItem("decisionMakerToken")};
+
+                    // for (i = 0; i < allItems.length; i++) {
+                    //     const name = props.dashboard[`category${index + 1}`];
+                    //     if (name && typeof(allItems[i]) === "undefined") {
+                    //         newUpdates[`${name.charAt(0)}Name`] = ;
+                    //     }
+                    // };
+                    props.setCategories(allItems);
                 })
                 .catch(e => {
                     console.log(e);
@@ -94,6 +116,7 @@ const componentDidMount = (props) => {
         .catch(e => {
             console.log(e);
         });
+
 };
 
 const methods = {
@@ -103,7 +126,11 @@ const methods = {
 function DashboardItems (props) {
 
     return (
-        <IndividualDashItems dashboard={props.dashboard} firstCategory={props.firstCategory} secondCategory={props.secondCategory} />
+        typeof(props.categories) === "undefined" ?
+        <div /> :
+        <div>
+            <IndividualDashItems dashboard={props.dashboard} categories={props.categories} />
+        </div>
     );
 }
 

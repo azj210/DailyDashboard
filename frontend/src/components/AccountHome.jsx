@@ -62,8 +62,7 @@ const methods = {
 function AccountHome (props) {
 
     const history = useHistory();
-    const [firstCategory, setFirstCategory] = useState();
-    const [secondCategory, setSecondCategory] = useState();
+    const [categories, setCategories] = useState();
 
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -162,7 +161,7 @@ function AccountHome (props) {
                 <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 
-            <DashboardItems currentDate={currentDate} dashboard={props.dashboard} display={props.display} setDisplay={props.setDisplay} firstCategory={firstCategory} setFirstCategory={setFirstCategory} secondCategory={secondCategory} setSecondCategory={setSecondCategory} />
+            <DashboardItems currentDate={currentDate} dashboard={props.dashboard} display={props.display} setDisplay={props.setDisplay} categories={categories} setCategories={setCategories} />
 
             <Link to="/account" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
             <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>

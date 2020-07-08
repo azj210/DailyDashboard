@@ -2,25 +2,20 @@ import React from 'react';
 
 function IndividualDashItems(props) {
     
-    let firstCategoryLetter;
-    let secondCategoryLetter;
-
-    if (props.dashboard.category1) {
-        firstCategoryLetter = props.dashboard.category1.charAt(0);
-    };
-    if (props.dashboard.category2) {
-        secondCategoryLetter = props.dashboard.category2.charAt(0);
-    };
+    function createCategories(category, letter, position) {
+        return <p key={position-1}>{props.dashboard[`category${position}`]}: {category[`${letter}Name`]}</p>;
+    }
 
     return (
         <div>
-            {typeof(props.firstCategory) === "undefined" ?
-            <div /> :
-            <p>{props.dashboard.category1}: {props.firstCategory[`${firstCategoryLetter}Name`]}</p>}
-
-            {typeof(props.secondCategory) === "undefined" ?
-            <div /> :
-            <p>{props.dashboard.category2}: {props.secondCategory[`${secondCategoryLetter}Name`]}</p>}
+            {props.categories.map((category, index) => {
+                let letter;
+                const categoryPosition = index+1;
+                if (props.dashboard[`category${categoryPosition}`]) {
+                    letter = props.dashboard[`category${categoryPosition}`].charAt(0);
+                };
+                return createCategories(category, letter, categoryPosition);
+            })}
         </div>
     );
 }
