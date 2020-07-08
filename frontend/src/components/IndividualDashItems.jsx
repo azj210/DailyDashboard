@@ -5,10 +5,10 @@ function IndividualDashItems(props) {
     let firstCategoryLetter;
     let secondCategoryLetter;
 
-    if (props.dashboard.category1 !== null) {
+    if (props.dashboard.category1) {
         firstCategoryLetter = props.dashboard.category1.charAt(0);
     };
-    if (props.dashboard.category2 !== null) {
+    if (props.dashboard.category2) {
         secondCategoryLetter = props.dashboard.category2.charAt(0);
     };
 
@@ -16,11 +16,11 @@ function IndividualDashItems(props) {
         <div>
             {typeof(props.firstCategory) === "undefined" ?
             <div /> :
-            <p>Daily {props.dashboard.category1}: {props.firstCategory[`${firstCategoryLetter}Name`]}</p>}
+            <p>{props.dashboard.category1}: {props.firstCategory[`${firstCategoryLetter}Name`]}</p>}
 
             {typeof(props.secondCategory) === "undefined" ?
             <div /> :
-            <p>Daily {props.dashboard.category2}: {props.secondCategory[`${secondCategoryLetter}Name`]}</p>}
+            <p>{props.dashboard.category2}: {props.secondCategory[`${secondCategoryLetter}Name`]}</p>}
         </div>
     );
 }

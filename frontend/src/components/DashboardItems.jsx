@@ -4,6 +4,19 @@ import IndividualDashItems from './IndividualDashItems';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
+    let firstCategoryLetter;
+    let secondCategoryLetter;
+
+    if (props.dashboard.category1) {
+        firstCategoryLetter = props.dashboard.category1.charAt(0);
+    };
+    if (props.dashboard.category2) {
+        secondCategoryLetter = props.dashboard.category2.charAt(0);
+    };
+
+    if ((props.currentDate-props.display.lastUpdateObj >= 1) && props.currentDate.getDate() > props.display.lastUpdateObj.getDate()) {
+        //update
+    }
 
     const firstCategoryName = props.dashboard.category1;
     const secondCategoryName = props.dashboard.category2;

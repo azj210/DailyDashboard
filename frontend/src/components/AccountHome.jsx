@@ -42,6 +42,17 @@ const componentDidMount = (props) => {
         .catch(e => {
             console.log(e);
         })
+    DataService.getDisplayByUID(token, uid)
+        .then(response => {
+            if (response.data.success === 1) {
+                props.setDisplay({...response.data.data, lastUpdateObj: new Date(response.data.data.lastUpdate)})
+            } else {
+                console.log("failed to fetch display data");
+            }
+        })
+        .catch(e => {
+            console.log(e);
+        })
 };
 
 const methods = {
@@ -151,7 +162,7 @@ function AccountHome (props) {
                 <p>Your {props.dashboard.eventName} is today!</p>}
             </div>
 
-            <DashboardItems dashboard={props.dashboard} firstCategory={firstCategory} setFirstCategory={setFirstCategory} secondCategory={secondCategory} setSecondCategory={setSecondCategory} />
+            <DashboardItems currentDate={currentDate} dashboard={props.dashboard} display={props.display} setDisplay={props.setDisplay} firstCategory={firstCategory} setFirstCategory={setFirstCategory} secondCategory={secondCategory} setSecondCategory={setSecondCategory} />
 
             <Link to="/account" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
             <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>

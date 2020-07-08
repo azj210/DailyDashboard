@@ -1,5 +1,6 @@
 import {http, httpA, httpW} from "../http-common.js";
 
+// user services
 const create = data => {
   return http.post("/users", data);
 };
@@ -41,7 +42,7 @@ const updateUserPass = (token, data) => {
   return authHTTP.patch("/users", data);
 };
 
-
+// dashbaord services
 const createDash = (initialState) => {
   return http.post("/dashb/create", initialState);
 }
@@ -69,6 +70,26 @@ const getWeather = city => {
   return http.post("/dashb/get/weather", city);
 }
 
+// display services
+const createDisplay = data => {
+  return http.post("/disp/create", data);
+}
+
+const updateDisplay = (token, data) => {
+  const authHTTP = httpA(token);
+  return authHTTP.patch("/disp/update", data);
+}
+
+const getDisplayByUID = (token, id) => {
+  const authHTTP = httpA(token);
+  return authHTTP.get(`/disp/${id}`);
+}
+
+const deleteDisplay = (token, id) => {
+  const authHTTP = httpA(token);
+  return authHTTP.delete(`/disp/${id}`);
+}
+
 export default {
   create,
   get,
@@ -84,5 +105,9 @@ export default {
   getDashByUID,
   getDashData,
   deleteDash,
-  getWeather
+  getWeather,
+  createDisplay,
+  updateDisplay,
+  getDisplayByUID,
+  deleteDisplay
 };

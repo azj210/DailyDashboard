@@ -25,9 +25,16 @@ function DeleteAccount(props) {
                 DataService.deleteDash(token, uid)
                     .then(response => {
                         console.log(response);
-                        localStorage.removeItem("decisionMakerToken");
-                        localStorage.removeItem("decisionMakerUID")
-                        history.push("/");
+                        DataService.deleteDisplay(token, uid)
+                            .then(response => {
+                                console.log(response);
+                                localStorage.removeItem("decisionMakerToken");
+                                localStorage.removeItem("decisionMakerUID")
+                                history.push("/");
+                            })
+                            .catch(e => {
+                                console.log(e);
+                            })
                     })
                     .catch(e => {
                         console.log(e);

@@ -33,21 +33,29 @@ function SignUp(props) {
         setForm({ ...form, [name]: value });
     };
 
-    const currentDate = new Date();
-
     const saveData = event => {
         DataService.create(form)
             .then(response => {
                 setSubmitted(true);
                 console.log(response.data);
+                const currentDate = new Date();
+                console.log(currentDate);
+                const uid = response.data.data.insertId;
                 const initialDash = {
-                    uid: response.data.data.insertId,
+                    uid: uid,
                     eventDate: form.birthdate,
                     eventName: "Birthdate"
                 };
                 DataService.createDash(initialDash)
                     .then(response1 => {
                         console.log(response1);
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+                DataService.createDisplay({uid: uid, lastUpdate: currentDate})
+                    .then(response2 => {
+                        console.log(response2);
                     })
                     .catch(e => {
                         console.log(e);

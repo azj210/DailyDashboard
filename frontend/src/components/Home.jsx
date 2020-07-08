@@ -15,12 +15,13 @@ function Home (props) {
 
     const [user, setUser] = useState();
     const [dashboard, setDashboard] = useState();
+    const [display, setDisplay] = useState();
     const [weather, setWeather] = useState();
 
     return(
         props.authenticated ?
         <div>
-            <AccountHome user={user} setUser={setUser} dashboard={dashboard} setDashboard={setDashboard} weather={weather} setWeather={setWeather} />
+            <AccountHome user={user} setUser={setUser} dashboard={dashboard} setDashboard={setDashboard} display={display} setDisplay={setDisplay} weather={weather} setWeather={setWeather} />
         </div> :
         <div className="homepage-header">
             <h1>Daily Dashboard</h1>
