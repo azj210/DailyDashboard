@@ -73,7 +73,6 @@ async function retrieveCategoryData(display, dashboard, token, currentDate, info
 
     DataService.updateDisplay(token, data)
     .then(response => {
-        console.log(response);
         window.location.reload();
     })
     .catch(e => {

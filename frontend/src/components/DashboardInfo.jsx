@@ -9,13 +9,25 @@ import retrieveCategoryData from './AppFunctions/retrieveCategoryData';
 
 const componentDidMount = (props) => {
 
-    DataService.getDashByUID(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
+    const token = localStorage.getItem("decisionMakerToken"); 
+    const uid = localStorage.getItem("decisionMakerUID");
+
+    DataService.getDashByUID(token, uid)
         .then(response => {
             if(response.data.success === 1) {
                 props.setDashboard({...response.data.data, eventDateObj: new Date(response.data.data.eventDate)});
                 props.setOriginalDash({...response.data.data})
             } else {
                 console.log("failed to fetch dashboard data");
+            }
+        })
+        .catch(e => {
+            console.log(e);
+        })
+    DataService.getDisplayByUID(token, uid)
+        .then(response => {
+            if (response.data.success === 1) {
+                props.setDisplay(response.data.data);
             }
         })
         .catch(e => {
@@ -97,28 +109,41 @@ function DashboardInfo(props) {
     }
     
     const updateDash = () =>{
-        // display, dashboard, token, currentDate, info: an array with objects with keys "categoryName" and "abbreviatedCategory"
         const token = localStorage.getItem("decisionMakerToken");
         let displayUpdateData = [];
+        const prefsToNames = {
+            cocktailPref: "cocktail",
+            songEnergy: "song",
+            songDecade: "song",
+            movieGenre: "movie",
+            foodPref: "food"
+        };
+
+        let songNotChecked = true;
+
+        function getKeyByValue(object, value) {
+            return Object.keys(object).find(key => object[key] === value);
+        }
 
         for (const detail in props.dashboard) {
-            if(props.dashboard[detail] === null || props.dashboard[detail] === "") {
-              delete props.dashboard[detail];
-            } /*else if (props.dashboard[detail] !== props.originalDash[detail]) {
-                displayUpdateData.push({})
-            }*/
-        }
+            const key = getKeyByValue(props.dashboard, props.dashboard[detail]);
+            if (props.dashboard[detail] === null || props.dashboard[detail] === "") {
+                delete props.dashboard[detail];
+            } else if ((props.dashboard[detail] !== props.originalDash[detail]) && Object.keys(prefsToNames).includes(key)) {
+                const name = prefsToNames[`${key}`];
+                displayUpdateData.push({categoryName: name, abbreviatedCategory: `${name.charAt(0)}Name`});
+            }
+        };
 
         const updatedDash = Object.assign(props.originalDash, props.dashboard);
 
         DataService.updateDash(token, updatedDash)
             .then(response =>{
-                console.log(response);
-                console.log(updatedDash);
                 if (displayUpdateData.length > 0) {
-                    retrieveCategoryData(/*display, dashboard,*/ token, currentDate, displayUpdateData)
+                    //display, dashboard, token, currentDate, info
+                    retrieveCategoryData(props.display, updatedDash, token, currentDate, displayUpdateData)
                 } else {
-                    history.go();
+                   history.go();
                 }
             })
             .catch(e => {

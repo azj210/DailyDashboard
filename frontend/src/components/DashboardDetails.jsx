@@ -15,11 +15,12 @@ function DashboardDetails(props) {
 
     const [dashboard, setDashboard] = useState();
     const [originalDash, setOriginalDash] = useState();
+    const [display, setDisplay] = useState();
 
     return (
         props.authenticated ?
         <div>
-            <DashboardInfo dashboard={dashboard} setDashboard={setDashboard} originalDash={originalDash} setOriginalDash={setOriginalDash} />
+            <DashboardInfo display={display} setDisplay={setDisplay} dashboard={dashboard} setDashboard={setDashboard} originalDash={originalDash} setOriginalDash={setOriginalDash} />
         </div> :
         <LoginError />
     )
