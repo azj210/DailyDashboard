@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import DataService from '../services/UserServices';
+import lifecycle from 'react-pure-lifecycle';
+
+const componentWillUnmount = () => {
+    window.location.reload(false);
+};
+
+const methods = {
+    componentWillUnmount
+};
 
 function ResetPassword (props) {
     const { token } = props.routerProps.match.params
@@ -126,4 +135,4 @@ function ResetPassword (props) {
     );
 };
 
-export default ResetPassword;
+export default lifecycle(methods)(ResetPassword);
