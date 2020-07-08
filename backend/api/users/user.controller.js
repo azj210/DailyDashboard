@@ -4,8 +4,6 @@ const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 //sign creates json tokens
 const { sign } = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
-const crypto = require('crypto')
-const creds = require('../credentials/emailCredentials.js');
 
 //controllers that handle all the services from user.service.js
 module.exports = {
@@ -93,7 +91,7 @@ module.exports = {
                 service: 'Gmail',
                 auth: {
                     user: 'daily.dashboard.webapp@gmail.com',
-                    pass: creds.PASS
+                    pass: process.env.REACT_APP_EMAIL_PASSWORD
                 }
             })
 
@@ -110,7 +108,7 @@ module.exports = {
                 subject: 'Daily Dashboard Link to Reset Password',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + jsontoken + '\n\n' +
+          req.headers.origin + '/reset/' + jsontoken + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             }
 
