@@ -49,7 +49,7 @@ function ResetPassword (props) {
             DataService.getByEmail(resetInfo)
                 .then(response => {
                     if(response.data.success === 1) {
-                        DataService.updateUserPass(token, {password: resetInfo.password, uid: localStorage.getItem("decisionMakerUID")})
+                        DataService.updateUserPass(token, {password: resetInfo.password, uid: response.data.data.uid})
                             .then (response => {
                                 console.log(response);
                                 if (response.data.success === 1) {
