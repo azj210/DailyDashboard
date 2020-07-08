@@ -46,22 +46,33 @@ function ResetPassword (props) {
 
     const changePass = () => {
         if (resetInfo.password === resetInfo.confirmPassword) {
-            DataService.updateUserPass(token, {password: resetInfo.password, uid: localStorage.getItem("decisionMakerUID")})
-                .then (response => {
-                    console.log(response);
-                    if (response.data.success === 1) {
-                        document.getElementById("errorMessage").style.color = "green"
-                        setErrorMessage("Success! Your password has been changed.")
-                    } else {
-                        document.getElementById("errorMessage").style.color = "red"
-                        setErrorMessage("Error, please try again later");
+            DataService.getByEmail(resetInfo)
+                .then(response => {
+                    if(response.data.success === 1) {
+                        DataService.updateUserPass(token, {password: resetInfo.password, uid: localStorage.getItem("decisionMakerUID")})
+                            .then (response => {
+                                console.log(response);
+                                if (response.data.success === 1) {
+                                    document.getElementById("errorMessage").style.color = "green"
+                                    setErrorMessage("Success! Your password has been changed.")
+                                } else {
+                                    document.getElementById("errorMessage").style.color = "red"
+                                    setErrorMessage("Error, please try again later");
+                                }
+                            })
+                            .catch (e => {
+                                console.log(e);
+                                document.getElementById("errorMessage").style.color = "red"
+                                setErrorMessage("Error, please try again later");
+                            })
+                    }
+                    else{
+                        document.getElementById("errorMessage").style.color = "red";
+                        setErrorMessage(response.data.message)
                     }
                 })
-                .catch (e => {
-                    console.log(e);
-                    document.getElementById("errorMessage").style.color = "red"
-                    setErrorMessage("Error, please try again later");
-                })
+
+            
         } else {
             document.getElementById("errorMessage").style.color = "red"
             setErrorMessage("Passwords aren't the same");
