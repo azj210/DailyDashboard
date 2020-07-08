@@ -98,7 +98,7 @@ module.exports = {
 
     //gets weather from an API based on the user's city
     getWeather: (req, res) => {
-        const apiKey=process.env.WEATHER_KEY;
+        const apiKey=process.env.REACT_APP_WEATHERKEY;
         const city=req.body.city;
         https.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`, function(response) {
             response.on("data", function(data) {

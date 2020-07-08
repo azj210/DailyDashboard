@@ -4,8 +4,6 @@ const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 //sign creates json tokens
 const { sign } = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
-const crypto = require('crypto')
-const creds = require('../credentials/emailCredentials.js');
 
 //controllers that handle all the services from user.service.js
 module.exports = {
@@ -93,7 +91,7 @@ module.exports = {
                 service: 'Gmail',
                 auth: {
                     user: 'daily.dashboard.webapp@gmail.com',
-                    pass: creds.PASS
+                    pass: process.env.REACT_APP_EMAIL_PASSWORD
                 }
             })
 
