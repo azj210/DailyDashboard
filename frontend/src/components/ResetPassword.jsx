@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import DataService from '../services/UserServices';
-import lifecycle from 'react-pure-lifecycle';
-
-const componentDidMount = (props) => {
-    props.checkAuth();
-};
-
-const methods = {
-    componentDidMount
-};
 
 function ResetPassword (props) {
     const { token } = props.routerProps.match.params
-    const [checkToken, setCheckToken] = useState(false)
+    const [checkToken, setCheckToken] = useState("loading")
 
     async function checkAuth() {
         const response = await DataService.checkToken(token)
@@ -20,7 +11,10 @@ function ResetPassword (props) {
           console.log(e);
         });
         if(response.data.success === 1){
-            setCheckToken(true)
+            setCheckToken("true")
+        }
+        else{
+            setCheckToken("false")
         }
     }
 
@@ -80,7 +74,7 @@ function ResetPassword (props) {
     }
 
     return(
-        checkToken === true ? 
+        checkToken === "true" ? 
 
         <div className="page-form" style={{margin: "0 15% 5%", padding: "4.0rem 0"}}>
             <header>
@@ -121,12 +115,15 @@ function ResetPassword (props) {
                     <button type="submit" className="btn btn-lg btn-outline-primary" style={{marginTop: 15}} onClick={changePass}>Update Password</button>
         </div>
         :
+        checkToken === "false" ?
         <div className="page-form" style={{margin: "0 15% 5%", padding: "4.0rem 0"}}>
             <header>
                 <h2 style={{textAlign: 'center', color: 'red'}}>This link has expired! Try again.</h2>
             </header>
         </div>
+        :
+        <div></div>
     );
 };
 
-export default lifecycle(methods)(ResetPassword);
+export default ResetPassword;
