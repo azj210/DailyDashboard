@@ -78,44 +78,72 @@ const componentDidMount = (props) => {
     const token = localStorage.getItem("decisionMakerToken");
     const uid = localStorage.getItem("decisionMakerUID");
 
-    // DataService.getDisplayByUID(token, uid)
-    //     .then(
+    const assignRetrievalName = categoryName => {
+        switch (categoryName) {
+            case "song":
+                return "sName";
+            case "cocktail":
+                return "cName";
+            case "movie":
+                return "mName";
+            case "food":
+                return "fName";
+            default:
+                return null;
+        }
+    }
 
-    //     )
-    //     .catch(e => {
-    //         console.log(e);
-    //     });
+    const categoryNames = {};
 
-    let allItems = [];
+    categoryNames.name1 = assignRetrievalName(props.dashboard.category1);
+    categoryNames.name2 = assignRetrievalName(props.dashboard.category2);
 
-    DataService.getDashData(category1)
+    const texts = [];
+    DataService.getDisplayByUID(token, uid)
         .then(response => {
-            if (response.data.success === 1) {
-                allItems[0] = response.data.data;
+            const responseData = response.data.data;
+            // condition should always be set to "less than the max amount of categories the user can pick to show on the dashboard + 1"
+            for (let i = 1; i < 3; i++) {
+                if(props.dashboard[`category${i}`]) {
+                    texts[i-1] = props.dashboard[`category${i}`] + ": " + responseData[`${categoryNames[`name${i}`]}`];
+                }
             }
-            DataService.getDashData(category2)
-                .then(response => {
-                    if (response.data.success === 1) {
-                        allItems[1] = response.data.data;
-                    };
-
-                    // const newUpdates = {uid: localStorage.getItem("decisionMakerToken")};
-
-                    // for (i = 0; i < allItems.length; i++) {
-                    //     const name = props.dashboard[`category${index + 1}`];
-                    //     if (name && typeof(allItems[i]) === "undefined") {
-                    //         newUpdates[`${name.charAt(0)}Name`] = ;
-                    //     }
-                    // };
-                    props.setCategories(allItems);
-                })
-                .catch(e => {
-                    console.log(e);
-                })
+            props.setCategories(texts);
         })
         .catch(e => {
             console.log(e);
         });
+
+    // let allItems = [];
+
+    // DataService.getDashData(category1)
+    //     .then(response => {
+    //         if (response.data.success === 1) {
+    //             allItems[0] = response.data.data;
+    //         }
+    //         DataService.getDashData(category2)
+    //             .then(response => {
+    //                 if (response.data.success === 1) {
+    //                     allItems[1] = response.data.data;
+    //                 };
+
+    //                 // const newUpdates = {uid: localStorage.getItem("decisionMakerToken")};
+
+    //                 // for (i = 0; i < allItems.length; i++) {
+    //                 //     const name = props.dashboard[`category${index + 1}`];
+    //                 //     if (name && typeof(allItems[i]) === "undefined") {
+    //                 //         newUpdates[`${name.charAt(0)}Name`] = ;
+    //                 //     }
+    //                 // };
+    //                 props.setCategories(allItems);
+    //             })
+    //             .catch(e => {
+    //                 console.log(e);
+    //             })
+    //     })
+    //     .catch(e => {
+    //         console.log(e);
+    //     });
 
 };
 
