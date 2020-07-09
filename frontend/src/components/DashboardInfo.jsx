@@ -41,6 +41,16 @@ const methods = {
 
 function DashboardInfo(props) {
 
+    const selectStyle = {
+        marginBottom: 15, 
+        width: 'auto',
+        marginTop: 5
+    };
+
+    const inputStyle = {
+        width: '200px'
+    }
+
     const categories = ["song", "cocktail", "movie", "food"];
     const currentDate = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -162,7 +172,8 @@ function DashboardInfo(props) {
                             id="eventName"
                             value={props.dashboard.eventName}
                             onChange={handleChange}
-                            name="eventName">
+                            name="eventName"
+                            style={inputStyle}>
                         </input>
                     </div>
                     <div className="form-group">
@@ -173,13 +184,14 @@ function DashboardInfo(props) {
                             type="date"
                             value={props.dashboard.eventDate.substr(0, 10)}
                             onChange={handleChange}
-                            name="eventDate">
+                            name="eventDate"
+                            style={inputStyle}>
                         </input>
                     </div>
                 <h3>Songs</h3>
                     <h10>Energy</h10>
                     <div className="form-group">
-                    <select className="form-control" style={{marginBottom: 15}} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
+                    <select className="form-control" style={selectStyle} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
                         <option value=""></option>    
                         <option>low</option>
                         <option>medium</option>
@@ -189,7 +201,7 @@ function DashboardInfo(props) {
 
                     <h10>Decade</h10>
                     <div className="form-group">
-                    <select className="form-control" style={{marginBottom: 15}} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
+                    <select className="form-control" style={selectStyle} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
                         <option value=""></option>
                         <option>1980</option>
                         <option>1990</option>
@@ -201,7 +213,7 @@ function DashboardInfo(props) {
                 <h3>Cocktail</h3>
                 <h10>Preference</h10>
                 <div className="form-group"> 
-                    <select className="form-control" style={{marginBottom: 15}} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
+                    <select className="form-control" style={selectStyle} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
                         <option value=""></option>    
                         <option>Cocktail Classics</option>
                         <option>Whiskies</option>
@@ -219,7 +231,7 @@ function DashboardInfo(props) {
                 <h3>Movie</h3>
                 <h10>Genre</h10>
                 <div className="form-group">
-                    <select className="form-control" style={{marginBottom: 15}} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
+                    <select className="form-control" style={selectStyle} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
                         <option value=""></option>    
                         <option>Drama</option>
                         <option>Comedy</option>
@@ -232,7 +244,7 @@ function DashboardInfo(props) {
                 <h3>Food</h3>
                 <h10>Preference</h10>
                 <div className="form-group">
-                    <select className="form-control" style={{marginBottom: 15}} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
+                    <select className="form-control" style={selectStyle} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
                         <option value=""></option>    
                         <option>High Protein</option>
                         <option>Low Calorie</option>

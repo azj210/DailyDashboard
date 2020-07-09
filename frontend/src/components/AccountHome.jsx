@@ -105,6 +105,49 @@ function AccountHome (props) {
             weekday = "";
     }
     
+    //set the background image
+    const setBackground = (props) => {
+        const imgsNight = {
+            "Thunderstorm":"../images/thunderstormNight.jpg",
+            "Drizzle":"../images/drizzleNight.jpg",
+            "Rain":"../images/rainNight.jpg",
+            "Snow":"../images/snowNight.jpg",
+            "Mist":"../images/mist.jpg",
+            "Smoke":"../images/smoke.jpg",
+            "Haze":"../images/haze.jpg",
+            "Dust":"../images/dust.jpg",
+            "Fog":"../images/fog.jpg",
+            "Sand":"../images/sand.jpg",
+            "Ash":"../images/ash.jpg",
+            "Squall":"../images/squall.jpg",
+            "Tornado":"../images/tornado.jpg",
+            "Clear":"../images/clearNight.jpg",
+            "Clouds":"../images/cloudsNight.jpg"
+        };
+        const imgsDay = {
+            "Thunderstorm":"../images/thunderstormDay.jpg",
+            "Drizzle":"../images/drizzleDay.jpg",
+            "Rain":"../images/rainDay.jpg",
+            "Snow":"../images/snowDay.jpg",
+            "Mist":"../images/mist.jpg",
+            "Smoke":"../images/smoke.jpg",
+            "Haze":"../images/haze.jpg",
+            "Dust":"../images/dust.jpg",
+            "Fog":"../images/fog.jpg",
+            "Sand":"../images/sand.jpg",
+            "Ash":"../images/ash.jpg",
+            "Squall":"../images/squall.jpg",
+            "Tornado":"../images/tornado.jpg",
+            "Clear":"../images/clearDay.jpg",
+            "Clouds":"../images/cloudsDay.jpg"
+        };
+
+        //if the local time is between 6am and 7pm then access imgsDay
+        //else access imgsNight
+
+        //return the image by passing in the main from prop to the respective dictionary
+    }
+
     // this function can definitely be moved to a typescript doc
     const checkEvent = (event, date, dashboard) => {
         let daysLeft = 0;
