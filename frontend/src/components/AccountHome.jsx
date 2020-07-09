@@ -17,15 +17,26 @@ const componentDidMount = (props) => {
                             props.setWeather("Your city's weather cannot be found");
                         }
 
+                        const checkDayOrNight = (iconName) => {
+                            if (iconName[2] === "d") {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+
                         const temp = response.data.main.temp;
                         const description = response.data.weather[0].description;
+                        const mainDisplay = response.data.weather[0].main;
                         const icon = response.data.weather[0].icon;
+
+                        const dayOrNight = checkDayOrNight(icon);
                         const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
-                        props.setWeather({description: `Today's weather: ${temp}° farenheight and ${description}`, icon: iconURL});
+                        props.setWeather({text: `Today's weather: ${temp}° farenheight and ${description}`, descriptions: {mainDisplay: mainDisplay, dayOrNight: dayOrNight, icon: iconURL}});
                     })
                     .catch(e => {
-                        props.setWeather({description: "Your city's weather cannot be found"});
+                        props.setWeather({text: "Your city's weather cannot be found"});
                     })
         })
         .catch(e => {
@@ -156,9 +167,9 @@ function AccountHome (props) {
             <div id="dashboard">
                 <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
-                <h4>{props.weather.description}</h4>
-                {props.weather.icon ? 
-                    <img src={props.weather.icon} /> :
+                <h4>{props.weather.text}</h4>
+                {props.weather.descriptions ? 
+                    <img src={props.weather.descriptions.icon} /> :
                     <div />
                 }
                 {event !== 0 ? 
