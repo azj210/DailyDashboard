@@ -106,7 +106,7 @@ function AccountHome (props) {
     }
     
     //set the background image
-    const setBackground = (props) => {
+    const setBackground = () => {
         const imgsNight = {
             "Thunderstorm":"../images/thunderstormNight.jpg",
             "Drizzle":"../images/drizzleNight.jpg",
@@ -144,6 +144,8 @@ function AccountHome (props) {
 
         //if the local time is between 6am and 7pm then access imgsDay
         //else access imgsNight
+        props.weather.descriptions.mainDisplay
+        props.weather.descriptions.dayOrNight
 
         //return the image by passing in the main from prop to the respective dictionary
     }
