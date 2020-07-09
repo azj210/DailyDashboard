@@ -129,7 +129,7 @@ function AccountHome (props) {
             "Drizzle":"../images/drizzleDay.jpg",
             "Rain":"../images/rainDay.jpg",
             "Snow":"../images/snowDay.jpg",
-            "Mist":"../images/mist.jpg",
+            "Mist":".p./images/mist.jg",
             "Smoke":"../images/smoke.jpg",
             "Haze":"../images/haze.jpg",
             "Dust":"../images/dust.jpg",
@@ -144,10 +144,14 @@ function AccountHome (props) {
 
         //if the local time is between 6am and 7pm then access imgsDay
         //else access imgsNight
-        props.weather.descriptions.mainDisplay
-        props.weather.descriptions.dayOrNight
-
+        if (props.weather.descriptions.dayOrNight) {
+            const imgRes = imgsDay[props.weather.descriptions.mainDisplay];
+        }
+        else{
+            const imgRes = imgsNight[props.weather.descriptions.mainDisplay];
+        }
         //return the image by passing in the main from prop to the respective dictionary
+        return imgRes;
     }
 
     // this function can definitely be moved to a typescript doc
@@ -208,7 +212,7 @@ function AccountHome (props) {
     return(
         typeof(props.dashboard) === "undefined" || typeof(props.weather) === "undefined" ? 
         <div /> :
-        <div className="homepage-header">
+        <div className="homepage-header" style = { {background: url({setBackground()})} }>
             <div id="dashboard">
                 <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
