@@ -117,7 +117,7 @@ function DashboardInfo(props) {
     if (typeof(props.dashboard) !== "undefined" && typeof(props.originalDash) !== "undefined") {
         event = checkEvent(props.dashboard.eventDateObj, currentDate, props.originalDash);
     }
-    
+
     const updateDash = () =>{
         const token = localStorage.getItem("decisionMakerToken");
         let displayUpdateData = [];
@@ -144,6 +144,11 @@ function DashboardInfo(props) {
         };
 
         const updatedDash = Object.assign(props.originalDash, props.dashboard);
+
+        //check to see if user's input is a birthdate
+        if (updatedDash.eventName.lower() === "birthdate" || updateDash.eventName.lower() === "birthday" || updateDash.eventName.lower() === "bday") {
+            updatedDash.eventName = "Birthdate";
+        }
 
         DataService.updateDash(token, updatedDash)
             .then(response =>{
