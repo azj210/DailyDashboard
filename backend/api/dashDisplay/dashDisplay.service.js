@@ -47,25 +47,6 @@ module.exports = {
         )
     },
 
-    // updates the display based on category name passed in
-    updateDisplayByName: (data, callback) => {
-        pool.query(
-            `update display set ${data.abbreivatedName} = ?, lastUpdate = ? where uid = ?`,
-            [
-                data.item,
-                data.lastUpdate,
-                data.uid,
-            ],
-
-            (error, results) => {
-                if (error) {
-                    return callback(error);
-                }
-                return callback(null, results);
-            }
-        )
-    },
-
     getDisplayByUID: (uid, callback) => {
         pool.query(
             `select * from display where uid = ?`,

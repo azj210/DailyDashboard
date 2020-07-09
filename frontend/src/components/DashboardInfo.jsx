@@ -119,8 +119,6 @@ function DashboardInfo(props) {
             foodPref: "food"
         };
 
-        let songNotChecked = true;
-
         function getKeyByValue(object, value) {
             return Object.keys(object).find(key => object[key] === value);
         }
@@ -140,7 +138,6 @@ function DashboardInfo(props) {
         DataService.updateDash(token, updatedDash)
             .then(response =>{
                 if (displayUpdateData.length > 0) {
-                    //display, dashboard, token, currentDate, info
                     retrieveCategoryData(props.display, updatedDash, token, currentDate, displayUpdateData)
                 } else {
                    history.go();

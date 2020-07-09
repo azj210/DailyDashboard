@@ -80,11 +80,6 @@ const updateDisplay = (token, data) => {
   return authHTTP.patch("/disp/update", data);
 }
 
-const updateDisplayByName = (token, data) => {
-  const authHTTP = httpA(token);
-  return authHTTP.patch("/disp/update-specific", data);
-}
-
 const getDisplayByUID = (token, id) => {
   const authHTTP = httpA(token);
   return authHTTP.get(`/disp/${id}`);
@@ -113,7 +108,6 @@ export default {
   getWeather,
   createDisplay,
   updateDisplay,
-  updateDisplayByName,
   getDisplayByUID,
   deleteDisplay
 };
