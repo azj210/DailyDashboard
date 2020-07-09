@@ -47,6 +47,10 @@ function DashboardInfo(props) {
         marginTop: 5
     };
 
+    const inputStyle = {
+        width: '200px'
+    }
+
     const categories = ["song", "cocktail", "movie", "food"];
     const currentDate = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -168,7 +172,8 @@ function DashboardInfo(props) {
                             id="eventName"
                             value={props.dashboard.eventName}
                             onChange={handleChange}
-                            name="eventName">
+                            name="eventName"
+                            style={inputStyle}>
                         </input>
                     </div>
                     <div className="form-group">
@@ -179,7 +184,8 @@ function DashboardInfo(props) {
                             type="date"
                             value={props.dashboard.eventDate.substr(0, 10)}
                             onChange={handleChange}
-                            name="eventDate">
+                            name="eventDate"
+                            style={inputStyle}>
                         </input>
                     </div>
                 <h3>Songs</h3>
