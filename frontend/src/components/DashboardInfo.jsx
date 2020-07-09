@@ -180,6 +180,7 @@ function DashboardInfo(props) {
                     <h10>Energy</h10>
                     <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
+                        <option value=""></option>    
                         <option>low</option>
                         <option>medium</option>
                         <option>high</option>
@@ -189,6 +190,7 @@ function DashboardInfo(props) {
                     <h10>Decade</h10>
                     <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
+                        <option value=""></option>
                         <option>1980</option>
                         <option>1990</option>
                         <option>2000</option>
@@ -200,6 +202,7 @@ function DashboardInfo(props) {
                 <h10>Preference</h10>
                 <div className="form-group"> 
                     <select className="form-control" style={{marginBottom: 15}} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
+                        <option value=""></option>    
                         <option>Cocktail Classics</option>
                         <option>Whiskies</option>
                         <option>Brandy</option>
@@ -217,6 +220,7 @@ function DashboardInfo(props) {
                 <h10>Genre</h10>
                 <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
+                        <option value=""></option>    
                         <option>Drama</option>
                         <option>Comedy</option>
                         <option>Horror</option>
@@ -229,6 +233,7 @@ function DashboardInfo(props) {
                 <h10>Preference</h10>
                 <div className="form-group">
                     <select className="form-control" style={{marginBottom: 15}} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
+                        <option value=""></option>    
                         <option>High Protein</option>
                         <option>Low Calorie</option>
                         <option>Low Fat</option>
