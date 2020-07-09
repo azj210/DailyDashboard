@@ -22,7 +22,7 @@ const componentDidMount = (props) => {
                         const icon = response.data.weather[0].icon;
                         const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
-                        props.setWeather({description: `Today's weather: ${temp}° farenheight and ${description}`, icon: iconURL});
+                        props.setWeather({description: `Current Weather: ${temp}° farenheight and ${description}`, icon: iconURL});
                     })
                     .catch(e => {
                         props.setWeather({description: "Your city's weather cannot be found"});
