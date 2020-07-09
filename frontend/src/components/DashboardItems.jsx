@@ -36,20 +36,29 @@ const componentDidMount = (props) => {
             // condition should always be set to "less than the max amount of categories the user can pick to show on the dashboard + 1"
             const toBeUpdated = [];
 
+            const namesToPrefs = {
+                cocktail: "cocktailPref",
+                song: "songDecade",
+                movie: "movieGenre",
+                food: "foodPref"
+            };
+
             for (let i = 1; i < 3; i++) {
                 // check if today is at least one day ahead of the last update
+                const categoryName = props.dashboard[`category${i}`];
                 if ((props.currentDate-props.display.lastUpdateObj > 0) && (props.currentDate.getDate() > props.display.lastUpdateObj.getDate() || props.currentDate.getMonth() > props.display.lastUpdateObj.getMonth() || props.currentDate.getYear() > props.display.lastUpdateObj.getYear())) {
-                    // retrieveCategoryData(props.display, token, props.dashboard, props.dashboard[`category${i}`], `${categoryNames[`name${i}`]}`, props.currentDate);
                     toBeUpdated.push({categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`})
                 }
-                // check if user filled out the category and the display is null for that category 
-                else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] === null) {
-                    // retrieveCategoryData(props.display, token, props.dashboard, props.dashboard[`category${i}`], `${categoryNames[`name${i}`]}`, props.currentDate);
-                    toBeUpdated.push({categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`})
+                // check if user filled out the category and preferences and the display is null for that category 
+                else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] === null && props.dashboard[`${namesToPrefs[`${categoryName}`]}`] !== null) {
+                    if (categoryName === "song" && props.dashboard.songDecade !== null) {
+                        toBeUpdated.push({categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`})
+                    } else if (categoryName !== "song") {
+                        toBeUpdated.push({categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`})
+                    }
                 }
                 // check if user filled out the category and the display isn't null for that category 
                 else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] !== null) {
-                    const categoryName = props.dashboard[`category${i}`];
 
                     texts[i-1] = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}` +  ": " + responseData[`${categoryNames[`name${i}`]}`];
                 }
