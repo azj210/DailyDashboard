@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import DataService from '../services/UserServices';
 import DashboardItems from './DashboardItems';
+import setBackground from './AppFunctions/setBackground';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
@@ -15,6 +16,7 @@ const componentDidMount = (props) => {
                         // if response.cod exists, the response is invalid
                         if(response.cod) {
                             props.setWeather("Your city's weather cannot be found");
+                            return;
                         }
 
                         const checkDayOrNight = (iconName) => {
@@ -27,13 +29,15 @@ const componentDidMount = (props) => {
 
                         const temp = response.data.main.temp;
                         const description = response.data.weather[0].description;
-                        const mainDisplay = response.data.weather[0].main;
                         const icon = response.data.weather[0].icon;
-
-                        const dayOrNight = checkDayOrNight(icon);
                         const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
-                        props.setWeather({text: `Today's weather: ${temp}° farenheight and ${description}`, descriptions: {mainDisplay: mainDisplay, dayOrNight: dayOrNight, icon: iconURL}});
+                        const dayOrNight = checkDayOrNight(icon);
+                        const mainDisplay = response.data.weather[0].main;
+
+                        const backgroundImageRes = setBackground(dayOrNight, mainDisplay);
+
+                        props.setWeather({text: `Today's weather: ${temp}° farenheight and ${description}`, background: backgroundImageRes, icon: iconURL});
                     })
                     .catch(e => {
                         props.setWeather({text: "Your city's weather cannot be found"});
@@ -104,55 +108,6 @@ function AccountHome (props) {
         default:
             weekday = "";
     }
-    
-    //set the background image
-    const setBackground = () => {
-        const imgsNight = {
-            "Thunderstorm":"../images/thunderstormNight.jpg",
-            "Drizzle":"../images/drizzleNight.jpg",
-            "Rain":"../images/rainNight.jpg",
-            "Snow":"../images/snowNight.jpg",
-            "Mist":"../images/mist.jpg",
-            "Smoke":"../images/smoke.jpg",
-            "Haze":"../images/haze.jpg",
-            "Dust":"../images/dust.jpg",
-            "Fog":"../images/fog.jpg",
-            "Sand":"../images/sand.jpg",
-            "Ash":"../images/ash.jpg",
-            "Squall":"../images/squall.jpg",
-            "Tornado":"../images/tornado.jpg",
-            "Clear":"../images/clearNight.jpg",
-            "Clouds":"../images/cloudsNight.jpg"
-        };
-        const imgsDay = {
-            "Thunderstorm":"../images/thunderstormDay.jpg",
-            "Drizzle":"../images/drizzleDay.jpg",
-            "Rain":"../images/rainDay.jpg",
-            "Snow":"../images/snowDay.jpg",
-            "Mist":".p./images/mist.jg",
-            "Smoke":"../images/smoke.jpg",
-            "Haze":"../images/haze.jpg",
-            "Dust":"../images/dust.jpg",
-            "Fog":"../images/fog.jpg",
-            "Sand":"../images/sand.jpg",
-            "Ash":"../images/ash.jpg",
-            "Squall":"../images/squall.jpg",
-            "Tornado":"../images/tornado.jpg",
-            "Clear":"../images/clearDay.jpg",
-            "Clouds":"../images/cloudsDay.jpg"
-        };
-
-        //if the local time is between 6am and 7pm then access imgsDay
-        //else access imgsNight
-        if (props.weather.descriptions.dayOrNight) {
-            const imgRes = imgsDay[props.weather.descriptions.mainDisplay];
-        }
-        else{
-            const imgRes = imgsNight[props.weather.descriptions.mainDisplay];
-        }
-        //return the image by passing in the main from prop to the respective dictionary
-        return imgRes;
-    }
 
     // this function can definitely be moved to a typescript doc
     const checkEvent = (event, date, dashboard) => {
@@ -212,15 +167,13 @@ function AccountHome (props) {
     return(
         typeof(props.dashboard) === "undefined" || typeof(props.weather) === "undefined" ? 
         <div /> :
-        <div className="homepage-header" style = { {background: url({setBackground()})} }>
+        <div className="homepage-header" id="account-homepage" style={{backgroundImage: `url(${props.weather.background})`}}>
             <div id="dashboard">
                 <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
                 <h4>{props.weather.text}</h4>
-                {props.weather.descriptions ? 
-                    <img src={props.weather.descriptions.icon} /> :
-                    <div />
-                }
+                    <img src={props.weather.icon} />
+                
                 {event !== 0 ? 
                 <p>Days until {props.dashboard.eventName}: {event}</p> : 
                 <p>Your {props.dashboard.eventName} is today!</p>}
