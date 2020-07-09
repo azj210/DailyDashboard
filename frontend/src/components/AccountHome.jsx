@@ -167,7 +167,7 @@ function AccountHome (props) {
     return(
         typeof(props.dashboard) === "undefined" || typeof(props.weather) === "undefined" ? 
         <div /> :
-        <div className="homepage-header" id="account-homepage" style={{backgroundImage: `url(${props.weather.background})`}}>
+        <div className="homepage-header" style={{backgroundImage: `url(${props.weather.background})`, backgroundSize: "cover"}}>
             <div id="dashboard">
                 <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
@@ -177,14 +177,14 @@ function AccountHome (props) {
                 {event !== 0 ? 
                 <p>Days until {props.dashboard.eventName}: {event}</p> : 
                 <p>Your {props.dashboard.eventName} is today!</p>}
+
+                <DashboardItems currentDate={currentDate} dashboard={props.dashboard} display={props.display} setDisplay={props.setDisplay} categories={categories} setCategories={setCategories} />
+
+                <Link to="/account" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
+                <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>
+                <br></br>
+                <Link to="/logout" className="btn btn-lg btn-secondary home-button">Logout</Link>
             </div>
-
-            <DashboardItems currentDate={currentDate} dashboard={props.dashboard} display={props.display} setDisplay={props.setDisplay} categories={categories} setCategories={setCategories} />
-
-            <Link to="/account" className="btn btn-lg btn-outline-primary home-button">Account Details</Link>
-            <Link to="/dashboard-details" className="btn btn-lg btn-outline-primary home-button">Customize Dashboard</Link>
-            <br></br>
-            <Link to="/logout" className="btn btn-lg btn-secondary home-button">Logout</Link>
         </div>
     );
 };

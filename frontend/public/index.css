@@ -10,7 +10,7 @@ header {
 
 .homepage-header {
     text-align: center;
-    padding: 14.0rem 0;
+    padding: 12.0rem 0;
 }
 
 .page-form {
@@ -24,4 +24,13 @@ header {
 .notification .btn {
     width: 10.0rem;
     margin: 2.0rem;
+}
+
+
+#dashboard {
+    display: inline-block;
+    background-color: #CAB997;
+    border-radius: 50%;
+    width: 30rem;
+    height: 30rem;
 }
