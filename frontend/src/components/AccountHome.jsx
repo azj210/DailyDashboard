@@ -19,11 +19,13 @@ const componentDidMount = (props) => {
 
                         const temp = response.data.main.temp;
                         const description = response.data.weather[0].description;
-                        
-                        props.setWeather(`Today's weather: ${temp}° farenheight and ${description}`);
+                        const icon = response.data.weather[0].icon;
+                        const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`
+
+                        props.setWeather({description: `Today's weather: ${temp}° farenheight and ${description}`, icon: iconURL});
                     })
                     .catch(e => {
-                        props.setWeather("Your city's weather cannot be found");
+                        props.setWeather({description: "Your city's weather cannot be found"});
                     })
         })
         .catch(e => {
@@ -154,7 +156,11 @@ function AccountHome (props) {
             <div id="dashboard">
                 <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>
-                <h4>{props.weather}</h4>
+                <h4>{props.weather.description}</h4>
+                {props.weather.icon ? 
+                    <img src={props.weather.icon} /> :
+                    <div />
+                }
                 {event !== 0 ? 
                 <p>Days until {props.dashboard.eventName}: {event}</p> : 
                 <p>Your {props.dashboard.eventName} is today!</p>}
