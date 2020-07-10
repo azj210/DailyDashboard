@@ -22,7 +22,7 @@ const setBackground = (dayOrNight, mainDisplay) => {
         "Drizzle":"/images/drizzleDay.jpg",
         "Rain":"/images/rainDay.jpg",
         "Snow":"/images/snowDay.jpg",
-        "Mist":"/images/mist.jg",
+        "Mist":"/images/mist.jpg",
         "Smoke":"/images/smoke.jpg",
         "Haze":"/images/haze.jpg",
         "Dust":"/images/dust.jpg",

@@ -44,12 +44,14 @@ function DashboardInfo(props) {
     const selectStyle = {
         marginBottom: "2%", 
         width: "30%",
-        marginTop: "0.5%"
+        marginTop: "0.5%",
+        marginLeft: "35%",
     };
 
     const inputStyle = {
-        width: '30%'
-    }
+        width: "30%",
+        marginLeft: "35%"
+    };
 
     const categories = ["song", "cocktail", "movie", "food"];
     const currentDate = new Date();
@@ -169,10 +171,10 @@ function DashboardInfo(props) {
         <div /> :
         <div>
             {/* <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link> */}
-            <div className="page-form">
+            <div className="page-form" style={{color: 'black', textAlign: 'center'}}>
                 <header><h3>{event}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3></header>
                     <div className="form-group">
-                        <label htmlFor="eventName">Event (if changing to birthdate, make sure to type "Birthdate" exactly)</label>
+                        <label htmlFor="eventName">Event Name</label>
                         <input 
                             className="form-control"
                             id="eventName"
@@ -259,7 +261,7 @@ function DashboardInfo(props) {
                         <option>No Preference</option>
                     </select>
                 </div>
-                <h3>Categories to show on dashboard:</h3>
+                <h3>Categories to Display on Dashboard:</h3>
                     <h4 style={{marginTop: 15}}>Category 1</h4>
                         {categories.map((category, index) => {
                             const key = "1" + index 
