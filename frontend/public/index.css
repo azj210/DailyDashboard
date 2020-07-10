@@ -30,7 +30,9 @@ header {
 #dashboard {
     display: inline-block;
     background-color: #CAB997;
-    border-radius: 50%;
-    width: 30rem;
-    height: 30rem;
+    border-radius: 30%;
+    width: 42rem;
+    height: 36rem;
+    stroke-linecap: round;
+
 }
