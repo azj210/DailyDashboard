@@ -29,7 +29,7 @@ header {
 
 #dashboard {
     display: inline-block;
-    background-color: #CAB997;
+    background-image: linear-gradient(#CAB997, #D3D3D3, #CAB997);
     border-radius: 30%;
     width: 42rem;
     height: 36rem;

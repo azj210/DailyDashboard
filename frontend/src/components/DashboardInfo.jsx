@@ -42,13 +42,13 @@ const methods = {
 function DashboardInfo(props) {
 
     const selectStyle = {
-        marginBottom: 15, 
-        width: 'auto',
-        marginTop: 5
+        marginBottom: "2%", 
+        width: "30%",
+        marginTop: "0.5%"
     };
 
     const inputStyle = {
-        width: '200px'
+        width: '30%'
     }
 
     const categories = ["song", "cocktail", "movie", "food"];
