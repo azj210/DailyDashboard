@@ -145,8 +145,9 @@ function DashboardInfo(props) {
 
         const updatedDash = Object.assign(props.originalDash, props.dashboard);
 
+        console.log(updatedDash);
         //check to see if user's input is a birthdate
-        if (updatedDash.eventName.lower() === "birthdate" || updateDash.eventName.lower() === "birthday" || updateDash.eventName.lower() === "bday") {
+        if (updatedDash.eventName.toLowerCase() === "birthdate" || updatedDash.eventName.toLowerCase() === "birthday" || updatedDash.eventName.toLowerCase() === "bday") {
             updatedDash.eventName = "Birthdate";
         }
 
@@ -155,7 +156,7 @@ function DashboardInfo(props) {
                 if (displayUpdateData.length > 0) {
                     retrieveCategoryData(props.display, updatedDash, token, currentDate, displayUpdateData)
                 } else {
-                   history.go();
+                //    history.go();
                 }
             })
             .catch(e => {

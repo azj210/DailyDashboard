@@ -34,5 +34,5 @@ header {
     width: 42rem;
     height: 36rem;
     stroke-linecap: round;
-
+    padding-top: 0.5rem;
 }

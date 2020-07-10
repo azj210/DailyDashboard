@@ -158,7 +158,7 @@ function AccountInfo(props) {
                         name="confirmedPass">
                     </input>
                     <button type="submit" className="btn btn-lg btn-outline-primary" style={{marginTop: 15}} onClick={changePass}>Update Password</button>
-                    {/* <br /> */}
+                    
                     <Link to="/delete" style={{marginLeft: 15, marginTop: 15}} className="btn btn-lg btn-secondary">Delete Account</Link>
                 </div>
             </div>
