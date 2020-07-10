@@ -12,6 +12,18 @@ const methods = {
 };
 
 function ForgotPassword (props) {
+
+    const selectStyle = {
+        marginBottom:"2%", 
+        marginLeft:"25%",
+        width:"50%",
+    };
+
+    const buttonStyle = {
+        marginTop:"2%",
+        marginLeft:"25%",
+        width:"50%",
+    };
         
     const [loginInfo, setLoginInfo] = useState({
         email: ""
@@ -56,7 +68,7 @@ function ForgotPassword (props) {
                 <h2>Forgot Password</h2>
             </header>
             <div id="message" style={{textAlign: 'center'}}>&nbsp;{message}</div>
-            <div className="form-group">
+            <div className="form-group" style={selectStyle}>
                 <label for="username">Email</label>
                 <input 
                     id="username"
@@ -71,7 +83,7 @@ function ForgotPassword (props) {
             </div>
 
             {/* <button type="submit" className="btn btn-info form-control" style={{marginBottom: 10}} onClick={logUserIn}>Login</button> */}
-            <button type="submit" className="btn btn-info form-control" onClick={forgotPassword}>Send Password Reset Email</button>
+            <button type="submit" className="btn btn-info form-control" style={buttonStyle} onClick={forgotPassword}>Send Password Reset Email</button>
         </div>
     );
 };
