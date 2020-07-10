@@ -43,14 +43,14 @@ function DashboardInfo(props) {
 
     const selectStyle = {
         marginBottom: "2%", 
-        width: "30%",
+        width: "40%",
         marginTop: "0.5%",
-        marginLeft: "35%",
+        marginLeft: "30%",
     };
 
     const inputStyle = {
-        width: "30%",
-        marginLeft: "35%"
+        width: "40%",
+        marginLeft: "30%"
     };
 
     const categories = ["song", "cocktail", "movie", "food"];

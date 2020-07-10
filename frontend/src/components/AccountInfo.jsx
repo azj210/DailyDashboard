@@ -24,6 +24,17 @@ const methods = {
 
 function AccountInfo(props) {
 
+    const selectStyle = {
+        marginBottom: "2%", 
+        width: "50%",
+        marginLeft: "25%",
+    };
+
+    const inputStyle = {
+        width: "35%",
+        marginLeft: "32.5%"
+    };
+
     const [submitted, setSubmitted] = useState(false);
     const [newPass, setNewPass] = useState({pass: "", confirmedPass: ""});
     const [errorMessage, setErrorMessage] = useState("");
@@ -84,10 +95,10 @@ function AccountInfo(props) {
             </div> :
             
             <div>
-                <div className="page-form">
+                <div className="page-form" style={{color: 'black'}}>
                     {/* <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link> */}
                     <header><h3>Update Account Information</h3></header>
-                    <div className="form-group">
+                    <div className="form-group" style={selectStyle}>
                         <label htmlFor="first">First Name</label>
                         <input 
                             className="form-control"
@@ -98,7 +109,7 @@ function AccountInfo(props) {
                             name="fName">
                         </input>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" style={selectStyle}>
                         <label htmlFor="last">Last Name</label>
                         <input 
                             className="form-control"
@@ -109,7 +120,7 @@ function AccountInfo(props) {
                             name="lName">
                         </input>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" style={selectStyle}>
                         <label htmlFor="City">City</label>
                         <input 
                             className="form-control"
@@ -120,7 +131,7 @@ function AccountInfo(props) {
                             name="city">
                         </input>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" style={selectStyle}>
                         <label htmlFor="State">State</label>
                         <input 
                             className="form-control"
@@ -132,14 +143,15 @@ function AccountInfo(props) {
                         </input>
                     </div>
 
-                    <button type="submit" className="btn btn-lg btn-outline-primary" onClick={changeInfo}>Update Account</button>
+                    <button type="submit" className="btn btn-lg btn-outline-primary" style={{marginLeft: "25%"}} onClick={changeInfo}>Update Account</button>
                 </div>
                 <h3 style={{textAlign: 'center'}}>Reset Password</h3>
                 <div className="page-form">
                     <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{errorMessage}</div>
-                    <label htmlFor="pass">New Password</label>
+                    <label htmlFor="pass" style={{marginLeft: "25%"}}>New Password</label>
                     <input
                         className="form-control"
+                        style={selectStyle}
                         type="password"
                         id="pass"
                         required
@@ -147,9 +159,10 @@ function AccountInfo(props) {
                         onChange={handlePassChange}
                         name="pass">
                     </input>
-                    <label htmlFor="confirmedPasword" style={{marginTop: 15}}>Confirm Password</label>
+                    <label htmlFor="confirmedPasword" style={{marginLeft: "25%"}}>Confirm Password</label>
                     <input
                         className="form-control"
+                        style={selectStyle}
                         type="password"
                         id="confirmedPassword"
                         required
@@ -157,9 +170,9 @@ function AccountInfo(props) {
                         onChange={handlePassChange}
                         name="confirmedPass">
                     </input>
-                    <button type="submit" className="btn btn-lg btn-outline-primary" style={{marginTop: 15}} onClick={changePass}>Update Password</button>
+                    <button type="submit" className="btn btn-lg btn-outline-primary" style={{marginLeft: "25%"}} onClick={changePass}>Update Password</button>
                     
-                    <Link to="/delete" style={{marginLeft: 15, marginTop: 15}} className="btn btn-lg btn-secondary">Delete Account</Link>
+                    <Link to="/delete" style={{marginLeft: "1%"}} className="btn btn-lg btn-secondary">Delete Account</Link>
                 </div>
             </div>
     )
