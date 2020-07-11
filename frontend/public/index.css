@@ -30,6 +30,10 @@ header {
     margin-top: 2%;
 }
 
+.preauth-loginbutton-style {
+    margin-bottom: 2%;
+}
+
 #account-homepage {
     padding: 4.0rem 0;
 }
