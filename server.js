@@ -28,6 +28,8 @@ app.get("/api", (req, res) => {
 */
 
 app.listen(process.env.PORT || 4000, ()=>{
+    console.log(process.env.PORT);
+    console.log(process.env.REACT_APP_DATABASE);
     console.log("server up and running");
 });
 
