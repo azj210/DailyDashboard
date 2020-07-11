@@ -47,6 +47,7 @@ const componentDidMount = (props) => {
                 // check if today is at least one day ahead of the last update
                 const categoryName = props.dashboard[`category${i}`];
                 if ((props.currentDate-props.display.lastUpdateObj > 0) && (props.currentDate.getDate() > props.display.lastUpdateObj.getDate() || props.currentDate.getMonth() > props.display.lastUpdateObj.getMonth() || props.currentDate.getYear() > props.display.lastUpdateObj.getYear())) {
+                    
                     toBeUpdated.push({categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`})
                 }
                 // check if user filled out the category and preferences and the display is null for that category 
