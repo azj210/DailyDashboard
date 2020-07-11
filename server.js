@@ -27,7 +27,7 @@ app.get("/api", (req, res) => {
 });
 */
 
-app.listen(process.env.PORT || 5000, ()=>{
+app.listen(process.env.PORT || 4000, ()=>{
     console.log("server up and running");
 });
 
