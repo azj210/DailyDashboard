@@ -14,19 +14,6 @@ const methods = {
 
 function SignUp(props) {
 
-    const selectStyle = {
-        marginBottom:"2%", 
-        marginLeft:"25%",
-        width:"50%",
-    };
-
-    const buttonStyle = {
-        marginTop:"2%",
-        marginBottom:"2%", 
-        marginLeft:"25%",
-        width:"50%",
-    };
-
     const initialFormState= {
         fName: "",
         lName: "",
@@ -108,7 +95,7 @@ function SignUp(props) {
                     <h2>Sign Up</h2>
                 </header>
 
-                <div className="form-group" style={selectStyle}>
+                <div className="form-group preauth-select-style">
                     <label htmlFor="fName">First Name</label>
                     <input
                         type="text"
@@ -121,7 +108,7 @@ function SignUp(props) {
                     />
                 </div>
         
-                <div className="form-group" style={selectStyle}>
+                <div className="form-group preauth-select-style">
                     <label htmlFor="lName">Last Name</label>
                     <input
                         type="text"
@@ -134,7 +121,7 @@ function SignUp(props) {
                     />
                 </div>
 
-                <div className="form-group" style={selectStyle}>
+                <div className="form-group preauth-select-style">
                     <label htmlFor="email">Email</label>
                     <input
                     type="text"
@@ -147,7 +134,7 @@ function SignUp(props) {
                     />
                 </div>
 
-                <div className="form-group" style={selectStyle}>
+                <div className="form-group preauth-select-style">
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -160,7 +147,7 @@ function SignUp(props) {
                     />
                 </div>
 
-                <div className="form-group" style={selectStyle}>
+                <div className="form-group preauth-select-style">
                     <label htmlFor="birthdate">Birthdate</label>
                     <input
                         type="date"
@@ -173,7 +160,7 @@ function SignUp(props) {
                     />
                 </div>
 
-                <div className="form-group" style={selectStyle}>
+                <div className="form-group preauth-select-style">
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
@@ -186,7 +173,7 @@ function SignUp(props) {
                     />
                 </div>
 
-                <div className="form-group" style={selectStyle}>
+                <div className="form-group preauth-select-style">
                     <label htmlFor="state">State</label>
                     <input
                         type="text"
@@ -199,7 +186,7 @@ function SignUp(props) {
                     />
                 </div>
         
-                <button type="submit" style={buttonStyle} className="btn btn-info form-control" onClick={saveData}>
+                <button type="submit" className="btn btn-info form-control preauth-button-style" onClick={saveData}>
                     Submit
                 </button>
                     

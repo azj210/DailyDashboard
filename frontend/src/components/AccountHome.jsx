@@ -167,7 +167,7 @@ function AccountHome (props) {
     return(
         typeof(props.dashboard) === "undefined" || typeof(props.weather) === "undefined" ? 
         <div /> :
-        <div className="homepage-header" style={{backgroundImage: `url(${props.weather.background})`, backgroundSize: "cover"}}>
+        <div className="homepage-header" id="account-homepage" style={{backgroundImage: `url(${props.weather.background})`, backgroundSize: "cover"}}>
             <div id="dashboard">
                 <h1>Welcome {props.user.fName}!</h1>
                 <h3>{weekday + " " + currentDate.toLocaleDateString(options)}</h3>

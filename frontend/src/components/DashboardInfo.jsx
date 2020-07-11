@@ -41,17 +41,7 @@ const methods = {
 
 function DashboardInfo(props) {
 
-    const selectStyle = {
-        marginBottom: "2%", 
-        width: "40%",
-        marginTop: "0.5%",
-        marginLeft: "30%",
-    };
 
-    const inputStyle = {
-        width: "40%",
-        marginLeft: "30%"
-    };
 
     const categories = ["song", "cocktail", "movie", "food"];
     const currentDate = new Date();
@@ -120,7 +110,7 @@ function DashboardInfo(props) {
         event = checkEvent(props.dashboard.eventDateObj, currentDate, props.originalDash);
     }
 
-    const updateDash = () =>{
+    const updateDash = () => {
         const token = localStorage.getItem("decisionMakerToken");
         let displayUpdateData = [];
         const prefsToNames = {
@@ -158,7 +148,7 @@ function DashboardInfo(props) {
                 if (displayUpdateData.length > 0) {
                     retrieveCategoryData(props.display, updatedDash, token, currentDate, displayUpdateData)
                 } else {
-                //    history.go();
+                    history.go();
                 }
             })
             .catch(e => {
@@ -169,22 +159,20 @@ function DashboardInfo(props) {
     return (
         typeof(props.dashboard) === "undefined" || typeof(props.originalDash) === "undefined" ?
         <div /> :
-        <div>
-            {/* <Link to="/" className="btn btn-lg btn-outline-primary">Home</Link> */}
+        <div>\
             <div className="page-form" style={{color: 'black', textAlign: 'center'}}>
                 <header><h3>{event}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3></header>
-                    <div className="form-group">
+                    <div className="form-group input-style">
                         <label htmlFor="eventName">Event Name</label>
                         <input 
                             className="form-control"
                             id="eventName"
                             value={props.dashboard.eventName}
                             onChange={handleChange}
-                            name="eventName"
-                            style={inputStyle}>
+                            name="eventName input-style">
                         </input>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group input-style">
                         <label htmlFor="EventDate">Event Date</label>
                         <input 
                             className="form-control"
@@ -192,14 +180,13 @@ function DashboardInfo(props) {
                             type="date"
                             value={props.dashboard.eventDate.substr(0, 10)}
                             onChange={handleChange}
-                            name="eventDate"
-                            style={inputStyle}>
+                            name="eventDate input-style">
                         </input>
                     </div>
                 <h3>Songs</h3>
                     <h10>Energy</h10>
                     <div className="form-group">
-                    <select className="form-control" style={selectStyle} name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
+                    <select className="form-control dashboard-select-style" name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
                         <option value=""></option>    
                         <option>low</option>
                         <option>medium</option>
@@ -209,7 +196,7 @@ function DashboardInfo(props) {
 
                     <h10>Decade</h10>
                     <div className="form-group">
-                    <select className="form-control" style={selectStyle} name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
+                    <select className="form-control dashboard-select-style" name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
                         <option value=""></option>
                         <option>1980</option>
                         <option>1990</option>
@@ -221,7 +208,7 @@ function DashboardInfo(props) {
                 <h3>Cocktail</h3>
                 <h10>Preference</h10>
                 <div className="form-group"> 
-                    <select className="form-control" style={selectStyle} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
+                    <select className="form-control dashboard-select-style" name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
                         <option value=""></option>    
                         <option>Cocktail Classics</option>
                         <option>Whiskies</option>
@@ -239,7 +226,7 @@ function DashboardInfo(props) {
                 <h3>Movie</h3>
                 <h10>Genre</h10>
                 <div className="form-group">
-                    <select className="form-control" style={selectStyle} name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
+                    <select className="form-control dashboard-select-style" name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
                         <option value=""></option>    
                         <option>Drama</option>
                         <option>Comedy</option>
@@ -252,7 +239,7 @@ function DashboardInfo(props) {
                 <h3>Food</h3>
                 <h10>Preference</h10>
                 <div className="form-group">
-                    <select className="form-control" style={selectStyle} name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
+                    <select className="form-control dashboard-select-style" name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
                         <option value=""></option>    
                         <option>High Protein</option>
                         <option>Low Calorie</option>

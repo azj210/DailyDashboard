@@ -13,18 +13,6 @@ const methods = {
 };
 
 function Login (props) {
-    
-    const selectStyle = {
-        marginBottom:"2%", 
-        marginLeft:"25%",
-        width:"50%",
-    };
-
-    const buttonStyle = {
-        marginTop:"2%",
-        marginLeft:"25%",
-        width:"50%",
-    };
 
     const [loginInfo, setLoginInfo] = useState({
         email: "", 
@@ -79,7 +67,7 @@ function Login (props) {
                 <h2>Login</h2>
             </header>
             <div id="errorMessage" style={{color: 'red', textAlign: 'center'}}>&nbsp;{errorMessage}</div>
-            <div className="form-group" style={selectStyle}>
+            <div className="form-group preauth-select-style">
                 <label for="username">Email</label>
                 <input 
                     id="username"
@@ -92,7 +80,7 @@ function Login (props) {
                     onChange={handleChange}         
                 />
             </div>
-            <div className="form-group" style={selectStyle}>    
+            <div className="form-group preauth-select-style">    
                 <label for="loginPW">Password</label>
                 <input 
                     id="loginPW"
@@ -106,8 +94,8 @@ function Login (props) {
                 />
             </div>
 
-            <button type="submit" className="btn btn-info form-control" style={buttonStyle} onClick={logUserIn}>Login</button>
-            <button type="submit" className="btn btn-info form-control" style={buttonStyle} onClick={forgotPassword}>Forgot Password</button>
+            <button type="submit" className="btn btn-info form-control preauth-loginbutton-style" onClick={logUserIn}>Login</button>
+            <button type="submit" className="btn btn-info form-control preauth-loginbutton-style" onClick={forgotPassword}>Forgot Password</button>
         </div>
     );
 };
