@@ -37,7 +37,7 @@ const componentDidMount = (props) => {
 
                         const backgroundImageRes = setBackground(dayOrNight, mainDisplay);
 
-                        props.setWeather({text: `Today's weather: ${temp}° &#8457 and ${description}`, background: backgroundImageRes, icon: iconURL});
+                        props.setWeather({text: `Today's weather: ${temp} &#8457 and ${description}`, background: backgroundImageRes, icon: iconURL});
                     })
                     .catch(e => {
                         props.setWeather({text: "Your city's weather cannot be found"});
