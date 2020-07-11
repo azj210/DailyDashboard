@@ -17,19 +17,7 @@ app.use("/api/dashb", dashboardRouter);
 //if any requests come to update user display data then we pass to /api/disp route
 app.use("/api/disp", displayRouter);
 
-//listen to some endpoint at localhost:3000/api
-/*
-app.get("/api", (req, res) => {
-    res.json({
-        success: 1,
-        message: "rest api is working"
-    });
-});
-*/
-
 app.listen(process.env.PORT || 4000, ()=>{
-    console.log(process.env.PORT);
-    console.log(process.env.REACT_APP_DATABASE);
     console.log("server up and running");
 });
 
