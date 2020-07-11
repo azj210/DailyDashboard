@@ -105,3 +105,5 @@ dist
 
 # Email Credentials
 backend/api/credentials/emailCredentials.js
+# Local Netlify folder
+.netlify
