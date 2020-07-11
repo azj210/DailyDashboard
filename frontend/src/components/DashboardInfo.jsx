@@ -15,7 +15,8 @@ const componentDidMount = (props) => {
     DataService.getDashByUID(token, uid)
         .then(response => {
             if(response.data.success === 1) {
-                props.setDashboard({...response.data.data, eventDateObj: new Date(response.data.data.eventDate)});
+                console.log(response.data.data);
+                props.setDashboard({...response.data.data, eventDateObj: new Date(response.data.data.eventDate.slice(0, 10) + "T20:00:00-04:00")});
                 props.setOriginalDash({...response.data.data})
             } else {
                 console.log("failed to fetch dashboard data");
@@ -75,7 +76,6 @@ function DashboardInfo(props) {
             if ((event - date)/86400000 <= -1) {
                 DataService.get(localStorage.getItem("decisionMakerToken"), localStorage.getItem("decisionMakerUID"))
                     .then(response => {
-                        console.log(response);
                         if (response.data.success === 1) {
                             const newDash = {
                                 ...dashboard,
@@ -85,7 +85,6 @@ function DashboardInfo(props) {
 
                             DataService.updateDash(localStorage.getItem("decisionMakerToken"), newDash)
                                 .then(response => {
-                                    console.log(response);
                                     history.go();
                                 })
                                 .catch(e => {
@@ -159,7 +158,7 @@ function DashboardInfo(props) {
     return (
         typeof(props.dashboard) === "undefined" || typeof(props.originalDash) === "undefined" ?
         <div /> :
-        <div>\
+        <div>
             <div className="page-form" style={{color: 'black', textAlign: 'center'}}>
                 <header><h3>{event}: {props.dashboard.eventDateObj.toLocaleDateString(undefined, options)}</h3></header>
                     <div className="form-group input-style">
@@ -169,7 +168,7 @@ function DashboardInfo(props) {
                             id="eventName"
                             value={props.dashboard.eventName}
                             onChange={handleChange}
-                            name="eventName input-style">
+                            name="eventName">
                         </input>
                     </div>
                     <div className="form-group input-style">
@@ -180,11 +179,11 @@ function DashboardInfo(props) {
                             type="date"
                             value={props.dashboard.eventDate.substr(0, 10)}
                             onChange={handleChange}
-                            name="eventDate input-style">
+                            name="eventDate">
                         </input>
                     </div>
                 <h3>Songs</h3>
-                    <h10>Energy</h10>
+                    <p>Energy</p>
                     <div className="form-group">
                     <select className="form-control dashboard-select-style" name="songEnergy" value={props.dashboard.songEnergy} onChange={handleChange}>
                         <option value=""></option>    
@@ -194,7 +193,7 @@ function DashboardInfo(props) {
                     </select>
                     </div>
 
-                    <h10>Decade</h10>
+                    <p>Decade</p>
                     <div className="form-group">
                     <select className="form-control dashboard-select-style" name="songDecade" value={props.dashboard.songDecade} onChange={handleChange}>
                         <option value=""></option>
@@ -206,7 +205,7 @@ function DashboardInfo(props) {
                     </div>
 
                 <h3>Cocktail</h3>
-                <h10>Preference</h10>
+                <p>Preference</p>
                 <div className="form-group"> 
                     <select className="form-control dashboard-select-style" name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
                         <option value=""></option>    
@@ -224,7 +223,7 @@ function DashboardInfo(props) {
                 </div>
 
                 <h3>Movie</h3>
-                <h10>Genre</h10>
+                <p>Genre</p>
                 <div className="form-group">
                     <select className="form-control dashboard-select-style" name="movieGenre" value={props.dashboard.movieGenre} onChange={handleChange}>
                         <option value=""></option>    
@@ -237,7 +236,7 @@ function DashboardInfo(props) {
                 </div>
 
                 <h3>Food</h3>
-                <h10>Preference</h10>
+                <p>Preference</p>
                 <div className="form-group">
                     <select className="form-control dashboard-select-style" name="foodPref" value={props.dashboard.foodPref} onChange={handleChange}>
                         <option value=""></option>    
@@ -248,7 +247,7 @@ function DashboardInfo(props) {
                         <option>No Preference</option>
                     </select>
                 </div>
-                <h3>Categories to Display on Dashboard:</h3>
+                <h3>Categories to display on Dashboard:</h3>
                     <h4 style={{marginTop: 15}}>Category 1</h4>
                         {categories.map((category, index) => {
                             const key = "1" + index 
