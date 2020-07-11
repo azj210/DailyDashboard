@@ -2,12 +2,12 @@ require('dotenv').config();
 const { createPool } = require("mysql");
 
 const pool = createPool({
-    port: process.env.REACT_APP_PORT,
-    host: process.env.REACT_APP_HOST,
-    user: process.env.REACT_APP_USER,
-    password: process.env.REACT_APP_PASSWORD,
-    database: process.env.REACT_APP_DATABASE,
-    connectionLimit: process.env.REACT_APP_CONNECTION_LIMIT
+    port: 3306,
+    host: "us-cdbr-east-05.cleardb.net",
+    user: "b40ed23bca7922",
+    password: "383c7a4b",
+    database: "heroku_10df3eb7b4b5388",
+    connectionLimit: 10
 });
 
 //using this pool we can call functions like query to query the MySQL database
