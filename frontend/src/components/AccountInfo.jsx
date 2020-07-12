@@ -54,6 +54,10 @@ function AccountInfo(props) {
     }
 
     const changePass = () => {
+        if (newPass.pass.length === 0) {
+            setErrorMessage("Password field is empty");
+            return;
+        }
         if (newPass.pass === newPass.confirmedPass) {
             DataService.updateUserPass(localStorage.getItem("decisionMakerToken"), {password: newPass.pass, uid: localStorage.getItem("decisionMakerUID")})
                 .then (response => {
