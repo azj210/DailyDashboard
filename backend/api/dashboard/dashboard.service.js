@@ -73,7 +73,6 @@ module.exports = {
 
     getData: (data, callBack) => {
         //retrieves a song and its respective artist artist from songs table
-        console.log(data);
         if (data.type == "song") {
             pool.query(
                 `select sName, artist from songs where decade = ? and energy >= ? and energy <= ? order by rand() limit 1`,

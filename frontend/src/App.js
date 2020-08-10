@@ -35,17 +35,14 @@ function App() {
           console.log(e);
         });
       if (response.data.success === 1) {
-        console.log("success");
         setAuthenticated(true);
       } else {
-        console.log("failed");
         setAuthenticated(false);
         localStorage.removeItem("decisionMakerToken");
         localStorage.removeItem("decisionMakerUID");
         history.go();
       }
     } else {
-      console.log("no token");
       setAuthenticated(false);
     }
   };

@@ -12,7 +12,6 @@ const componentDidMount = (props) => {
             props.setUser(response.data.data);
             DataService.getWeather({city: response.data.data.city})
                     .then(response => {
-                        console.log(response);
                         // if response.cod exists, the response is invalid
                         if(response.cod) {
                             props.setWeather("Your city's weather cannot be found");
@@ -115,7 +114,7 @@ function AccountHome (props) {
                         .then(response => {
                             if (response.data.success === 1) {
                                 const newDash = {
-                                    ... dashboard,
+                                    ...dashboard,
                                     eventName: "Birthdate",
                                     eventDate: response.data.data.birthdate
                                 }

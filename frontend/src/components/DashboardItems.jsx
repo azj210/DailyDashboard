@@ -5,19 +5,6 @@ import IndividualDashItems from './IndividualDashItems';
 import lifecycle from 'react-pure-lifecycle';
 
 const componentDidMount = (props) => {
-    let firstCategoryLetter;
-    let secondCategoryLetter;
-
-    if (props.dashboard.category1) {
-        firstCategoryLetter = props.dashboard.category1.charAt(0);
-    };
-    if (props.dashboard.category2) {
-        secondCategoryLetter = props.dashboard.category2.charAt(0);
-    };
-
-    if ((props.currentDate-props.display.lastUpdateObj >= 1) && props.currentDate.getDate() > props.display.lastUpdateObj.getDate()) {
-        //update
-    }
 
     const token = localStorage.getItem("decisionMakerToken");
     const uid = localStorage.getItem("decisionMakerUID");
@@ -47,13 +34,27 @@ const componentDidMount = (props) => {
         .then(response => {
             const responseData = response.data.data;
             // condition should always be set to "less than the max amount of categories the user can pick to show on the dashboard + 1"
+            const toBeUpdated = [];
+
             for (let i = 1; i < 3; i++) {
-                if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`].charAt(0)}Name`] !== null) {
+                // check if today is at least one day ahead of the last update
+                if ((props.currentDate-props.display.lastUpdateObj > 0) && (props.currentDate.getDate() > props.display.lastUpdateObj.getDate() || props.currentDate.getMonth() > props.display.lastUpdateObj.getMonth() || props.currentDate.getYear() > props.display.lastUpdateObj.getYear())) {
+                    // retrieveCategoryData(props.display, token, props.dashboard, props.dashboard[`category${i}`], `${categoryNames[`name${i}`]}`, props.currentDate);
+                    toBeUpdated[i-1] = {display: props.display, token: token, dashboard: props.dashboard, categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`, currentDate: props.currentDate}
+                }
+                // check if user filled out the category and the display is null for that category 
+                else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] === null) {
+                    // retrieveCategoryData(props.display, token, props.dashboard, props.dashboard[`category${i}`], `${categoryNames[`name${i}`]}`, props.currentDate);
+                    toBeUpdated[i-1] = {display: props.display, token: token, dashboard: props.dashboard, categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`, currentDate: props.currentDate}
+                }
+                // check if user filled out the category and the display isn't null for that category 
+                else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] !== null) {
                     texts[i-1] = props.dashboard[`category${i}`] + ": " + responseData[`${categoryNames[`name${i}`]}`];
-                } else if (props.dashboard[`category${i}`] && categoryNames[`name${1}`] === null) {
-                    retrieveCategoryData(uid, token, props.dashboard, `${categoryNames[`name${i}`].charAt(0)}Name`, props.display.lastUpdateObj)
-                } //else if () date conditional
-            }
+                }
+            } 
+            if (toBeUpdated.length > 0) {
+                retrieveCategoryData(toBeUpdated);
+            };
             props.setCategories(texts);
         })
         .catch(e => {

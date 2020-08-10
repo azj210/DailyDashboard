@@ -1,4 +1,4 @@
-import {http, httpA, httpW} from "../http-common.js";
+import {http, httpA} from "../http-common.js";
 
 // user services
 const create = data => {
@@ -80,6 +80,11 @@ const updateDisplay = (token, data) => {
   return authHTTP.patch("/disp/update", data);
 }
 
+const updateDisplayByName = (token, data) => {
+  const authHTTP = httpA(token);
+  return authHTTP.patch("/disp/update-specific", data);
+}
+
 const getDisplayByUID = (token, id) => {
   const authHTTP = httpA(token);
   return authHTTP.get(`/disp/${id}`);
@@ -108,6 +113,7 @@ export default {
   getWeather,
   createDisplay,
   updateDisplay,
+  updateDisplayByName,
   getDisplayByUID,
   deleteDisplay
 };

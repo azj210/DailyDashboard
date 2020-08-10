@@ -2,7 +2,7 @@
 // this will be the biggest component by far; we should seperate the functions into different typscript files later
 
 import React from 'react';
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import DataService from '../services/UserServices';
 import lifecycle from 'react-pure-lifecycle';
 
@@ -63,7 +63,7 @@ function DashboardInfo(props) {
                         console.log(response);
                         if (response.data.success === 1) {
                             const newDash = {
-                                ... dashboard,
+                                ...dashboard,
                                 eventName: "Birthdate",
                                 eventDate: response.data.data.birthdate
                             }
@@ -168,7 +168,6 @@ function DashboardInfo(props) {
                     <select className="form-control" style={{marginBottom: 15}} name="cocktailPref" value={props.dashboard.cocktailPref} onChange={handleChange}>
                         <option value="">Preference</option>
                         <option>Cocktail Classics</option>
-                        <option>Cordials And Liquers</option>
                         <option>Whiskies</option>
                         <option>Brandy</option>
                         <option>Vodka</option>

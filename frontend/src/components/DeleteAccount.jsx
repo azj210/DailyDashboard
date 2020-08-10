@@ -30,7 +30,7 @@ function DeleteAccount(props) {
                                 console.log(response);
                                 localStorage.removeItem("decisionMakerToken");
                                 localStorage.removeItem("decisionMakerUID")
-                                history.push("/");
+                                // history.push("/");
                             })
                             .catch(e => {
                                 console.log(e);
