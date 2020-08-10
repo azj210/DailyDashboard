@@ -49,7 +49,9 @@ const componentDidMount = (props) => {
                 }
                 // check if user filled out the category and the display isn't null for that category 
                 else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] !== null) {
-                    texts[i-1] = props.dashboard[`category${i}`] + ": " + responseData[`${categoryNames[`name${i}`]}`];
+                    const categoryName = props.dashboard[`category${i}`];
+
+                    texts[i-1] = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}` +  ": " + responseData[`${categoryNames[`name${i}`]}`];
                 }
             } 
             if (toBeUpdated.length > 0) {
