@@ -5,6 +5,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import DataService from '../services/UserServices';
 import lifecycle from 'react-pure-lifecycle';
+import retrieveCategoryData from './AppFunctions/retrieveCategoryData';
 
 const componentDidMount = (props) => {
 
@@ -96,24 +97,29 @@ function DashboardInfo(props) {
     }
     
     const updateDash = () =>{
-        
-        // let 
+        // display, dashboard, token, currentDate, info: an array with objects with keys "categoryName" and "abbreviatedCategory"
+        const token = localStorage.getItem("decisionMakerToken");
+        let displayUpdateData = [];
 
         for (const detail in props.dashboard) {
             if(props.dashboard[detail] === null || props.dashboard[detail] === "") {
               delete props.dashboard[detail];
             } /*else if (props.dashboard[detail] !== props.originalDash[detail]) {
-
+                displayUpdateData.push({})
             }*/
         }
 
         const updatedDash = Object.assign(props.originalDash, props.dashboard);
 
-        DataService.updateDash(localStorage.getItem("decisionMakerToken"), updatedDash)
+        DataService.updateDash(token, updatedDash)
             .then(response =>{
                 console.log(response);
                 console.log(updatedDash);
-                history.go();
+                if (displayUpdateData.length > 0) {
+                    retrieveCategoryData(/*display, dashboard,*/ token, currentDate, displayUpdateData)
+                } else {
+                    history.go();
+                }
             })
             .catch(e => {
                 console.log(e);
