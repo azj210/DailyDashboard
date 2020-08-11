@@ -1,7 +1,7 @@
 
 import DataService from '../../services/UserServices';
 
-async function retrieveCategoryData(info /*display, token, dashboard, categoryName, abbreviatedCategory, currentDate*/) {
+async function retrieveCategoryData(display, dashboard, token, currentDate, info) {
 
     function assignObject(categoryN, categoryObject) {
         switch (categoryN) {
@@ -9,23 +9,23 @@ async function retrieveCategoryData(info /*display, token, dashboard, categoryNa
                 let lowEnd = 0.6;
                 let highEnd = 1;
 
-                if (info[0].dashboard.songEnergy = "low") {
+                if (dashboard.songEnergy = "low") {
                     lowEnd = 0;
                     highEnd = 0.4;
-                } else if (info[0].dashboard.songEnergy = "medium") {
+                } else if (dashboard.songEnergy = "medium") {
                     lowEnd = 0.4;
                     highEnd = 0.6;
                 };
 
-                categoryObject.decade = info[0].dashboard.songDecade;
+                categoryObject.decade = dashboard.songDecade;
                 categoryObject.p1 = lowEnd;
                 categoryObject.p2 = highEnd;
                 break;
             case "cocktail":
-                categoryObject.category = info[0].dashboard.cocktailPref;
+                categoryObject.category = dashboard.cocktailPref;
                 break;
             case "movie": 
-                categoryObject.genre = info[0].dashboard.movieGenre;
+                categoryObject.genre = dashboard.movieGenre;
                 break;
             case "food":
                 let proteins = 0;
@@ -33,7 +33,7 @@ async function retrieveCategoryData(info /*display, token, dashboard, categoryNa
                 let fats = 100;
                 let sugars = 100;
 
-                const preference = info[0].dashboard.foodPref;
+                const preference = dashboard.foodPref;
 
                 if (preference === "High Protein") {
                     proteins = 20;
@@ -53,7 +53,7 @@ async function retrieveCategoryData(info /*display, token, dashboard, categoryNa
         }
     }
 
-    let data = {...info[0].display, lastUpdate: info[0].currentDate}
+    let data = {...display, lastUpdate: currentDate}
 
     for (let i = 0; i < info.length; i++) {
         let category = {type: info[i].categoryName};
@@ -71,9 +71,8 @@ async function retrieveCategoryData(info /*display, token, dashboard, categoryNa
             })
     }
 
-    DataService.updateDisplay(info[0].token, data)
+    DataService.updateDisplay(token, data)
     .then(response => {
-        console.log(4);
         console.log(response);
         window.location.reload();
     })

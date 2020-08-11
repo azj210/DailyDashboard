@@ -40,12 +40,12 @@ const componentDidMount = (props) => {
                 // check if today is at least one day ahead of the last update
                 if ((props.currentDate-props.display.lastUpdateObj > 0) && (props.currentDate.getDate() > props.display.lastUpdateObj.getDate() || props.currentDate.getMonth() > props.display.lastUpdateObj.getMonth() || props.currentDate.getYear() > props.display.lastUpdateObj.getYear())) {
                     // retrieveCategoryData(props.display, token, props.dashboard, props.dashboard[`category${i}`], `${categoryNames[`name${i}`]}`, props.currentDate);
-                    toBeUpdated[i-1] = {display: props.display, token: token, dashboard: props.dashboard, categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`, currentDate: props.currentDate}
+                    toBeUpdated[i-1] = {categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`}
                 }
                 // check if user filled out the category and the display is null for that category 
                 else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] === null) {
                     // retrieveCategoryData(props.display, token, props.dashboard, props.dashboard[`category${i}`], `${categoryNames[`name${i}`]}`, props.currentDate);
-                    toBeUpdated[i-1] = {display: props.display, token: token, dashboard: props.dashboard, categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`, currentDate: props.currentDate}
+                    toBeUpdated[i-1] = {categoryName: props.dashboard[`category${i}`], abbreviatedCategory: `${categoryNames[`name${i}`]}`}
                 }
                 // check if user filled out the category and the display isn't null for that category 
                 else if (props.dashboard[`category${i}`] && responseData[`${categoryNames[`name${i}`]}`] !== null) {
@@ -55,7 +55,7 @@ const componentDidMount = (props) => {
                 }
             } 
             if (toBeUpdated.length > 0) {
-                retrieveCategoryData(toBeUpdated);
+                retrieveCategoryData(props.display, props.dashboard, token, props.currentDate, toBeUpdated);
             };
             props.setCategories(texts);
         })

@@ -97,10 +97,14 @@ function DashboardInfo(props) {
     
     const updateDash = () =>{
         
+        // let 
+
         for (const detail in props.dashboard) {
             if(props.dashboard[detail] === null || props.dashboard[detail] === "") {
               delete props.dashboard[detail];
-            }
+            } /*else if (props.dashboard[detail] !== props.originalDash[detail]) {
+
+            }*/
         }
 
         const updatedDash = Object.assign(props.originalDash, props.dashboard);
